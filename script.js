@@ -22,41 +22,45 @@ function afficherProjets(projets) {
         const projectDiv = document.createElement("div");
         projectDiv.className = "project";
 
-        // Alterne la classe pour chaque projet
-        const isEven = index % 2 === 0;
-        projectDiv.classList.add(isEven ? "left-align" : "right-align");
-
-        // Créer le titre du projet
+        // Créer le titre du projet et le centrer en haut
         const title = document.createElement("h3");
+        title.className = "project-title";
         title.textContent = nom;
+        projectDiv.appendChild(title);
+
+        // Créer un conteneur pour l'image et la description
+        const contentDiv = document.createElement("div");
+        contentDiv.className = "project-content";
 
         // Créer le lien avec l'image
         const link = document.createElement("a");
         link.href = lienGit;
-        link.target = "_blank"; // Ouvrir le lien dans un nouvel onglet
+        link.target = "_blank";
 
         const img = document.createElement("img");
-        img.src = "assets/"+lienImage;
+        img.src = "assets/" + lienImage;
         img.alt = nom;
         img.className = "project-image";
 
-        // Ajouter l'image au lien, puis le lien à la div
+        // Ajouter l'image au lien
         link.appendChild(img);
 
         // Créer la description
         const desc = document.createElement("p");
+        desc.className = "project-description";
         desc.textContent = description;
 
-        // Ajouter les éléments dans l'ordre souhaité en fonction de `isEven`
-        if (isEven) {
-            projectDiv.appendChild(link); // Image à gauche
-            projectDiv.appendChild(title);
-            projectDiv.appendChild(desc);
+        // Ajouter l'image et la description dans l'ordre basé sur `index`
+        if (index % 2 === 0) {
+            contentDiv.appendChild(link); // Image à gauche
+            contentDiv.appendChild(desc); // Description à droite
         } else {
-            projectDiv.appendChild(title);
-            projectDiv.appendChild(desc);
-            projectDiv.appendChild(link); // Image à droite
+            contentDiv.appendChild(desc); // Description à gauche
+            contentDiv.appendChild(link); // Image à droite
         }
+
+        // Ajouter le conteneur de contenu au projet
+        projectDiv.appendChild(contentDiv);
 
         // Ajouter le projet à la section
         section.appendChild(projectDiv);
