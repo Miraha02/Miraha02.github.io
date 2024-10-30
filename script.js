@@ -1,4 +1,5 @@
-projets = [["github","https://github.com/Miraha02/Miraha02.github.io","images.png","Une petite description test, pas si petite que ca pcq c'est important d'avoir plein de ligne pour tester les paragraphes assez complets, si le site réagit correctement ou non"]];
+projets = [["github","https://github.com/Miraha02/Miraha02.github.io","images.png","Une petite description test, pas si petite que ca pcq c'est important d'avoir plein de ligne pour tester les paragraphes assez complets,si le site réagit correctement ou non"],
+["github","https://github.com/Miraha02/Miraha02.github.io","images.png","Une petite description test, pas si petite que ca pcq c'est important d'avoir plein de ligne pour tester les paragraphes assez complets,si le site réagit correctement ou non"]];
 
 
 // Smooth scroll for navigation links

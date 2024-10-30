@@ -37,17 +37,6 @@ h2 {
     color: #ff4081;
 }
 
-.project {
-    background-color: #333;
-    padding: 15px;
-    margin: 10px;
-    border-radius: 8px;
-}
-
-.project h3 {
-    color: #ffb74d;
-}
-
 .project a {
     color: #ff4081;
     text-decoration: none;
@@ -81,4 +70,61 @@ form button {
 
 form button:hover {
     background-color: #e91e63;
+}
+
+#project-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+#project-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+.project {
+    display: flex;
+    max-width: 800px;
+    gap: 20px;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    color: #fff;
+    align-items: center;
+    /* Assure un alignement vertical entre image et description */
+    text-align: left;
+}
+
+.project h3 {
+    color: #ffb74d;
+    font-size: 1.2em;
+    margin: 0;
+}
+
+.project-image {
+    width: 150px;
+    height: auto;
+    border-radius: 5px;
+    flex-shrink: 0;
+    /* Empêche l'image de se redimensionner */
+}
+
+.project p {
+    font-size: 1em;
+    color: #ccc;
+    margin-top: 0;
+}
+
+/* Style pour aligner l'image à gauche et description à droite */
+.project.left-align {
+    flex-direction: row;
+}
+
+/* Style pour aligner l'image à droite et description à gauche */
+.project.right-align {
+    flex-direction: row-reverse;
 }
