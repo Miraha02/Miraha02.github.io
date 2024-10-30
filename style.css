@@ -86,6 +86,8 @@ form button:hover {
     border-radius: 8px;
     color: #fff;
     text-align: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    /* Transition pour agrandir et changer l'arrière-plan */
 }
 
 .project-title {
@@ -111,4 +113,11 @@ form button:hover {
     font-size: 1em;
     color: #ccc;
     text-align: left;
+}
+
+.project:hover {
+    transform: scale(1.05);
+    /* Agrandir à 105% lors du survol */
+    background-color: #2a2a2a;
+    /* Assombrir légèrement l'arrière-plan */
 }
