@@ -18,54 +18,56 @@ function afficherProjets(projets) {
     const section = document.getElementById("project-section");
 
     projets.forEach(([nom, lienGit, lienImage, description], index) => {
+        // Créer le lien qui englobe toute la div du projet
+        const link = document.createElement("a");
+        link.href = lienGit;
+        link.target = "_blank"; // Ouvrir le lien dans un nouvel onglet
+        link.className = "project-link"; // Ajouter une classe pour styliser
+
         // Créer une div pour chaque projet
         const projectDiv = document.createElement("div");
         projectDiv.className = "project";
 
-        // Créer le titre du projet et le centrer en haut
-        const title = document.createElement("h3");
-        title.className = "project-title";
-        title.textContent = nom;
-        projectDiv.appendChild(title);
+        // Alterne la classe pour chaque projet
+        const isEven = index % 2 === 0;
+        projectDiv.classList.add(isEven ? "left-align" : "right-align");
 
-        // Créer un conteneur pour l'image et la description
+        // Créer le titre du projet
+        const title = document.createElement("h3");
+        title.textContent = nom;
+
+        // Créer le conteneur pour l'image et la description
         const contentDiv = document.createElement("div");
         contentDiv.className = "project-content";
 
-        // Créer le lien avec l'image
-        const link = document.createElement("a");
-        link.href = lienGit;
-        link.target = "_blank";
-
+        // Ajouter l'image
         const img = document.createElement("img");
         img.src = "assets/" + lienImage;
         img.alt = nom;
         img.className = "project-image";
 
-        // Ajouter l'image au lien
-        link.appendChild(img);
-
-        // Créer la description
+        // Ajouter la description
         const desc = document.createElement("p");
-        desc.className = "project-description";
         desc.textContent = description;
 
-        // Ajouter l'image et la description dans l'ordre basé sur `index`
-        if (index % 2 === 0) {
-            contentDiv.appendChild(link); // Image à gauche
-            contentDiv.appendChild(desc); // Description à droite
+        // Ajouter les éléments dans l'ordre souhaité en fonction de `isEven`
+        contentDiv.appendChild(img); // Ajouter l'image dans le conteneur
+        if (isEven) {
+            contentDiv.appendChild(desc); // Ajouter la description pour la disposition alternée
         } else {
-            contentDiv.appendChild(desc); // Description à gauche
-            contentDiv.appendChild(link); // Image à droite
+            contentDiv.insertBefore(desc, img); // Inverser l'ordre pour l'alternance
         }
 
-        // Ajouter le conteneur de contenu au projet
-        projectDiv.appendChild(contentDiv);
+        // Ajouter les éléments au projet
+        projectDiv.appendChild(title); // Ajouter le titre en haut
+        projectDiv.appendChild(contentDiv); // Ajouter le conteneur d'image et description
 
-        // Ajouter le projet à la section
-        section.appendChild(projectDiv);
+        // Ajouter `projectDiv` à `link`, puis `link` à `section`
+        link.appendChild(projectDiv);
+        section.appendChild(link);
     });
 }
+
 
 
 smoothScroll();

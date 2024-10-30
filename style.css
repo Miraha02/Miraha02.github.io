@@ -121,3 +121,12 @@ form button:hover {
     background-color: #2a2a2a;
     /* Assombrir légèrement l'arrière-plan */
 }
+
+.project-link {
+    text-decoration: none;
+    /* Supprime le soulignement du lien */
+    color: inherit;
+    /* Garde la couleur du texte par défaut */
+    display: block;
+    /* Rend le lien cliquable sur toute la carte */
+}
