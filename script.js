@@ -10,6 +10,12 @@ const projets = [
         lienGit : "https://github.com/Miraha02/Miraha02.github.io",
         lienImage : "assets/images.png",
         desc : "Une petite description test, pas si petite que ca pcq c'est important d'avoir plein de ligne pour tester les paragraphes assez complets,si le site réagit correctement ou non"
+    },
+    {
+        nom : "github",
+        lienGit : "https://github.com/Miraha02/Miraha02.github.io",
+        lienImage : "assets/images.png",
+        desc : "Une petite description test, pas si petite que ca pcq c'est important d'avoir plein de ligne pour tester les paragraphes assez complets,si le site réagit correctement ou non"
     }
 ];
 
