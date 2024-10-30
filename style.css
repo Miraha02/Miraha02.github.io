@@ -1,0 +1,84 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #1c1c1e;
+    color: #ffffff;
+    text-align: center;
+    line-height: 1.6;
+}
+
+header {
+    padding: 20px;
+    background: linear-gradient(135deg, #222, #333);
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+section {
+    padding: 20px;
+    margin-top: 20px;
+}
+
+h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: #ff4081;
+}
+
+.project {
+    background-color: #333;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 8px;
+}
+
+.project h3 {
+    color: #ffb74d;
+}
+
+.project a {
+    color: #ff4081;
+    text-decoration: none;
+}
+
+.project a:hover {
+    text-decoration: underline;
+}
+
+form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+form input,
+form textarea,
+form button {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    border: none;
+}
+
+form button {
+    background-color: #ff4081;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+form button:hover {
+    background-color: #e91e63;
+}
