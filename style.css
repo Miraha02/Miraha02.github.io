@@ -87,7 +87,6 @@ form button:hover {
     color: #fff;
     text-align: center;
     transition: transform 0.3s ease, background-color 0.3s ease;
-    /* Transition pour agrandir et changer l'arrière-plan */
 }
 
 .project-title {
@@ -116,17 +115,73 @@ form button:hover {
 }
 
 .project:hover {
-    transform: scale(1.05);
-    /* Agrandir à 105% lors du survol */
+    transform: scale(1.15);
     background-color: #2a2a2a;
-    /* Assombrir légèrement l'arrière-plan */
 }
 
 .project-link {
     text-decoration: none;
-    /* Supprime le soulignement du lien */
     color: inherit;
-    /* Garde la couleur du texte par défaut */
     display: block;
-    /* Rend le lien cliquable sur toute la carte */
+}
+
+
+#education {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#education-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+}
+
+.education-item {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    max-width: 750px;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    color: #ffffff;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.education-image {
+    width: 20%;
+    /* Ajustez pour la taille d'image souhaitée, par ex. 20% de la largeur de l'élément parent */
+    max-width: 120px;
+    /* Limite la taille pour grands écrans */
+    height: auto;
+    border-radius: 5px;
+    flex-shrink: 0;
+}
+
+.education-info {
+    text-align: left;
+    flex: 1;
+    /* Utilise tout l'espace restant */
+}
+
+.education-info h3 {
+    color: #ffb74d;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.education-info p {
+    color: #ccc;
+    font-size: 1em;
+    margin: 5px 0;
+}
+
+.education-item:hover {
+    transform: scale(1.05);
+    background-color: #2a2a2a;
 }
