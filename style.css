@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #1c1c1e;
+    background-color: #1b1b1e;
     color: #ffffff;
     text-align: center;
     line-height: 1.6;
@@ -109,7 +109,7 @@ form button:hover {
 }
 
 .project {
-    max-width: 800px;
+    max-width: 1100px;
     background-color: #333;
     padding: 20px;
     border-radius: 8px;
@@ -131,7 +131,7 @@ form button:hover {
 }
 
 .project-image {
-    width: 150px;
+    width: 250px;
     height: auto;
     border-radius: 5px;
     flex-shrink: 0;

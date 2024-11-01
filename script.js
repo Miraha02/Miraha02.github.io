@@ -12,9 +12,9 @@ const projets = [
         desc : "Une petite description test, pas si petite que ca pcq c'est important d'avoir plein de ligne pour tester les paragraphes assez complets,si le site réagit correctement ou non"
     },
     {
-        nom : "github",
-        lienGit : "https://github.com/Miraha02/Miraha02.github.io",
-        lienImage : "assets/images.png",
+        nom : "Sokoban",
+        lienGit : "https://github.com/Miraha02/ihmprojet-Hana/tree/master",
+        lienImage : "assets/sokoban.png",
         desc : "Une petite description test, pas si petite que ca pcq c'est important d'avoir plein de ligne pour tester les paragraphes assez complets,si le site réagit correctement ou non"
     }
 ];
@@ -22,25 +22,25 @@ const projets = [
 // Tableau contenant les informations sur le parcours
 const educationData = [
     {
-        image: "assets/images.png", // Remplacez par l'URL de votre image
+        image: "assets/jeanPerrin.jpg", // Remplacez par l'URL de votre image
         school: "Université XYZ",
-        startYear: 2018,
-        endYear: 2021,
-        degree: "Licence en Informatique"
+        startYear: 2023,
+        endYear: "Aujourd'hui",
+        degree: "Master Informatique - Parcours Ingénierie Logicielle des Jeux"
     },
     {
-        image: "assets/images.png", // Remplacez par l'URL de votre image
+        image: "assets/jeanPerrin.jpg", // Remplacez par l'URL de votre image
         school: "Université ABC",
-        startYear: 2021,
+        startYear: 2022,
         endYear: 2023,
-        degree: "Master en Développement de Jeux Vidéo"
+        degree: "Licence Informatique"
     },
     {
-        image: "assets/images.png", // Remplacez par l'URL de votre image
+        image: "assets/iut.jpg", // Remplacez par l'URL de votre image
         school: "École DEF",
-        startYear: 2022,
+        startYear: 2020,
         endYear: 2022,
-        degree: "Certificat en Design de Jeux"
+        degree: "DUT Informatique"
     }
 ];
 
