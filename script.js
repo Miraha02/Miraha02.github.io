@@ -22,22 +22,22 @@ const projets = [
 // Tableau contenant les informations sur le parcours
 const educationData = [
     {
-        image: "assets/jeanPerrin.jpg", // Remplacez par l'URL de votre image
-        school: "Université XYZ",
+        image: "assets/jeanPerrin.JPG", // Remplacez par l'URL de votre image
+        school: "Faculté des Sciences Jean Perrin",
         startYear: 2023,
         endYear: "Aujourd'hui",
         degree: "Master Informatique - Parcours Ingénierie Logicielle des Jeux"
     },
     {
-        image: "assets/jeanPerrin.jpg", // Remplacez par l'URL de votre image
-        school: "Université ABC",
+        image: "assets/jeanPerrin.JPG", // Remplacez par l'URL de votre image
+        school: "Faculté des Sciences Jean Perrin",
         startYear: 2022,
         endYear: 2023,
         degree: "Licence Informatique"
     },
     {
         image: "assets/iut.jpg", // Remplacez par l'URL de votre image
-        school: "École DEF",
+        school: "IUT de Lens",
         startYear: 2020,
         endYear: 2022,
         degree: "DUT Informatique"
