@@ -15,7 +15,7 @@ const projets = [
         nom : "Sokoban",
         lienGit : "https://github.com/Miraha02/ihmprojet-Hana/tree/master",
         lienImage : "assets/sokoban.png",
-        desc : "Une petite description test, pas si petite que ca pcq c'est important d'avoir plein de ligne pour tester les paragraphes assez complets,si le site réagit correctement ou non"
+        desc : "Le Sokoban est le premier projet de jeu que j'ai eu à créer, il a été fait en python dans le cadre de la première année de DUT"
     }
 ];
 
