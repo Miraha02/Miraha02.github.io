@@ -15,7 +15,7 @@ const projets = [
         nom : "Sokoban",
         lienGit : "https://github.com/Miraha02/ihmprojet-Hana/tree/master",
         lienImage : "assets/sokoban.png",
-        desc : "Premier projet de jeu vidéo réalisé en Python dans le cadre de ma première année de DUT, ce Sokoban propose une version revisitée du jeu classique. Les joueurs doivent compléter trois niveaux successifs, chacun devenant accessible une fois le précédent terminé. Une fonction de réinitialisation permet de recommencer un niveau en cas de besoin, ajoutant un élément de flexibilité et de défi."
+        desc : "Premier projet de jeu vidéo réalisé en Python dans le cadre de ma première année de DUT, ce Sokoban propose une version revisitée du jeu classique. Les joueurs doivent compléter trois niveaux successifs, chacun devenant accessible une fois le précédent terminé. Une fonction de réinitialisation permet de rebloquer l'accès aux noveau, ajoutant un élément de flexibilité et de défi."
     }
 ];
 
