@@ -49,6 +49,11 @@ header nav ul li a:hover {
 h1 {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
+    color: #ff4081;
+}
+
+#begin p {
+    color: #ffb74d;
 }
 
 p {
@@ -119,11 +124,15 @@ form button:hover {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.project-title {
-    color: #ffb74d;
-    font-size: 1.4em;
-    margin-bottom: 10px;
+#project h3 {
+    color: #ffb74d; /* Remplace par la couleur que tu veux */
 }
+
+#project p {
+    color: #ccc;
+    flex: 1;
+}
+
 
 .project-content {
     display: flex;
@@ -230,4 +239,18 @@ form button:hover {
 
 .contact-button:hover {
     background-color: #0056b3;
+}
+
+/* Ajout d'un espace entre le bouton et le paragraphe */
+#contact p {
+    margin-top: 20px;  /* Ajuste la valeur selon l'espace souhaité */
+}
+
+#contact strong {
+    color: #FF5733; /* Couleur du texte du <strong> */
+}
+
+#contact strong a {
+    color: #FF5733; /* Assure-toi que le lien dans le <strong> prend cette couleur aussi */
+    text-decoration: none; /* Optionnel : enlève la décoration du lien si nécessaire */
 }
