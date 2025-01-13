@@ -4,12 +4,12 @@ const projets = [
         lienGit : "https://github.com/Miraha02/MMOAT",
         lienImage : "assets/MMOAT.png",
         desc : "Projet de MMO réalisé en binôme sur Unreal Engine 5 en tant que projet de Master 2 pour le premier et deuxième semetre. Il implémente un système d'inventaire et une gestion des sorts dynamique à l'aide du GAS (Gameplay Ability System) de Unreal Engine. Un système de pêche va prochainement être implémenté ainsi qu'une amélioration de la structure du projet.\
-        (Tous les assets ne sont pas présents dans le dépôt github pour des économies d'espaces disque)"
+        (Tous les assets ne sont pas présents dans le dépôt github pour des économies d'espace disque)"
     },
     {
-        nom : "Application android qui indique les différentes maraudes présente dans la région",
+        nom : "Application android qui indique les différentes maraudes présentes dans la région",
         lienImage : "assets/mandelaApp.png",
-        desc : "Application réalisé dans le cadre de mon stage de Licence 3. Elle à été réalisé en même temps qu'un site internet. Elle permettait d'enregistrer les différentes maraudes présentes dans la région après avoir été accepté par un membre de l'association \"Les Amis de Mandela\" basé à l'AFERTES d'Avion. Elle implémentait un système de compte pour les acteurs désirant proposer leurs maraudes sur l'application."
+        desc : "Application réalisée dans le cadre de mon stage de Licence 3. Elle a été réalisée en même temps qu'un site internet. Elle permettait d'enregistrer les différentes maraudes présentes dans la région à condition d'être acceptées par un membre de l'association \"Les Amis de Mandela\" basée à l'AFERTES d'Avion. Elle implémentait un système de compte pour les acteurs désirant proposer leurs maraudes sur l'application. Le projet a été abandonné par la suite."
     },
     {
         nom : "Sokoban",
