@@ -3,7 +3,8 @@ const projets = [
         nom : "MMO (En cours)",
         lienGit : "https://github.com/Miraha02/MMOAT",
         lienImage : "assets/MMOAT.png",
-        desc : "Projet de MMO réalisé en binôme sur Unreal Engine 5 en tant que projet de Master 2 pour le premier et deuxième semetre. Il implémente un système d'inventaire et une gestion des sorts dynamique à l'aide du GAS (Gameplay Ability System) de Unreal Engine. Un système de pêche va prochainement être implémenté ainsi qu'une amélioration de la structure du projet."
+        desc : "Projet de MMO réalisé en binôme sur Unreal Engine 5 en tant que projet de Master 2 pour le premier et deuxième semetre. Il implémente un système d'inventaire et une gestion des sorts dynamique à l'aide du GAS (Gameplay Ability System) de Unreal Engine. Un système de pêche va prochainement être implémenté ainsi qu'une amélioration de la structure du projet.\
+        (Tous les assets ne sont pas présents dans le dépôt github pour des économies d'espaces disque)"
     },
     {
         nom : "Application android qui indique les différentes maraudes présente dans la région",
