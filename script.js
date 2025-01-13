@@ -130,9 +130,9 @@ function displayEducation() {
 
         // Ajouter les informations
         infoContainer.innerHTML = `
-            <h3>${item.school}</h3>
+            <h3>${item.degree}</h3>
             <p>${item.startYear} - ${item.endYear}</p>
-            <p>${item.degree}</p>
+            <p>${item.school}</p>
         `;
 
         // Ajouter l'image et les informations au conteneur
