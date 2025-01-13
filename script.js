@@ -15,29 +15,29 @@ const projets = [
         nom : "Sokoban",
         lienGit : "https://github.com/Miraha02/ihmprojet-Hana/tree/master",
         lienImage : "assets/sokoban.png",
-        desc : "Une petite description test, pas si petite que ca pcq c'est important d'avoir plein de ligne pour tester les paragraphes assez complets,si le site réagit correctement ou non"
+        desc : "Premier projet de jeu vidéo réalisé en Python dans le cadre de ma première année de DUT, ce Sokoban propose une version revisitée du jeu classique. Les joueurs doivent compléter trois niveaux successifs, chacun devenant accessible une fois le précédent terminé. Une fonction de réinitialisation permet de rebloquer l'accès aux niveaux, ajoutant un élément de flexibilité et de défi."
     }
 ];
 
 // Tableau contenant les informations sur le parcours
 const educationData = [
     {
-        image: "assets/jeanPerrin.jpg",
-        school: "Université XYZ",
+        image: "assets/jeanPerrin.JPG", // Remplacez par l'URL de votre image
+        school: "Faculté des Sciences Jean Perrin",
         startYear: 2023,
         endYear: "Aujourd'hui",
         degree: "Master Informatique - Parcours Ingénierie Logicielle des Jeux"
     },
     {
-        image: "assets/jeanPerrin.jpg",
-        school: "Université ABC",
+        image: "assets/jeanPerrin.JPG", // Remplacez par l'URL de votre image
+        school: "Faculté des Sciences Jean Perrin",
         startYear: 2022,
         endYear: 2023,
         degree: "Licence Informatique"
     },
     {
-        image: "assets/iut.jpg",
-        school: "École DEF",
+        image: "assets/iut.jpg", // Remplacez par l'URL de votre image
+        school: "IUT de Lens",
         startYear: 2020,
         endYear: 2022,
         degree: "DUT Informatique"
