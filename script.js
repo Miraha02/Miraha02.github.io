@@ -26,7 +26,7 @@ const educationData = [
         school: "Faculté des Sciences Jean Perrin",
         startYear: 2023,
         endYear: "Aujourd'hui",
-        degree: "Master Informatique - Parcours Ingénierie Logicielle des Jeux"
+        degree: "Master Informatique - Parcours Ingénierie Logicielle pour les Jeux"
     },
     {
         image: "assets/jeanPerrin.JPG", // Remplacez par l'URL de votre image
