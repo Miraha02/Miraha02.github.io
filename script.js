@@ -6,10 +6,9 @@ const projets = [
         desc : "Une petite description test, pas si petite que ca pcq c'est important d'avoir plein de ligne pour tester les paragraphes assez complets,si le site réagit correctement ou non"
     },
     {
-        nom : "github",
-        lienGit : "https://github.com/Miraha02/Miraha02.github.io",
-        lienImage : "assets/images.png",
-        desc : "Une petite description test, pas si petite que ca pcq c'est important d'avoir plein de ligne pour tester les paragraphes assez complets,si le site réagit correctement ou non"
+        nom : "Application android qui indique les différentes maraudes présente dans la région",
+        lienImage : "assets/mandelaApp.png",
+        desc : "Application réalisé dans le cadre de mon stage de Licence 3. Elle à été réalisé en même temps qu'un site internet. Elle permettait d'enregistrer les différentes maraudes présentes dans la région après avoir été accepté par un membre de l'association \"Les Amis de Mandela\" basé à l'AFERTES d'Avion. Elle implémentait un système de compte pour les acteurs désirant proposer leurs maraudes sur l'application."
     },
     {
         nom : "Sokoban",
@@ -103,9 +102,18 @@ function afficherProjets(projets) {
         projectDiv.appendChild(title); // Ajouter le titre en haut
         projectDiv.appendChild(contentDiv); // Ajouter le conteneur d'image et description
 
-        // Ajouter `projectDiv` à `link`, puis `link` à `section`
-        link.appendChild(projectDiv);
-        section.appendChild(link);
+         // Si le projet a un lien, encapsuler dans un lien <a>
+         if (projet.lienGit) {
+            const link = document.createElement("a");
+            link.href = projet.lienGit;
+            link.target = "_blank"; // Ouvrir le lien dans un nouvel onglet
+            link.className = "project-link"; // Ajouter une classe pour styliser
+            link.appendChild(projectDiv);
+            section.appendChild(link);
+        } else {
+            // Sinon, ajouter directement la div non cliquable
+            section.appendChild(projectDiv);
+        }
     });
 }
 
