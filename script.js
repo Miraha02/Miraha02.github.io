@@ -22,21 +22,21 @@ const projets = [
 // Tableau contenant les informations sur le parcours
 const educationData = [
     {
-        image: "assets/jeanPerrin.jpg", // Remplacez par l'URL de votre image
+        image: "assets/jeanPerrin.jpg",
         school: "Université XYZ",
         startYear: 2023,
         endYear: "Aujourd'hui",
         degree: "Master Informatique - Parcours Ingénierie Logicielle des Jeux"
     },
     {
-        image: "assets/jeanPerrin.jpg", // Remplacez par l'URL de votre image
+        image: "assets/jeanPerrin.jpg",
         school: "Université ABC",
         startYear: 2022,
         endYear: 2023,
         degree: "Licence Informatique"
     },
     {
-        image: "assets/iut.jpg", // Remplacez par l'URL de votre image
+        image: "assets/iut.jpg",
         school: "École DEF",
         startYear: 2020,
         endYear: 2022,
@@ -60,7 +60,6 @@ function afficherProjets(projets) {
     const section = document.getElementById("project-section");
 
     projets.forEach((projet, index) => {
-        // Créer le lien qui englobe toute la div du projet
         const link = document.createElement("a");
         link.href = projet.lienGit;
         link.target = "_blank"; // Ouvrir le lien dans un nouvel onglet
