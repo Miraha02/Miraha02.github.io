@@ -60,8 +60,6 @@ const experienceData = [
     }
 ];
 
-// Fonction pour afficher les expériences professionnelles
-displayExperience();
 function displayExperience() {
     const experienceList = document.getElementById('experience-list');
     
