@@ -65,9 +65,9 @@ const experienceData = [
     },
     {
         poste: "Stagiaire Développeuse Android",
-        entreprise: "AFERTES - Les Amis de Mandela",
+        entreprise: "Les Amis de Mandela - AFERTES d'Avion",
         date: "Avril 2023 - Juin 2023",
-        description: "Développement d'une application Android permettant d'enregistrer et de gérer les maraudes dans la région."
+        description: "Développement d'une application Android liée à un site web, permettant d'enregistrer et de gérer les maraudes dans la région. J'ai aussi pu participer aux activités de l'association et de l'école afin de venir en aide aux personnes en situation de handicap et/ou de précarité. De plus, je me suis impliquée dans la vie administratif de l'association en allant au contact des partenaires et des acteurs locaux et régionaux."
     },
     {
         poste: "Stagiaire au LML (Laboratoire de Mathématiques de Lens)",
