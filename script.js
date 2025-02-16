@@ -67,7 +67,7 @@ const experienceData = [
         poste: "Développeuse Unity en TER (Travail d'Etude et de Recherche)",
         entreprise: "Faculté des Sciences Jean Perrin",
         date: "Avril 2024 - Juillet 2024",
-        description: "Développement d'un MMO en binôme utilisant Unreal Engine 5 et le Gameplay Ability System."
+        description: "Développement d'un éditeur de Point & Click en trinôme afin de se familiariser sur Unity pour le Master 2."
     },
     {
         poste: "Stagiaire Développeuse Android",
