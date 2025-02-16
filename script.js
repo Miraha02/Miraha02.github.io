@@ -10,7 +10,7 @@ const projets = [
         nom : "Librairie de pilotage pour IA",
         lienGit : "https://drive.google.com/drive/folders/1qLOS4fmYUd-EfaoaE3n3brSwwo5OTjpA?hl=fr",
         lienImage : "assets/steering.png",
-        desc : "Projet d'implémentation d'une bibliothèque de *Steering Behaviors* sur Unreal Engine 5, simulant des comportements de déplacement pour une IA sous forme de cône. L'IA peut poursuivre, fuir, suivre un chemin ou s'arrêter progressivement, avec des cibles dynamiques et des contrôles interactifs. Le projet à été réalisé pour la prmière partie du deuxième semestre de Master 2."
+        desc : "Projet d'implémentation d'une bibliothèque de \"Steering Behaviors\" sur Unreal Engine 5, simulant des comportements de déplacement pour une IA sous forme de cône. L'IA peut poursuivre, fuir, suivre un chemin ou s'arrêter progressivement, avec des cibles dynamiques et des contrôles interactifs. Le projet à été réalisé pour la prmière partie du deuxième semestre de Master 2."
     },
     {
         nom : "Éditeur de Point&Click",
