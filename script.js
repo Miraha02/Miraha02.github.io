@@ -47,16 +47,16 @@ const educationData = [
 // Tableau contenant les informations sur les expériences professionnelles
 const experienceData = [
     {
-        poste: "Stagiaire Développeuse Android",
-        entreprise: "AFERTES - Les Amis de Mandela",
-        date: "Avril - Juin 2023",
-        description: "Développement d'une application Android permettant d'enregistrer et de gérer les maraudes dans la région."
-    },
-    {
         poste: "Développeuse UE5 (Projet universitaire)",
         entreprise: "Faculté des Sciences Jean Perrin",
         date: "Septembre 2023 - Aujourd'hui",
         description: "Développement d'un MMO en binôme utilisant Unreal Engine 5 et le Gameplay Ability System."
+    },
+    {
+        poste: "Stagiaire Développeuse Android",
+        entreprise: "AFERTES - Les Amis de Mandela",
+        date: "Avril - Juin 2023",
+        description: "Développement d'une application Android permettant d'enregistrer et de gérer les maraudes dans la région."
     },
     {
         poste: "Agent technique aux espaces verts",
