@@ -7,6 +7,12 @@ const projets = [
         (Tous les assets ne sont pas présents dans le dépôt github pour des économies d'espace disque)"
     },
     {
+        nom : "Pachinko Unity",
+        lienGit : "https://play.unity.com/fr/games/8f4ad9a4-d96d-46af-a4df-53fcf1327cdf/pachinkov3",
+        lienImage : "assets/pachinko.png",
+        desc : "Projet réalisé lors de ma formation en ligne sur Unity durant le parcours Unity Essentials. Il s'agit d'un jeu de Pachinko où le joueur doit faire apparaître une bille en haut d'un plateau pour obtenir un maximum de points. Le jeu est composé d'un système de score jouable en ligne."
+    },
+    {
         nom : "Application android qui indique les différentes maraudes présentes dans la région",
         lienImage : "assets/mandelaApp.png",
         desc : "Application réalisée dans le cadre de mon stage de Licence 3. Elle a été réalisée en même temps qu'un site internet. Elle permettait d'enregistrer les différentes maraudes présentes dans la région à condition d'être acceptées par un membre de l'association \"Les Amis de Mandela\" basée à l'AFERTES d'Avion. Elle implémentait un système de compte pour les partenaires désirant proposer leurs maraudes sur l'application. Le projet a été abandonné par la suite."
@@ -47,9 +53,9 @@ const educationData = [
 // Tableau contenant les informations sur les expériences professionnelles
 const experienceData = [
     {
-        poste: "Développeuse UE5 (Projet universitaire)",
+        poste: "Développeuse Unity en TER (Travail d'Etude et de Recherche)",
         entreprise: "Faculté des Sciences Jean Perrin",
-        date: "Septembre 2023 - Aujourd'hui",
+        date: "Avril 2024 - Juillet 2024",
         description: "Développement d'un MMO en binôme utilisant Unreal Engine 5 et le Gameplay Ability System."
     },
     {
