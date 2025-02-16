@@ -7,6 +7,11 @@ const projets = [
         (Tous les assets ne sont pas présents dans le dépôt github pour des économies d'espace disque)"
     },
     {
+        nom : "Éditeur de Point&Click",
+        lienImage : "assets/PointAndClick.png",
+        desc : "Projet réalisé en trinôme sur Unity en tant que projet de Master 1 pour le premier semestre. Il s'agit d'un éditeur de jeu de type Point&Click où l'utilisateur peut créer son propre jeu en plaçant des objets et en créant des interactions entre eux. Le projet permet la création et la lecture de jeux personnalisés grâce à une structure de données en JSON, ainqi qu'un éditeur intuitif pour concevoir personnages, objets, dialogues et quêtes. Il a été implémenté collaborativement via Plastic SCM"
+    },
+    {
         nom : "Pachinko Unity",
         lienGit : "https://play.unity.com/fr/games/8f4ad9a4-d96d-46af-a4df-53fcf1327cdf/pachinkov3",
         lienImage : "assets/pachinko.png",
