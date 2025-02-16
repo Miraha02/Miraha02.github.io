@@ -154,7 +154,7 @@ form button:hover {
 }
 
 .project:hover {
-    transform: scale(1.15);
+    transform: scale(1.10);
     background-color: #2a2a2a;
 }
 
