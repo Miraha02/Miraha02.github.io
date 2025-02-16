@@ -44,6 +44,41 @@ const educationData = [
     }
 ];
 
+// Tableau contenant les informations sur les expériences professionnelles
+const experienceData = [
+    {
+        poste: "Stagiaire Développeuse Android",
+        entreprise: "AFERTES - Les Amis de Mandela",
+        date: "Avril - Juin 2023",
+        description: "Développement d'une application Android permettant d'enregistrer et de gérer les maraudes dans la région."
+    },
+    {
+        poste: "Développeuse UE5 (Projet universitaire)",
+        entreprise: "Faculté des Sciences Jean Perrin",
+        date: "Septembre 2023 - Aujourd'hui",
+        description: "Développement d'un MMO en binôme utilisant Unreal Engine 5 et le Gameplay Ability System."
+    }
+];
+
+// Fonction pour afficher les expériences professionnelles
+displayExperience();
+function displayExperience() {
+    const experienceList = document.getElementById('experience-list');
+    
+    experienceData.forEach(item => {
+        const expContainer = document.createElement('div');
+        expContainer.className = 'experience-item';
+        
+        expContainer.innerHTML = `
+            <h3>${item.poste}</h3>
+            <p><strong>${item.entreprise}</strong> - ${item.date}</p>
+            <p>${item.description}</p>
+        `;
+        
+        experienceList.appendChild(expContainer);
+    });
+}
+
 // Smooth scroll for navigation links
 function smoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -157,3 +192,5 @@ displayEducation();
 
 smoothScroll();
 afficherProjets(projets);
+
+displayExperience();
