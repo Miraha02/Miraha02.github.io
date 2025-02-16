@@ -10,7 +10,7 @@ const projets = [
         nom : "Pachinko Unity",
         lienGit : "https://play.unity.com/fr/games/8f4ad9a4-d96d-46af-a4df-53fcf1327cdf/pachinkov3",
         lienImage : "assets/pachinko.png",
-        desc : "Projet réalisé lors de ma formation en ligne sur Unity durant le parcours Unity Essentials. Il s'agit d'un jeu de Pachinko où le joueur doit faire apparaître une bille en haut d'un plateau pour obtenir un maximum de points. Le jeu est composé d'un système de score jouable en ligne."
+        desc : "Projet réalisé lors de ma formation en ligne sur Unity durant le parcours Unity Essentials. Il s'agit d'un jeu de Pachinko où le joueur doit faire apparaître une bille en haut d'un plateau pour obtenir un maximum de points. Le jeu est composé d'un système de score et est jouable en ligne."
     },
     {
         nom : "Application android qui indique les différentes maraudes présentes dans la région",
