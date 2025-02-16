@@ -254,3 +254,35 @@ form button:hover {
     color: #FF5733; /* Assure-toi que le lien dans le <strong> prend cette couleur aussi */
     text-decoration: none; /* Optionnel : enlève la décoration du lien si nécessaire */
 }
+
+
+
+
+
+#experience {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+}
+
+.experience-item {
+    width: 100%;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 8px;
+    color: #ffffff;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.experience-item:hover {
+    transform: scale(1.05);
+    background-color: #2a2a2a;
+}
