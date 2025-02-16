@@ -66,8 +66,14 @@ const experienceData = [
     {
         poste: "Stagiaire Développeuse Android",
         entreprise: "AFERTES - Les Amis de Mandela",
-        date: "Avril - Juin 2023",
+        date: "Avril 2023 - Juin 2023",
         description: "Développement d'une application Android permettant d'enregistrer et de gérer les maraudes dans la région."
+    },
+    {
+        poste: "Stagiaire au LML (Laboratoire de Mathématiques de Lens)",
+        entreprise: "LML - Université d'Artois",
+        date: "Avril 2022 - Juillet 2022",
+        description: "Développement d'une application IOS permettant de filmer un individu en marche et stocker ses mouvements en JSON. Une visualisation des mouvements est disponible sur un site web et sur l'application. Le but est de filmer des patients afin de déterminer s'il est atteint d'hydrocéphalie, une maladie neurodégénérative que l'on peut diagnostiquer en analysant la démarche du patient. Les données seraient donc ensuite transmisent à un modèle de machine learning pour déterminer si le patient est atteint de la maladie."
     },
     {
         poste: "Agent technique aux espaces verts",
