@@ -7,6 +7,12 @@ const projets = [
         (Tous les assets ne sont pas présents dans le dépôt github pour des économies d'espace disque)"
     },
     {
+        nom : "Librairie de pilotage pour IA",
+        lienGit : "https://drive.google.com/drive/folders/1qLOS4fmYUd-EfaoaE3n3brSwwo5OTjpA?hl=fr",
+        lienImage : "assets/steering.png",
+        desc : "Projet d'implémentation d'une bibliothèque de *Steering Behaviors* sur Unreal Engine 5, simulant des comportements de déplacement pour une IA sous forme de cône. L'IA peut poursuivre, fuir, suivre un chemin ou s'arrêter progressivement, avec des cibles dynamiques et des contrôles interactifs. Le projet à été réalisé pour la prmière partie du deuxième semestre de Master 2."
+    },
+    {
         nom : "Éditeur de Point&Click",
         lienImage : "assets/PointAndClick.png",
         desc : "Projet réalisé en trinôme sur Unity en tant que projet de Master 1 pour le premier semestre. Il s'agit d'un éditeur de jeu de type Point&Click où l'utilisateur peut créer son propre jeu en plaçant des objets et en créant des interactions entre eux. Le projet permet la création et la lecture de jeux personnalisés grâce à une structure de données en JSON, ainqi qu'un éditeur intuitif pour concevoir personnages, objets, dialogues et quêtes. Il a été implémenté collaborativement via Plastic SCM"
