@@ -57,6 +57,12 @@ const experienceData = [
         entreprise: "Faculté des Sciences Jean Perrin",
         date: "Septembre 2023 - Aujourd'hui",
         description: "Développement d'un MMO en binôme utilisant Unreal Engine 5 et le Gameplay Ability System."
+    },
+    {
+        poste: "Agent technique aux espaces verts",
+        entreprise: "Mairie de Sallaumines",
+        date: "Juillet 2019 - Août 2019",
+        description: "Entretien des espaces verts de la ville de Sallaumines."
     }
 ];
 
