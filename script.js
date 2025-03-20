@@ -9,22 +9,22 @@ const projets = [
         (Tous les assets ne sont pas présents dans le dépôt github pour des économies d'espace disque)",
         nbPersonnes: 2,
         envDev: "Unreal Engine 5",
-        langage: "c++, blueprint",
-        dateDebut: "Septembre 2024",
+        langage: "C++, Blueprint",
+        dateDebut: "Septembre - 2024",
         dateFin: "En cours"
     },
     {
         nom : "Librairie de pilotage pour IA",
-        lienGit : "https://drive.google.com/drive/folders/1qLOS4fmYUd-EfaoaE3n3brSwwo5OTjpA?hl=fr",
-        lienBuild : "",
+        lienGit : "",
+        lienBuild : "https://drive.google.com/drive/folders/1qLOS4fmYUd-EfaoaE3n3brSwwo5OTjpA?hl=fr",
         lienAutre : "",
         lienImage : "assets/steering.png",
         desc : "Projet d'implémentation d'une bibliothèque de \"Steering Behaviors\" sur Unreal Engine 5, simulant des comportements de déplacement pour une IA sous forme de cône. L'IA peut poursuivre, fuir, suivre un chemin ou s'arrêter progressivement, avec des cibles dynamiques et des contrôles interactifs. Le projet à été réalisé pour la première partie du deuxième semestre de Master 2.",
-        nbPersonnes: 2,
-        envDev: "",
-        langage: "",
-        dateDebut: "",
-        dateFin: ""
+        nbPersonnes: 1,
+        envDev: "Unreal Engine 5",
+        langage: "C++, Blueprint",
+        dateDebut: "Janvier - 2025",
+        dateFin: "Fevrier - 2025"
     },
     {
         nom : "Éditeur de Point&Click",
@@ -33,24 +33,24 @@ const projets = [
         lienAutre : "",
         lienImage : "assets/PointAndClick.png",
         desc : "Projet réalisé en trinôme sur Unity en tant que projet de Master 1 pour le premier semestre. Il s'agit d'un éditeur de jeu de type Point&Click où l'utilisateur peut créer son propre jeu en plaçant des objets et en créant des interactions entre eux. Le projet permet la création et la lecture de jeux personnalisés grâce à une structure de données en JSON, ainqi qu'un éditeur intuitif pour concevoir personnages, objets, dialogues et quêtes. Il a été implémenté collaborativement via Plastic SCM",
-        nbPersonnes: 2,
-        envDev: "",
-        langage: "",
-        dateDebut: "",
-        dateFin: ""
+        nbPersonnes: 3,
+        envDev: "Unity",
+        langage: "C#",
+        dateDebut: "Avril - 2024",
+        dateFin: "Juillet - 2024"
     },
     {
         nom : "Pachinko Unity",
-        lienGit : "https://play.unity.com/fr/games/8f4ad9a4-d96d-46af-a4df-53fcf1327cdf/pachinkov3",
-        lienBuild : "",
+        lienGit : "",
+        lienBuild : "https://play.unity.com/fr/games/8f4ad9a4-d96d-46af-a4df-53fcf1327cdf/pachinkov3",
         lienAutre : "",
         lienImage : "assets/pachinko.png",
         desc : "Projet réalisé lors de ma formation en ligne sur Unity durant le parcours Unity Essentials. Il s'agit d'un jeu de Pachinko où le joueur doit faire apparaître une bille en haut d'un plateau pour obtenir un maximum de points. Le jeu est composé d'un système de score et est jouable en ligne.",
-        nbPersonnes: 2,
-        envDev: "",
-        langage: "",
-        dateDebut: "",
-        dateFin: ""
+        nbPersonnes: 1,
+        envDev: "Unity",
+        langage: "C#",
+        dateDebut: "Avril - 2024",
+        dateFin: "Avril - 2024"
     },
     {
         nom : "Application android qui indique les différentes maraudes présentes dans la région",
@@ -60,10 +60,10 @@ const projets = [
         lienImage : "assets/mandelaApp.png",
         desc : "Application réalisée dans le cadre de mon stage de Licence 3. Elle a été réalisée en même temps qu'un site internet. Elle permettait d'enregistrer les différentes maraudes présentes dans la région à condition d'être acceptées par un membre de l'association \"Les Amis de Mandela\" basée à l'AFERTES d'Avion. Elle implémentait un système de compte pour les partenaires désirant proposer leurs maraudes sur l'application. Le projet a été abandonné par la suite.",
         nbPersonnes: 2,
-        envDev: "",
-        langage: "",
-        dateDebut: "",
-        dateFin: ""
+        envDev: "Android Studio",
+        langage: "Java",
+        dateDebut: "Avril - 2023",
+        dateFin: "Juillet - 2023"
     },
     {
         nom : "Sokoban",
@@ -73,10 +73,10 @@ const projets = [
         lienImage : "assets/sokoban.png",
         desc : "Premier projet de jeu vidéo réalisé en Python dans le cadre de ma première année de DUT, ce Sokoban propose une version revisitée du jeu classique. Les joueurs doivent compléter trois niveaux successifs, et chaque niveau ne devient accessible qu'une fois le précédent terminé. Une fonction de réinitialisation permet de bloquer de nouveau l'accès aux niveaux, ce qui ajoute un élément de flexibilité et de défi.",
         nbPersonnes: 2,
-        envDev: "",
-        langage: "",
-        dateDebut: "",
-        dateFin: ""
+        envDev: "Visual Studio Code",
+        langage: "Python",
+        dateDebut: "Avril - 2020",
+        dateFin: "Mai - 2020"
     }
 ];
 
