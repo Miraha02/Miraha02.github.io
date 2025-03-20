@@ -162,30 +162,21 @@ function smoothScroll() {
     });
 }
 
+// Fonction pour afficher les projets avec la nouvelle mise en page
 function afficherProjets(projets) {
     const section = document.getElementById("project-section");
+    section.innerHTML = ""; // Nettoyer la section avant d'ajouter les projets
     
-    projets.forEach((projet, index) => {
+    projets.forEach((projet) => {
         const projectDiv = document.createElement("div");
         projectDiv.className = "project";
-        const isEven = index % 2 === 0;
-        projectDiv.classList.add(isEven ? "left-align" : "right-align");
 
         const title = document.createElement("h3");
         title.textContent = projet.nom;
-
-        const contentDiv = document.createElement("div");
-        contentDiv.className = "project-content";
-
-        const img = document.createElement("img");
-        img.src = projet.lienImage;
-        img.alt = projet.nom;
-        img.className = "project-image";
-
-        // Liste des informations additionnelles
+        
+        // Liste des informations du projet
         const infoList = document.createElement("ul");
         infoList.className = "project-info-list";
-
         const infoFields = {
             "Nombre de personnes": projet.nbPersonnes,
             "Environnement de développement": projet.envDev,
@@ -193,63 +184,54 @@ function afficherProjets(projets) {
             "Date de début": projet.dateDebut,
             "Date de fin": projet.dateFin
         };
-
         for (const [key, value] of Object.entries(infoFields)) {
-            if (value) { // On n'affiche que les champs renseignés
+            if (value) {
                 const listItem = document.createElement("li");
                 listItem.textContent = `${key} : ${value}`;
                 infoList.appendChild(listItem);
             }
         }
 
+        // Description du projet
         const desc = document.createElement("p");
+        desc.className = "project-description";
         desc.textContent = projet.desc;
 
-        contentDiv.appendChild(img);
-        if (isEven) {
-            contentDiv.appendChild(infoList);
-            contentDiv.appendChild(desc);
-        } else {
-            contentDiv.appendChild(infoList);
-            contentDiv.insertBefore(desc, infoList);
-        }
+        // Icônes avec liens
+        const linkContainer = document.createElement("div");
+        linkContainer.className = "project-links";
+        const links = [
+            { url: projet.lienGit, img: "assets/GitHub.png", alt: "GitHub" },
+            { url: projet.lienBuild, img: "assets/build-icon.png", alt: "Build" },
+            { url: projet.lienAutre, img: "assets/other-icon.png", alt: "Autre" }
+        ];
+        links.forEach(link => {
+            if (link.url) {
+                const a = document.createElement("a");
+                a.href = link.url;
+                a.target = "_blank";
+                const img = document.createElement("img");
+                img.src = link.img;
+                img.alt = link.alt;
+                img.className = "icon";
+                a.appendChild(img);
+                linkContainer.appendChild(a);
+            }
+        });
 
-        const table = document.createElement("table");
-        table.className = "project-links";
-        const row = document.createElement("tr");
+        // Image du projet
+        const img = document.createElement("img");
+        img.src = projet.lienImage;
+        img.alt = projet.nom;
+        img.className = "project-image";
 
-        if (projet.lienGit) {
-            const gitCell = document.createElement("td");
-            const gitLink = document.createElement("a");
-            gitLink.href = projet.lienGit;
-            gitLink.target = "_blank";
-            gitLink.innerHTML = "<img src='assets/GitHub.png' alt='GitHub' class='icon'>";
-            gitCell.appendChild(gitLink);
-            row.appendChild(gitCell);
-        }
-        if (projet.lienBuild) {
-            const buildCell = document.createElement("td");
-            const buildLink = document.createElement("a");
-            buildLink.href = projet.lienBuild;
-            buildLink.target = "_blank";
-            buildLink.innerHTML = "<img src='assets/build-icon.png' alt='Build' class='icon'>";
-            buildCell.appendChild(buildLink);
-            row.appendChild(buildCell);
-        }
-        if (projet.lienAutre) {
-            const otherCell = document.createElement("td");
-            const otherLink = document.createElement("a");
-            otherLink.href = projet.lienAutre;
-            otherLink.target = "_blank";
-            otherLink.innerHTML = "<img src='assets/other-icon.png' alt='Autre' class='icon'>";
-            otherCell.appendChild(otherLink);
-            row.appendChild(otherCell);
-        }
-
-        table.appendChild(row);
+        // Ajout des éléments dans l'ordre demandé
         projectDiv.appendChild(title);
-        projectDiv.appendChild(contentDiv);
-        projectDiv.appendChild(table);
+        projectDiv.appendChild(infoList);
+        projectDiv.appendChild(desc);
+        projectDiv.appendChild(linkContainer);
+        projectDiv.appendChild(img);
+        
         section.appendChild(projectDiv);
     });
 }
