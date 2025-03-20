@@ -125,14 +125,13 @@ form button:hover {
 }
 
 #project h3 {
-    color: #ffb74d; /* Remplace par la couleur que tu veux */
+    color: #ffb74d;
 }
 
 #project p {
     color: #ccc;
     flex: 1;
 }
-
 
 .project-content {
     display: flex;
@@ -164,6 +163,48 @@ form button:hover {
     display: block;
 }
 
+/* Style pour les icônes de liens */
+.project-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.project-links a {
+    color: #ffffff;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.project-links img {
+    width: 50px;  /* Ajuste la largeur */
+    height: auto; /* Garde le ratio */
+}
+
+
+.project-links a:hover {
+    color: #ff4081;
+}
+
+/* Ajout d'un style pour la liste d'informations */
+.project-info-list {
+    list-style-type: none; /* Supprime les puces */
+    padding: 0;
+    margin-bottom: 10px; /* Espace entre la liste et la description */
+    text-align: left;
+    background-color: #2a2a2a; /* Fond légèrement contrasté */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Style pour chaque élément de la liste */
+.project-info-list li {
+    color: #ffb74d; /* Couleur dorée pour les infos */
+    font-size: 1rem;
+    padding: 3px 0;
+}
+
 
 #education {
     max-width: 1000px;
@@ -193,9 +234,7 @@ form button:hover {
 
 .education-image {
     width: 20%;
-    /* Ajustez pour la taille d'image souhaitée, par ex. 20% de la largeur de l'élément parent */
     max-width: 120px;
-    /* Limite la taille pour grands écrans */
     height: auto;
     border-radius: 5px;
     flex-shrink: 0;
@@ -204,7 +243,6 @@ form button:hover {
 .education-info {
     text-align: left;
     flex: 1;
-    /* Utilise tout l'espace restant */
 }
 
 .education-info h3 {
@@ -224,8 +262,6 @@ form button:hover {
     background-color: #2a2a2a;
 }
 
-
-
 .contact-button {
     display: inline-block;
     padding: 10px 20px;
@@ -241,23 +277,18 @@ form button:hover {
     background-color: #0056b3;
 }
 
-/* Ajout d'un espace entre le bouton et le paragraphe */
 #contact p {
-    margin-top: 20px;  /* Ajuste la valeur selon l'espace souhaité */
+    margin-top: 20px;
 }
 
 #contact strong {
-    color: #FF5733; /* Couleur du texte du <strong> */
+    color: #FF5733;
 }
 
 #contact strong a {
-    color: #FF5733; /* Assure-toi que le lien dans le <strong> prend cette couleur aussi */
-    text-decoration: none; /* Optionnel : enlève la décoration du lien si nécessaire */
+    color: #FF5733;
+    text-decoration: none;
 }
-
-
-
-
 
 #experience {
     max-width: 1000px;

@@ -2,37 +2,81 @@ const projets = [
     {
         nom : "MMO (En cours)",
         lienGit : "https://github.com/Miraha02/MMOAT",
+        lienBuild : "",
+        lienAutre : "",
         lienImage : "assets/MMOAT.png",
         desc : "Projet de MMO réalisé en binôme sur Unreal Engine 5 en tant que projet de Master 2 pour le premier et deuxième semetre. Il implémente un système d'inventaire et une gestion des sorts dynamique à l'aide du GAS (Gameplay Ability System) de Unreal Engine. Un système de pêche va prochainement être implémenté ainsi qu'une amélioration de la structure du projet.\
-        (Tous les assets ne sont pas présents dans le dépôt github pour des économies d'espace disque)"
+        (Tous les assets ne sont pas présents dans le dépôt github pour des économies d'espace disque)",
+        nbPersonnes: 2,
+        envDev: "Unreal Engine 5",
+        langage: "c++, blueprint",
+        dateDebut: "Septembre 2024",
+        dateFin: "En cours"
     },
     {
         nom : "Librairie de pilotage pour IA",
         lienGit : "https://drive.google.com/drive/folders/1qLOS4fmYUd-EfaoaE3n3brSwwo5OTjpA?hl=fr",
+        lienBuild : "",
+        lienAutre : "",
         lienImage : "assets/steering.png",
-        desc : "Projet d'implémentation d'une bibliothèque de \"Steering Behaviors\" sur Unreal Engine 5, simulant des comportements de déplacement pour une IA sous forme de cône. L'IA peut poursuivre, fuir, suivre un chemin ou s'arrêter progressivement, avec des cibles dynamiques et des contrôles interactifs. Le projet à été réalisé pour la première partie du deuxième semestre de Master 2."
+        desc : "Projet d'implémentation d'une bibliothèque de \"Steering Behaviors\" sur Unreal Engine 5, simulant des comportements de déplacement pour une IA sous forme de cône. L'IA peut poursuivre, fuir, suivre un chemin ou s'arrêter progressivement, avec des cibles dynamiques et des contrôles interactifs. Le projet à été réalisé pour la première partie du deuxième semestre de Master 2.",
+        nbPersonnes: 2,
+        envDev: "",
+        langage: "",
+        dateDebut: "",
+        dateFin: ""
     },
     {
         nom : "Éditeur de Point&Click",
+        lienGit : "",
+        lienBuild : "",
+        lienAutre : "",
         lienImage : "assets/PointAndClick.png",
-        desc : "Projet réalisé en trinôme sur Unity en tant que projet de Master 1 pour le premier semestre. Il s'agit d'un éditeur de jeu de type Point&Click où l'utilisateur peut créer son propre jeu en plaçant des objets et en créant des interactions entre eux. Le projet permet la création et la lecture de jeux personnalisés grâce à une structure de données en JSON, ainqi qu'un éditeur intuitif pour concevoir personnages, objets, dialogues et quêtes. Il a été implémenté collaborativement via Plastic SCM"
+        desc : "Projet réalisé en trinôme sur Unity en tant que projet de Master 1 pour le premier semestre. Il s'agit d'un éditeur de jeu de type Point&Click où l'utilisateur peut créer son propre jeu en plaçant des objets et en créant des interactions entre eux. Le projet permet la création et la lecture de jeux personnalisés grâce à une structure de données en JSON, ainqi qu'un éditeur intuitif pour concevoir personnages, objets, dialogues et quêtes. Il a été implémenté collaborativement via Plastic SCM",
+        nbPersonnes: 2,
+        envDev: "",
+        langage: "",
+        dateDebut: "",
+        dateFin: ""
     },
     {
         nom : "Pachinko Unity",
         lienGit : "https://play.unity.com/fr/games/8f4ad9a4-d96d-46af-a4df-53fcf1327cdf/pachinkov3",
+        lienBuild : "",
+        lienAutre : "",
         lienImage : "assets/pachinko.png",
-        desc : "Projet réalisé lors de ma formation en ligne sur Unity durant le parcours Unity Essentials. Il s'agit d'un jeu de Pachinko où le joueur doit faire apparaître une bille en haut d'un plateau pour obtenir un maximum de points. Le jeu est composé d'un système de score et est jouable en ligne."
+        desc : "Projet réalisé lors de ma formation en ligne sur Unity durant le parcours Unity Essentials. Il s'agit d'un jeu de Pachinko où le joueur doit faire apparaître une bille en haut d'un plateau pour obtenir un maximum de points. Le jeu est composé d'un système de score et est jouable en ligne.",
+        nbPersonnes: 2,
+        envDev: "",
+        langage: "",
+        dateDebut: "",
+        dateFin: ""
     },
     {
         nom : "Application android qui indique les différentes maraudes présentes dans la région",
+        lienGit : "",
+        lienBuild : "",
+        lienAutre : "",
         lienImage : "assets/mandelaApp.png",
-        desc : "Application réalisée dans le cadre de mon stage de Licence 3. Elle a été réalisée en même temps qu'un site internet. Elle permettait d'enregistrer les différentes maraudes présentes dans la région à condition d'être acceptées par un membre de l'association \"Les Amis de Mandela\" basée à l'AFERTES d'Avion. Elle implémentait un système de compte pour les partenaires désirant proposer leurs maraudes sur l'application. Le projet a été abandonné par la suite."
+        desc : "Application réalisée dans le cadre de mon stage de Licence 3. Elle a été réalisée en même temps qu'un site internet. Elle permettait d'enregistrer les différentes maraudes présentes dans la région à condition d'être acceptées par un membre de l'association \"Les Amis de Mandela\" basée à l'AFERTES d'Avion. Elle implémentait un système de compte pour les partenaires désirant proposer leurs maraudes sur l'application. Le projet a été abandonné par la suite.",
+        nbPersonnes: 2,
+        envDev: "",
+        langage: "",
+        dateDebut: "",
+        dateFin: ""
     },
     {
         nom : "Sokoban",
         lienGit : "https://github.com/Miraha02/ihmprojet-Hana/tree/master",
+        lienBuild : "",
+        lienAutre : "",
         lienImage : "assets/sokoban.png",
-        desc : "Premier projet de jeu vidéo réalisé en Python dans le cadre de ma première année de DUT, ce Sokoban propose une version revisitée du jeu classique. Les joueurs doivent compléter trois niveaux successifs, et chaque niveau ne devient accessible qu'une fois le précédent terminé. Une fonction de réinitialisation permet de bloquer de nouveau l'accès aux niveaux, ce qui ajoute un élément de flexibilité et de défi."
+        desc : "Premier projet de jeu vidéo réalisé en Python dans le cadre de ma première année de DUT, ce Sokoban propose une version revisitée du jeu classique. Les joueurs doivent compléter trois niveaux successifs, et chaque niveau ne devient accessible qu'une fois le précédent terminé. Une fonction de réinitialisation permet de bloquer de nouveau l'accès aux niveaux, ce qui ajoute un élément de flexibilité et de défi.",
+        nbPersonnes: 2,
+        envDev: "",
+        langage: "",
+        dateDebut: "",
+        dateFin: ""
     }
 ];
 
@@ -120,65 +164,97 @@ function smoothScroll() {
 
 function afficherProjets(projets) {
     const section = document.getElementById("project-section");
-
+    
     projets.forEach((projet, index) => {
-        const link = document.createElement("a");
-        link.href = projet.lienGit;
-        link.target = "_blank"; // Ouvrir le lien dans un nouvel onglet
-        link.className = "project-link"; // Ajouter une classe pour styliser
-
-        // Créer une div pour chaque projet
         const projectDiv = document.createElement("div");
         projectDiv.className = "project";
-
-        // Alterne la classe pour chaque projet
         const isEven = index % 2 === 0;
         projectDiv.classList.add(isEven ? "left-align" : "right-align");
 
-        // Créer le titre du projet
         const title = document.createElement("h3");
         title.textContent = projet.nom;
 
-        // Créer le conteneur pour l'image et la description
         const contentDiv = document.createElement("div");
         contentDiv.className = "project-content";
 
-        // Ajouter l'image
         const img = document.createElement("img");
         img.src = projet.lienImage;
         img.alt = projet.nom;
         img.className = "project-image";
 
-        // Ajouter la description
+        // Liste des informations additionnelles
+        const infoList = document.createElement("ul");
+        infoList.className = "project-info-list";
+
+        const infoFields = {
+            "Nombre de personnes": projet.nbPersonnes,
+            "Environnement de développement": projet.envDev,
+            "Langage": projet.langage,
+            "Date de début": projet.dateDebut,
+            "Date de fin": projet.dateFin
+        };
+
+        for (const [key, value] of Object.entries(infoFields)) {
+            if (value) { // On n'affiche que les champs renseignés
+                const listItem = document.createElement("li");
+                listItem.textContent = `${key} : ${value}`;
+                infoList.appendChild(listItem);
+            }
+        }
+
         const desc = document.createElement("p");
         desc.textContent = projet.desc;
 
-        // Ajouter les éléments dans l'ordre souhaité en fonction de `isEven`
-        contentDiv.appendChild(img); // Ajouter l'image dans le conteneur
+        contentDiv.appendChild(img);
         if (isEven) {
-            contentDiv.appendChild(desc); // Ajouter la description pour la disposition alternée
+            contentDiv.appendChild(infoList);
+            contentDiv.appendChild(desc);
         } else {
-            contentDiv.insertBefore(desc, img); // Inverser l'ordre pour l'alternance
+            contentDiv.appendChild(infoList);
+            contentDiv.insertBefore(desc, infoList);
         }
 
-        // Ajouter les éléments au projet
-        projectDiv.appendChild(title); // Ajouter le titre en haut
-        projectDiv.appendChild(contentDiv); // Ajouter le conteneur d'image et description
+        const table = document.createElement("table");
+        table.className = "project-links";
+        const row = document.createElement("tr");
 
-         // Si le projet a un lien, encapsuler dans un lien <a>
-         if (projet.lienGit) {
-            const link = document.createElement("a");
-            link.href = projet.lienGit;
-            link.target = "_blank"; // Ouvrir le lien dans un nouvel onglet
-            link.className = "project-link"; // Ajouter une classe pour styliser
-            link.appendChild(projectDiv);
-            section.appendChild(link);
-        } else {
-            // Sinon, ajouter directement la div non cliquable
-            section.appendChild(projectDiv);
+        if (projet.lienGit) {
+            const gitCell = document.createElement("td");
+            const gitLink = document.createElement("a");
+            gitLink.href = projet.lienGit;
+            gitLink.target = "_blank";
+            gitLink.innerHTML = "<img src='assets/GitHub.png' alt='GitHub' class='icon'>";
+            gitCell.appendChild(gitLink);
+            row.appendChild(gitCell);
         }
+        if (projet.lienBuild) {
+            const buildCell = document.createElement("td");
+            const buildLink = document.createElement("a");
+            buildLink.href = projet.lienBuild;
+            buildLink.target = "_blank";
+            buildLink.innerHTML = "<img src='assets/build-icon.png' alt='Build' class='icon'>";
+            buildCell.appendChild(buildLink);
+            row.appendChild(buildCell);
+        }
+        if (projet.lienAutre) {
+            const otherCell = document.createElement("td");
+            const otherLink = document.createElement("a");
+            otherLink.href = projet.lienAutre;
+            otherLink.target = "_blank";
+            otherLink.innerHTML = "<img src='assets/other-icon.png' alt='Autre' class='icon'>";
+            otherCell.appendChild(otherLink);
+            row.appendChild(otherCell);
+        }
+
+        table.appendChild(row);
+        projectDiv.appendChild(title);
+        projectDiv.appendChild(contentDiv);
+        projectDiv.appendChild(table);
+        section.appendChild(projectDiv);
     });
 }
+
+
 
 // Fonction pour générer la section du parcours
 function displayEducation() {
