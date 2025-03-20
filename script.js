@@ -220,9 +220,9 @@ function afficherProjets(projets) {
         const infoList = document.createElement("ul");
         infoList.className = "project-info-list";
         const infoFields = {
-            "Nombre de personnes": projet.nbPersonnes,
             "Environnement de développement": projet.envDev,
             "Langage": projet.langage,
+            "Nombre de personnes": projet.nbPersonnes,
             "Date de début": projet.dateDebut,
             "Date de fin": projet.dateFin
         };
