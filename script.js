@@ -4,7 +4,9 @@ const projets = [
         lienGit : "https://github.com/Miraha02/MMOAT",
         lienBuild : "",
         lienAutre : "",
-        lienImage : "assets/MMOAT.png",
+        lienImages : [
+            "assets/MMOAT/MMOAT.png",
+        ],
         desc : "Projet de MMO réalisé en binôme sur Unreal Engine 5 en tant que projet de Master 2 pour le premier et deuxième semetre. Il implémente un système d'inventaire et une gestion des sorts dynamique à l'aide du GAS (Gameplay Ability System) de Unreal Engine. Un système de pêche va prochainement être implémenté ainsi qu'une amélioration de la structure du projet.\
         (Tous les assets ne sont pas présents dans le dépôt github pour des économies d'espace disque)",
         nbPersonnes: 2,
@@ -18,7 +20,9 @@ const projets = [
         lienGit : "",
         lienBuild : "https://drive.google.com/drive/folders/1qLOS4fmYUd-EfaoaE3n3brSwwo5OTjpA?hl=fr",
         lienAutre : "",
-        lienImage : "assets/steering.png",
+        lienImages : [
+            "assets/Steering1/steering.png",
+        ],
         desc : "Projet d'implémentation d'une bibliothèque de \"Steering Behaviors\" sur Unreal Engine 5, simulant des comportements de déplacement pour une IA sous forme de cône. L'IA peut poursuivre, fuir, suivre un chemin ou s'arrêter progressivement, avec des cibles dynamiques et des contrôles interactifs. Le projet à été réalisé pour la première partie du deuxième semestre de Master 2.",
         nbPersonnes: 1,
         envDev: "Unreal Engine 5",
@@ -31,8 +35,10 @@ const projets = [
         lienGit : "",
         lienBuild : "",
         lienAutre : "",
-        lienImage : "assets/PointAndClick.png",
-        desc : "Projet réalisé en trinôme sur Unity en tant que projet de Master 1 pour le premier semestre. Il s'agit d'un éditeur de jeu de type Point&Click où l'utilisateur peut créer son propre jeu en plaçant des objets et en créant des interactions entre eux. Le projet permet la création et la lecture de jeux personnalisés grâce à une structure de données en JSON, ainqi qu'un éditeur intuitif pour concevoir personnages, objets, dialogues et quêtes. Il a été implémenté collaborativement via Plastic SCM",
+        lienImages : [
+            "assets/Point&Click/PointAndClick.png",
+        ],
+            desc : "Projet réalisé en trinôme sur Unity en tant que projet de Master 1 pour le premier semestre. Il s'agit d'un éditeur de jeu de type Point&Click où l'utilisateur peut créer son propre jeu en plaçant des objets et en créant des interactions entre eux. Le projet permet la création et la lecture de jeux personnalisés grâce à une structure de données en JSON, ainqi qu'un éditeur intuitif pour concevoir personnages, objets, dialogues et quêtes. Il a été implémenté collaborativement via Plastic SCM",
         nbPersonnes: 3,
         envDev: "Unity",
         langage: "C#",
@@ -44,7 +50,9 @@ const projets = [
         lienGit : "",
         lienBuild : "https://play.unity.com/fr/games/8f4ad9a4-d96d-46af-a4df-53fcf1327cdf/pachinkov3",
         lienAutre : "",
-        lienImage : "assets/pachinko.png",
+        lienImages : [
+            "assets/Pachinko/pachinko.png",
+        ],
         desc : "Projet réalisé lors de ma formation en ligne sur Unity durant le parcours Unity Essentials. Il s'agit d'un jeu de Pachinko où le joueur doit faire apparaître une bille en haut d'un plateau pour obtenir un maximum de points. Le jeu est composé d'un système de score et est jouable en ligne.",
         nbPersonnes: 1,
         envDev: "Unity",
@@ -57,7 +65,9 @@ const projets = [
         lienGit : "",
         lienBuild : "",
         lienAutre : "",
-        lienImage : "assets/mandelaApp.png",
+        lienImages : [
+            "assets/Maraude/mandelaApp.png",
+        ],
         desc : "Application réalisée dans le cadre de mon stage de Licence 3. Elle a été réalisée en même temps qu'un site internet. Elle permettait d'enregistrer les différentes maraudes présentes dans la région à condition d'être acceptées par un membre de l'association \"Les Amis de Mandela\" basée à l'AFERTES d'Avion. Elle implémentait un système de compte pour les partenaires désirant proposer leurs maraudes sur l'application. Le projet a été abandonné par la suite.",
         nbPersonnes: 2,
         envDev: "Android Studio",
@@ -70,7 +80,9 @@ const projets = [
         lienGit : "https://github.com/Miraha02/ihmprojet-Hana/tree/master",
         lienBuild : "",
         lienAutre : "",
-        lienImage : "assets/sokoban.png",
+        lienImages : [
+            "assets/Sokoban/sokoban.png",
+        ],
         desc : "Premier projet de jeu vidéo réalisé en Python dans le cadre de ma première année de DUT, ce Sokoban propose une version revisitée du jeu classique. Les joueurs doivent compléter trois niveaux successifs, et chaque niveau ne devient accessible qu'une fois le précédent terminé. Une fonction de réinitialisation permet de bloquer de nouveau l'accès aux niveaux, ce qui ajoute un élément de flexibilité et de défi.",
         nbPersonnes: 2,
         envDev: "Visual Studio Code",
@@ -162,12 +174,42 @@ function smoothScroll() {
     });
 }
 
-// Fonction pour afficher les projets avec la nouvelle mise en page
+// Fonction pour créer un diaporama d'images pour un projet
+function createDiapo(projet, index) {
+    const carouselContainer = document.createElement("div");
+    carouselContainer.className = "carousel-container";
+    carouselContainer.id = `carousel-${index}`;
+
+    // Image affichée
+    const img = document.createElement("img");
+    img.src = projet.lienImages[0]; // Afficher la première image par défaut
+    img.className = "project-image";
+    img.dataset.index = 0;
+    
+    // Flèches de navigation
+    const prevButton = document.createElement("button");
+    prevButton.className = "carousel-button prev";
+    prevButton.innerHTML = "&#9664;"; // Flèche gauche
+    prevButton.onclick = () => changeImage(index, -1);
+    
+    const nextButton = document.createElement("button");
+    nextButton.className = "carousel-button next";
+    nextButton.innerHTML = "&#9654;"; // Flèche droite
+    nextButton.onclick = () => changeImage(index, 1);
+    
+    carouselContainer.appendChild(prevButton);
+    carouselContainer.appendChild(img);
+    carouselContainer.appendChild(nextButton);
+
+    return carouselContainer;
+}
+
+// Fonction pour afficher les projets avec le diaporama
 function afficherProjets(projets) {
     const section = document.getElementById("project-section");
     section.innerHTML = ""; // Nettoyer la section avant d'ajouter les projets
     
-    projets.forEach((projet) => {
+    projets.forEach((projet, index) => {
         const projectDiv = document.createElement("div");
         projectDiv.className = "project";
 
@@ -197,6 +239,9 @@ function afficherProjets(projets) {
         desc.className = "project-description";
         desc.textContent = projet.desc;
 
+        // Création du diaporama
+        const carouselContainer = createDiapo(projet, index);
+
         // Icônes avec liens
         const linkContainer = document.createElement("div");
         linkContainer.className = "project-links";
@@ -219,21 +264,25 @@ function afficherProjets(projets) {
             }
         });
 
-        // Image du projet
-        const img = document.createElement("img");
-        img.src = projet.lienImage;
-        img.alt = projet.nom;
-        img.className = "project-image";
-
         // Ajout des éléments dans l'ordre demandé
         projectDiv.appendChild(title);
         projectDiv.appendChild(infoList);
         projectDiv.appendChild(desc);
+        projectDiv.appendChild(carouselContainer);
         projectDiv.appendChild(linkContainer);
-        projectDiv.appendChild(img);
         
         section.appendChild(projectDiv);
     });
+}
+
+// Fonction pour changer l'image dans le diaporama
+function changeImage(projectIndex, direction) {
+    const carousel = document.getElementById(`carousel-${projectIndex}`);
+    const img = carousel.querySelector(".project-image");
+    const currentIndex = parseInt(img.dataset.index);
+    const newIndex = (currentIndex + direction + projets[projectIndex].lienImages.length) % projets[projectIndex].lienImages.length;
+    img.src = projets[projectIndex].lienImages[newIndex];
+    img.dataset.index = newIndex;
 }
 
 
