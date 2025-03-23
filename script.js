@@ -186,21 +186,24 @@ function createDiapo(projet, index) {
     img.className = "project-image";
     img.dataset.index = 0;
     
-    // Flèches de navigation
-    const prevButton = document.createElement("button");
-    prevButton.className = "carousel-button prev";
-    prevButton.innerHTML = "&#9664;"; // Flèche gauche
-    prevButton.onclick = () => changeImage(index, -1);
-    
-    const nextButton = document.createElement("button");
-    nextButton.className = "carousel-button next";
-    nextButton.innerHTML = "&#9654;"; // Flèche droite
-    nextButton.onclick = () => changeImage(index, 1);
-    
-    carouselContainer.appendChild(prevButton);
     carouselContainer.appendChild(img);
-    carouselContainer.appendChild(nextButton);
 
+    // Ajouter les boutons de navigation seulement s'il y a plusieurs images
+    if (projet.lienImages.length > 1) {
+        const prevButton = document.createElement("button");
+        prevButton.className = "carousel-button prev";
+        prevButton.innerHTML = "&#9664;"; // Flèche gauche
+        prevButton.onclick = () => changeImage(index, -1);
+        
+        const nextButton = document.createElement("button");
+        nextButton.className = "carousel-button next";
+        nextButton.innerHTML = "&#9654;"; // Flèche droite
+        nextButton.onclick = () => changeImage(index, 1);
+        
+        carouselContainer.appendChild(prevButton);
+        carouselContainer.appendChild(nextButton);
+    }
+    
     return carouselContainer;
 }
 
@@ -220,9 +223,9 @@ function afficherProjets(projets) {
         const infoList = document.createElement("ul");
         infoList.className = "project-info-list";
         const infoFields = {
+            "Nombre de personnes": projet.nbPersonnes,
             "Environnement de développement": projet.envDev,
             "Langage": projet.langage,
-            "Nombre de personnes": projet.nbPersonnes,
             "Date de début": projet.dateDebut,
             "Date de fin": projet.dateFin
         };
@@ -284,7 +287,6 @@ function changeImage(projectIndex, direction) {
     img.src = projets[projectIndex].lienImages[newIndex];
     img.dataset.index = newIndex;
 }
-
 
 
 // Fonction pour générer la section du parcours
