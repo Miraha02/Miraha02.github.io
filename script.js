@@ -250,7 +250,7 @@ function afficherProjets(projets) {
         linkContainer.className = "project-links";
         const links = [
             { url: projet.lienGit, img: "assets/GitHub.png", alt: "GitHub" },
-            { url: projet.lienBuild, img: "assets/build-icon.png", alt: "Build" },
+            { url: projet.lienBuild, img: "assets/build.png", alt: "Build" },
             { url: projet.lienAutre, img: "assets/other-icon.png", alt: "Autre" }
         ];
         links.forEach(link => {
