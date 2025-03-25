@@ -140,13 +140,6 @@ form button:hover {
     align-items: center;
 }
 
-.project-image {
-    width: 250px;
-    height: auto;
-    border-radius: 5px;
-    flex-shrink: 0;
-}
-
 .project-description {
     font-size: 1em;
     color: #ccc;
@@ -211,7 +204,7 @@ form button:hover {
     border-radius: 5px;
     margin-top: 10px;
     max-width: 100%;
-    height: 300px;
+    height: 400px;
     width: 600px;
     object-fit: cover;
 }
