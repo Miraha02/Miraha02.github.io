@@ -16,6 +16,24 @@ const projets = [
         dateFin: "En cours"
     },
     {
+        nom : "FishClicker",
+        lienGit : "",
+        lienBuild : "https://drive.google.com/drive/folders/1VfKXrLzH1nBwyZ-6oNxCLZduB6vfXxtU?usp=sharing",
+        lienAutre : "",
+        lienImages : [
+            "assets/FishClicker/FishClicker1.jpg",
+            "assets/FishClicker/FishClicker2.jpg",
+            "assets/FishClicker/FishClicker3.jpg",
+            "assets/FishClicker/FishClicker4.jpg"
+        ],
+        desc : "Projet de \"Mobilité\" (application mobile) réalisé durant mon second semestre de Master 2. Le but était de créer un jeu qui trouve une légitimité à ëtre sur mobile, nous avons donc décidé de partir sur la base d'un clicker dans l'univers de la pêche. Ce projet nous à donc permit de réfléchir aux avantages et inconvénients d'un jeu sur téléphone. Via ce projet, j'ai appris à utiliser l'accéléromètre du téléphone via Unity pour détecter lorsque le téléphone est secoué. J'ai aussi pus apprendre à faire vibrer le téléphone quand l'utilisateur échoue une pêche.",
+        nbPersonnes: 3,
+        envDev: "Unity",
+        langage: "C#",
+        dateDebut: "Février - 2025",
+        dateFin: "Mars - 2025"
+    },
+    {
         nom : "Librairie de pilotage pour IA",
         lienGit : "",
         lienBuild : "https://drive.google.com/drive/folders/1qLOS4fmYUd-EfaoaE3n3brSwwo5OTjpA?hl=fr",
