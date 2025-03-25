@@ -42,7 +42,7 @@ const projets = [
             "assets/Hospital/Hospital1.png",
             "assets/Hospital/Hospital2.png"
         ],
-        desc : "Suite du projet de pilotage pour IA. À l'aide de la librairie précédemment créer, j'ai pus développer un jeu où le joueur doit, en collaboration avec des IA, aller chercher des personnes bléssés sur la route et les ramener à l'hôpital. La map est généré aléatoirement (excepté pour les contours de la map) avec une route cohérente et l'hôpital au centre. Via ce projet, j'ai pus améliorer ma compréhension des IA dans le jeu vidéo. De plus, il nous était interdit de faire communiquer les IA entres elles, ainsi, j'ai pus réfléchir à mettre en oeuvre ce projet tout en passant outre ces contraintes.",
+        desc : "Suite du projet de pilotage pour IA. À l'aide de la librairie précédemment créée, j'ai pu développer un jeu où le joueur doit, en collaboration avec des IA, aller chercher des personnes bléssées sur la route et les ramener à l'hôpital. La map est générée aléatoirement (excepté pour les contours de la map) avec une route cohérente et l'hôpital au centre.  De plus, il nous était interdit de faire communiquer les IA entre elles. Via ce projet, j'ai pu améliorer ma compréhension des IA dans le jeu vidéo en cherchant à passer outre ces contraintes.",
         nbPersonnes: 1,
         envDev: "Unreal Engine 5",
         langage: "C++, Blueprint",
