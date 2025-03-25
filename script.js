@@ -34,6 +34,22 @@ const projets = [
         dateFin: "Mars - 2025"
     },
     {
+        nom : "Path finding, Hospital (IA)",
+        lienGit : "",
+        lienBuild : "https://drive.google.com/drive/folders/1Bqefc41s2TVsoz4FpyBvWW8NQXHVSHQG?usp=sharing",
+        lienAutre : "",
+        lienImages : [
+            "assets/Hospital/Hospital1.png",
+            "assets/Hospital/Hospital2.png"
+        ],
+        desc : "Suite du projet de pilotage pour IA. À l'aide de la librairie précédemment créer, j'ai pus développer un jeu où le joueur doit, en collaboration avec des IA, aller chercher des personnes bléssés sur la route et les ramener à l'hôpital. La map est généré aléatoirement (excepté pour les contours de la map) avec une route cohérente et l'hôpital au centre. Via ce projet, j'ai pus améliorer ma compréhension des IA dans le jeu vidéo. De plus, il nous était interdit de faire communiquer les IA entres elles, ainsi, j'ai pus réfléchir à mettre en oeuvre ce projet tout en passant outre ces contraintes.",
+        nbPersonnes: 1,
+        envDev: "Unreal Engine 5",
+        langage: "C++, Blueprint",
+        dateDebut: "Fevrier - 2025",
+        dateFin: "Mars - 2025"
+    },
+    {
         nom : "Librairie de pilotage pour IA",
         lienGit : "",
         lienBuild : "https://drive.google.com/drive/folders/1qLOS4fmYUd-EfaoaE3n3brSwwo5OTjpA?hl=fr",
