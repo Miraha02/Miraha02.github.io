@@ -1,60 +1,25 @@
-// Tableau contenant les informations sur le parcours
-const educationData = [
-    {
-        image: "assets/jeanPerrin.JPG", // Remplacez par l'URL de votre image
-        school: "Faculté des Sciences Jean Perrin",
-        startYear: 2023,
-        endYear: "Aujourd'hui",
-        degree: "Master Informatique - Parcours Ingénierie Logicielle pour les Jeux"
-    },
-    {
-        image: "assets/jeanPerrin.JPG", // Remplacez par l'URL de votre image
-        school: "Faculté des Sciences Jean Perrin",
-        startYear: 2022,
-        endYear: 2023,
-        degree: "Licence Informatique"
-    },
-    {
-        image: "assets/iut.jpg", // Remplacez par l'URL de votre image
-        school: "IUT de Lens",
-        startYear: 2020,
-        endYear: 2022,
-        degree: "DUT Informatique"
-    }
-];
+language = "fr";
 
-// Tableau contenant les informations sur les expériences professionnelles
-const experienceData = [
-    {
-        poste: "Développeuse Unity en TER (Travail d'Etude et de Recherche)",
-        entreprise: "Faculté des Sciences Jean Perrin",
-        date: "Avril 2024 - Juillet 2024",
-        description: "Développement d'un éditeur de Point & Click en trinôme afin de se familiariser sur Unity pour le Master 2."
-    },
-    {
-        poste: "Stagiaire Développeuse Android",
-        entreprise: "Les Amis de Mandela - AFERTES d'Avion",
-        date: "Avril 2023 - Juillet 2023",
-        description: "Développement d'une application Android liée à un site web, permettant d'enregistrer et de gérer les maraudes dans la région. J'ai aussi pu participer aux activités de l'association et de l'école afin de venir en aide aux personnes en situation de handicap et/ou de précarité. De plus, je me suis impliquée dans la vie administratif de l'association en allant au contact des partenaires et des acteurs locaux et régionaux."
-    },
-    {
-        poste: "Stagiaire au LML (Laboratoire de Mathématiques de Lens)",
-        entreprise: "LML - Université d'Artois",
-        date: "Avril 2022 - Juillet 2022",
-        description: "Développement d'une application IOS permettant de filmer un individu en marche et stocker ses mouvements en JSON. Une visualisation des mouvements est disponible sur un site web et sur l'application. Le but est de filmer des patients afin de déterminer s'il est atteint d'hydrocéphalie, une maladie neurodégénérative que l'on peut diagnostiquer en analysant la démarche du patient. Les données seraient donc ensuite transmises à un modèle de machine learning pour déterminer si le patient est atteint de la maladie."
-    },
-    {
-        poste: "Agent technique aux espaces verts",
-        entreprise: "Mairie de Sallaumines",
-        date: "Juillet 2019 - Août 2019",
-        description: "Entretien des espaces verts de la ville de Sallaumines."
-    }
-];
+const getLangFromURL = () => {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("lang") || "fr";
+};
+
+const setLangInURL = (lang) => {
+    const params = new URLSearchParams(window.location.search);
+    params.set("lang", lang);
+    window.location.search = params.toString(); // recharge avec la nouvelle langue
+};
+
+const loadJSON = async (url) => {
+    const response = await fetch(url);
+    return await response.json();
+};
 
 async function chargerProjets(langue = 'fr') {
     const [baseRes, tradRes] = await Promise.all([
-        fetch('data/projets/projets.base.json'),
-        fetch(`data/projets/projets.${langue}.json`)
+        loadJSON('data/projets/projets.base.json'),
+        loadJSON(`data/projets/projets.${langue}.json`)
     ]);
 
     const baseProjets = await baseRes.json();
@@ -251,6 +216,9 @@ function displayEducation() {
         educationList.appendChild(eduContainer);
     });
 }
+
+document.querySelector("#btn-lang-fr").addEventListener("click", () => setLangInURL("fr"));
+document.querySelector("#btn-lang-en").addEventListener("click", () => setLangInURL("en"));
 
 // Appeler la fonction pour afficher le parcours
 displayEducation();
