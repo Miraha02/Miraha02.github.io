@@ -1,131 +1,3 @@
-const projets = [
-    {
-        nom : "MMO (En cours)",
-        lienGit : "https://github.com/Miraha02/MMOAT",
-        lienBuild : "",
-        lienAutre : "",
-        lienImages : [
-            "assets/MMOAT/MMOAT.png",
-        ],
-        desc : "Projet de MMO réalisé en binôme sur Unreal Engine 5 en tant que projet de Master 2 pour le premier et deuxième semetre. Il implémente un système d'inventaire et une gestion des sorts dynamique à l'aide du GAS (Gameplay Ability System) de Unreal Engine. Un système de pêche va prochainement être implémenté ainsi qu'une amélioration de la structure du projet.\
-        (Tous les assets ne sont pas présents dans le dépôt github pour des économies d'espace disque)",
-        nbPersonnes: 2,
-        envDev: "Unreal Engine 5",
-        langage: "C++, Blueprint",
-        dateDebut: "Septembre - 2024",
-        dateFin: "En cours"
-    },
-    {
-        nom : "FishClicker",
-        lienGit : "",
-        lienBuild : "https://drive.google.com/drive/folders/1VfKXrLzH1nBwyZ-6oNxCLZduB6vfXxtU?usp=sharing",
-        lienAutre : "",
-        lienImages : [
-            "assets/FishClicker/FishClicker1.jpg",
-            "assets/FishClicker/FishClicker2.jpg",
-            "assets/FishClicker/FishClicker3.jpg",
-            "assets/FishClicker/FishClicker4.jpg"
-        ],
-        desc : "Projet de \"Mobilité\" (application mobile) réalisé durant mon second semestre de Master 2. Le but était de créer un jeu dont l'usage sur mobile était justifié. Nous avons donc décidé de partir sur la base d'un clicker ancré dans l'univers de la pêche. Ce projet nous a donc permis de réfléchir aux avantages et inconvénients d'un jeu sur téléphone. Via ce projet, j'ai appris à utiliser l'accéléromètre du téléphone via Unity pour détecter lorsque le téléphone est secoué. J'ai aussi pu apprendre à faire vibrer le téléphone quand l'utilisateur échoue une pêche.",
-        nbPersonnes: 3,
-        envDev: "Unity",
-        langage: "C#",
-        dateDebut: "Février - 2025",
-        dateFin: "Mars - 2025"
-    },
-    {
-        nom : "Path finding, Hospital (IA)",
-        lienGit : "",
-        lienBuild : "https://drive.google.com/drive/folders/1Bqefc41s2TVsoz4FpyBvWW8NQXHVSHQG?usp=sharing",
-        lienAutre : "",
-        lienImages : [
-            "assets/Hospital/Hospital1.png",
-            "assets/Hospital/Hospital2.png"
-        ],
-        desc : "Suite du projet de pilotage pour IA. À l'aide de la librairie précédemment créée, j'ai pu développer un jeu où le joueur doit, en collaboration avec des IA, aller chercher des personnes bléssées sur la route et les ramener à l'hôpital. La map est générée aléatoirement (excepté pour les contours de la map) avec une route cohérente et l'hôpital au centre.  De plus, il nous était interdit de faire communiquer les IA entre elles. Via ce projet, j'ai pu améliorer ma compréhension des IA dans le jeu vidéo en cherchant à passer outre ces contraintes.",
-        nbPersonnes: 1,
-        envDev: "Unreal Engine 5",
-        langage: "C++, Blueprint",
-        dateDebut: "Fevrier - 2025",
-        dateFin: "Mars - 2025"
-    },
-    {
-        nom : "Librairie de pilotage pour IA",
-        lienGit : "",
-        lienBuild : "https://drive.google.com/drive/folders/1qLOS4fmYUd-EfaoaE3n3brSwwo5OTjpA?hl=fr",
-        lienAutre : "",
-        lienImages : [
-            "assets/Steering1/steering.png",
-        ],
-        desc : "Projet d'implémentation d'une bibliothèque de \"Steering Behaviors\" sur Unreal Engine 5, simulant des comportements de déplacement pour une IA sous forme de cône. L'IA peut poursuivre, fuir, suivre un chemin ou s'arrêter progressivement, avec des cibles dynamiques et des contrôles interactifs. Le projet à été réalisé pour la première partie du deuxième semestre de Master 2.",
-        nbPersonnes: 1,
-        envDev: "Unreal Engine 5",
-        langage: "C++, Blueprint",
-        dateDebut: "Janvier - 2025",
-        dateFin: "Fevrier - 2025"
-    },
-    {
-        nom : "Éditeur de Point&Click",
-        lienGit : "",
-        lienBuild : "",
-        lienAutre : "",
-        lienImages : [
-            "assets/Point&Click/PointAndClick.png",
-        ],
-            desc : "Projet réalisé en trinôme sur Unity en tant que projet de Master 1 pour le premier semestre. Il s'agit d'un éditeur de jeu de type Point&Click où l'utilisateur peut créer son propre jeu en plaçant des objets et en créant des interactions entre eux. Le projet permet la création et la lecture de jeux personnalisés grâce à une structure de données en JSON, ainqi qu'un éditeur intuitif pour concevoir personnages, objets, dialogues et quêtes. Il a été implémenté collaborativement via Plastic SCM",
-        nbPersonnes: 3,
-        envDev: "Unity",
-        langage: "C#",
-        dateDebut: "Avril - 2024",
-        dateFin: "Juillet - 2024"
-    },
-    {
-        nom : "Pachinko Unity",
-        lienGit : "",
-        lienBuild : "https://play.unity.com/fr/games/8f4ad9a4-d96d-46af-a4df-53fcf1327cdf/pachinkov3",
-        lienAutre : "",
-        lienImages : [
-            "assets/Pachinko/pachinko.png",
-        ],
-        desc : "Projet réalisé lors de ma formation en ligne sur Unity durant le parcours Unity Essentials. Il s'agit d'un jeu de Pachinko où le joueur doit faire apparaître une bille en haut d'un plateau pour obtenir un maximum de points. Le jeu est composé d'un système de score et est jouable en ligne.",
-        nbPersonnes: 1,
-        envDev: "Unity",
-        langage: "C#",
-        dateDebut: "Avril - 2024",
-        dateFin: "Avril - 2024"
-    },
-    {
-        nom : "Application android qui indique les différentes maraudes présentes dans la région",
-        lienGit : "",
-        lienBuild : "",
-        lienAutre : "",
-        lienImages : [
-            "assets/Maraude/mandelaApp.png",
-        ],
-        desc : "Application réalisée dans le cadre de mon stage de Licence 3. Elle a été réalisée en même temps qu'un site internet. Elle permettait d'enregistrer les différentes maraudes présentes dans la région à condition d'être acceptées par un membre de l'association \"Les Amis de Mandela\" basée à l'AFERTES d'Avion. Elle implémentait un système de compte pour les partenaires désirant proposer leurs maraudes sur l'application. Le projet a été abandonné par la suite.",
-        nbPersonnes: 2,
-        envDev: "Android Studio",
-        langage: "Java",
-        dateDebut: "Avril - 2023",
-        dateFin: "Juillet - 2023"
-    },
-    {
-        nom : "Sokoban",
-        lienGit : "https://github.com/Miraha02/ihmprojet-Hana/tree/master",
-        lienBuild : "",
-        lienAutre : "",
-        lienImages : [
-            "assets/Sokoban/sokoban.png",
-        ],
-        desc : "Premier projet de jeu vidéo réalisé en Python dans le cadre de ma première année de DUT, ce Sokoban propose une version revisitée du jeu classique. Les joueurs doivent compléter trois niveaux successifs, et chaque niveau ne devient accessible qu'une fois le précédent terminé. Une fonction de réinitialisation permet de bloquer de nouveau l'accès aux niveaux, ce qui ajoute un élément de flexibilité et de défi.",
-        nbPersonnes: 2,
-        envDev: "Visual Studio Code",
-        langage: "Python",
-        dateDebut: "Avril - 2020",
-        dateFin: "Mai - 2020"
-    }
-];
-
 // Tableau contenant les informations sur le parcours
 const educationData = [
     {
@@ -178,6 +50,31 @@ const experienceData = [
         description: "Entretien des espaces verts de la ville de Sallaumines."
     }
 ];
+
+async function chargerProjets(langue = 'fr') {
+    const [baseRes, tradRes] = await Promise.all([
+        fetch('data/projets/projets.base.json'),
+        fetch(`data/projets/projets.${langue}.json`)
+    ]);
+
+    const baseProjets = await baseRes.json();
+    const traductions = await tradRes.json();
+
+    // Convertir le tableau de traductions en un objet où les clés sont les `id` des projets
+    const traductionsObj = traductions.reduce((acc, projet) => {
+        acc[projet.id] = projet; // Associer chaque `id` à un objet de projet
+        return acc;
+    }, {});
+
+    // Fusionner les données de base avec les traductions
+    const projets = baseProjets.map(p => ({
+        ...p,
+        ...traductionsObj[p.id] // On ajoute nom/desc à chaque projet par son id
+    }));
+
+    console.log(projets);
+    afficherProjets(projets);
+}
 
 function displayExperience() {
     const experienceList = document.getElementById('experience-list');
@@ -359,8 +256,8 @@ function displayEducation() {
 // Appeler la fonction pour afficher le parcours
 displayEducation();
 
+chargerProjets();
 
 smoothScroll();
-afficherProjets(projets);
 
 displayExperience();
