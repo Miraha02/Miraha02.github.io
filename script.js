@@ -72,7 +72,6 @@ async function chargerProjets(langue = 'fr') {
         ...traductionsObj[p.id] // On ajoute nom/desc à chaque projet par son id
     }));
 
-    console.log(projets);
     afficherProjets(projets);
 }
 
