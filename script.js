@@ -1,5 +1,3 @@
-language = "fr";
-
 const getLangFromURL = () => {
     const params = new URLSearchParams(window.location.search);
     return params.get("lang") || "fr";
@@ -17,13 +15,10 @@ const loadJSON = async (url) => {
 };
 
 async function chargerProjets(langue = 'fr') {
-    const [baseRes, tradRes] = await Promise.all([
+    const [baseProjets, traductions] = await Promise.all([
         loadJSON('data/projets/projets.base.json'),
         loadJSON(`data/projets/projets.${langue}.json`)
     ]);
-
-    const baseProjets = await baseRes.json();
-    const traductions = await tradRes.json();
 
     // Convertir le tableau de traductions en un objet où les clés sont les `id` des projets
     const traductionsObj = traductions.reduce((acc, projet) => {
@@ -40,9 +35,11 @@ async function chargerProjets(langue = 'fr') {
     afficherProjets(projets);
 }
 
-function displayExperience() {
+async function displayExperience(langue = "fr") {
     const experienceList = document.getElementById('experience-list');
     
+    const experienceData = await loadJSON(`data/exp/exp.${langue}.json`);
+
     experienceData.forEach(item => {
         const expContainer = document.createElement('div');
         expContainer.className = 'experience-item';
@@ -185,8 +182,10 @@ function changeImage(projectIndex, direction) {
 
 
 // Fonction pour générer la section du parcours
-function displayEducation() {
+async function displayEducation(langue = "fr") {
     const educationList = document.getElementById('education-list');
+
+    const educationData = await loadJSON(`data/etude/etude.${langue}.json`);
 
     educationData.forEach(item => {
         // Créer un conteneur pour chaque diplôme
@@ -216,6 +215,8 @@ function displayEducation() {
         educationList.appendChild(eduContainer);
     });
 }
+
+language = "fr";
 
 document.querySelector("#btn-lang-fr").addEventListener("click", () => setLangInURL("fr"));
 document.querySelector("#btn-lang-en").addEventListener("click", () => setLangInURL("en"));
