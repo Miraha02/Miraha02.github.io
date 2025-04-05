@@ -1,0 +1,23 @@
+[
+    {
+        "image": "assets/jeanPerrin.JPG",
+        "school": "Faculté des Sciences Jean Perrin",
+        "startYear": 2023,
+        "endYear": "Aujourd'hui",
+        "degree": "Master Informatique - Parcours Ingénierie Logicielle pour les Jeux"
+    },
+    {
+        "image": "assets/jeanPerrin.JPG",
+        "school": "Faculté des Sciences Jean Perrin",
+        "startYear": 2022,
+        "endYear": 2023,
+        "degree": "Licence Informatique"
+    },
+    {
+        "image": "assets/iut.jpg",
+        "school": "IUT de Lens",
+        "startYear": 2020,
+        "endYear": 2022,
+        "degree": "DUT Informatique"
+    }
+]
