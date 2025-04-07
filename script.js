@@ -1,3 +1,29 @@
+const loadJSON = async (url) => {
+    const response = await fetch(url);
+    return await response.json();
+};
+
+async function changerLangue(langue) {
+    const traductions = await loadJSON(`data/lang/${langue}.json`);
+
+    console.log("gfdsgsdf")
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const cle = el.getAttribute('data-i18n');
+        console.log(cle)
+        if (traductions[cle]) {
+            el.textContent = traductions[cle];
+        }
+    });
+
+    chargerProjets(langue);
+}
+
+// set le listener sur le chargement du DOM pour charger les infos relatifs à la langue
+window.addEventListener('DOMContentLoaded', () => {
+    const lang = getLangFromURL();
+    changerLangue(lang); // C'est ici qu'on applique la langue depuis l'URL
+});
+
 const getLangFromURL = () => {
     const params = new URLSearchParams(window.location.search);
     return params.get("lang") || "fr";
@@ -7,11 +33,6 @@ const setLangInURL = (lang) => {
     const params = new URLSearchParams(window.location.search);
     params.set("lang", lang);
     window.location.search = params.toString(); // recharge avec la nouvelle langue
-};
-
-const loadJSON = async (url) => {
-    const response = await fetch(url);
-    return await response.json();
 };
 
 async function chargerProjets(langue = 'fr') {
@@ -219,7 +240,7 @@ async function displayEducation(langue = "fr") {
 language = "fr";
 
 document.querySelector("#btn-lang-fr").addEventListener("click", () => setLangInURL("fr"));
-//document.querySelector("#btn-lang-en").addEventListener("click", () => setLangInURL("en"));
+document.querySelector("#btn-lang-en").addEventListener("click", () => setLangInURL("en"));
 
 // Appeler la fonction pour afficher le parcours
 displayEducation();
