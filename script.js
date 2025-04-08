@@ -240,6 +240,6 @@ async function displayEducation(langue = "fr") {
 language = "fr";
 
 document.querySelector("#btn-lang-fr").addEventListener("click", () => setLangInURL("fr"));
-//document.querySelector("#btn-lang-en").addEventListener("click", () => setLangInURL("en"));
+document.querySelector("#btn-lang-en").addEventListener("click", () => setLangInURL("en"));
 
 smoothScroll();
