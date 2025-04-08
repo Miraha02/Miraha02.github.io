@@ -1,25 +1,24 @@
 {
-    "mainTitle": "Mon Portfolio",
+    "mainTitle": "Portfolio de Hana",
     "desc": "Développeuse de jeux vidéo",
-    "about": "À propos",
-    "education": "Parcours",
-    "projects": "Projets",
-    "exp": "Expériences",
-    "contact": "Contact",
+    "about": "Qui suis-je ?",
+    "education": "Mes Études",
+    "projects": "Mes Projets",
+    "exp": "Expériences Professionnelles",
+    "contact": "Me Contacter",
     "whoAmI": "À propos de moi",
-    "whoAmI_content": "Passionnée par l'art de concevoir des expériences captivantes, je suis développeuse spécialisée dans la création de jeux vidéo immersifs. Grâce à des outils comme Unity et Unreal Engine 5, j’ai récemment découvert le Gameplay Ability System (GAS), une technologie que j’adore pour sa puissance et sa flexibilité. Il permet de concevoir des systèmes de capacités et d’effets dynamiques qui enrichissent l’expérience de jeu. Bien que je continue à approfondir mes connaissances, je prends énormément de plaisir à intégrer ces outils pour transformer des idées ambitieuses en mondes interactifs où créativité et technologie se rencontrent. Mon objectif est de transporter les joueurs dans des univers uniques qui marquent les esprits.",
+    "whoAmI_content": "J'ai grandi en jouant aux jeux vidéo et, pour chacun des jeux auxquels j'ai pu jouer, j'ai toujours pris plaisir à me demander comment ils étaient faits. Cette passion m'a toujours donné envie de créer mes propres jeux. J'ai donc suivi des études en informatique afin d'apprendre la programmation et j'ai fini par intégrer le master Ingénierie Informatique pour les Jeux (ILJ), qui m'a permis d'apprendre à utiliser différents moteurs de jeux tels que Unreal Engine 5 ou Unity.\n Je suis actuellement en deuxième et dernière année de ce master dans lequel j'ai fini majeure de promo au premier semestre. Je suis donc à la recherche d'un stage afin de valider mon diplôme tout en continuant de suivre ma passion qui me suit depuis mon enfance.",
     "education_title": "Mon Parcours Universitaire",
     "projects_title": "Mes Projets",
     "exp_title": "Expériences Professionnelles",
-    "contact_title": "Contactez-moi",
+    "contact_title": "Contacts",
     "contact_content": "Pour me contacter via mon mail, cliquez sur le bouton ci-dessous :",
     "contact_button": "Me Contacter",
-    "contact_mail": "Ou envoyez-moi directement un email à :",
+    "contact_mail": "Ou envoyez-moi directement un email à : hanadelcourt@gmail.com",
 
-    "nbPeople": "Nombre de personnes",
-    "devEnv": "Environnement de développement",
+    "nbPeople": "Taille du groupe",
+    "devEnv": "Moteur / Environnement",
     "language": "Langage",
     "startDate": "Date de début",
     "endDate": "Date de fin"
-  }
-  
+}
