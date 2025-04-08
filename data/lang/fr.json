@@ -14,6 +14,12 @@
     "contact_title": "Contactez-moi",
     "contact_content": "Pour me contacter via mon mail, cliquez sur le bouton ci-dessous :",
     "contact_button": "Me Contacter",
-    "contact_mail": "Ou envoyez-moi directement un email à :"
+    "contact_mail": "Ou envoyez-moi directement un email à :",
+
+    "nbPeople": "Nombre de personnes",
+    "devEnv": "Environnement de développement",
+    "language": "Langage",
+    "startDate": "Date de début",
+    "endDate": "Date de fin"
   }
   

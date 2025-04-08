@@ -6,16 +6,14 @@ const loadJSON = async (url) => {
 async function changerLangue(langue) {
     const traductions = await loadJSON(`data/lang/${langue}.json`);
 
-    console.log("gfdsgsdf")
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const cle = el.getAttribute('data-i18n');
-        console.log(cle)
         if (traductions[cle]) {
             el.textContent = traductions[cle];
         }
     });
 
-    chargerProjets(langue);
+    chargerProjets(langue, traductions);
 }
 
 // set le listener sur le chargement du DOM pour charger les infos relatifs à la langue
@@ -35,7 +33,7 @@ const setLangInURL = (lang) => {
     window.location.search = params.toString(); // recharge avec la nouvelle langue
 };
 
-async function chargerProjets(langue = 'fr') {
+async function chargerProjets(langue = 'fr', traductionsFile = {}) {
     const [baseProjets, traductions] = await Promise.all([
         loadJSON('data/projets/projets.base.json'),
         loadJSON(`data/projets/projets.${langue}.json`)
@@ -53,7 +51,7 @@ async function chargerProjets(langue = 'fr') {
         ...traductionsObj[p.id] // On ajoute nom/desc à chaque projet par son id
     }));
 
-    afficherProjets(projets);
+    afficherProjets(projets, traductionsFile);
 }
 
 async function displayExperience(langue = "fr") {
@@ -121,7 +119,7 @@ function createDiapo(projet, index) {
 }
 
 // Fonction pour afficher les projets avec le diaporama
-function afficherProjets(projets) {
+function afficherProjets(projets, traductions) {
     const section = document.getElementById("project-section");
     section.innerHTML = ""; // Nettoyer la section avant d'ajouter les projets
     
@@ -136,11 +134,11 @@ function afficherProjets(projets) {
         const infoList = document.createElement("ul");
         infoList.className = "project-info-list";
         const infoFields = {
-            "Nombre de personnes": projet.nbPersonnes,
-            "Environnement de développement": projet.envDev,
-            "Langage": projet.langage,
-            "Date de début": projet.dateDebut,
-            "Date de fin": projet.dateFin
+            [traductions.nbPeople]: projet.nbPersonnes,
+            [traductions.devEnv]: projet.envDev,
+            [traductions.language]: projet.langage,
+            [traductions.startDate]: projet.dateDebut,
+            [traductions.endDate]: projet.dateFin
         };
         for (const [key, value] of Object.entries(infoFields)) {
             if (value) {
