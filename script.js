@@ -13,7 +13,9 @@ async function changerLangue(langue) {
         }
     });
 
+    displayEducation();
     chargerProjets(langue, traductions);
+    displayExperience();
 }
 
 // set le listener sur le chargement du DOM pour charger les infos relatifs à la langue
@@ -240,11 +242,4 @@ language = "fr";
 document.querySelector("#btn-lang-fr").addEventListener("click", () => setLangInURL("fr"));
 //document.querySelector("#btn-lang-en").addEventListener("click", () => setLangInURL("en"));
 
-// Appeler la fonction pour afficher le parcours
-displayEducation();
-
-chargerProjets();
-
 smoothScroll();
-
-displayExperience();
