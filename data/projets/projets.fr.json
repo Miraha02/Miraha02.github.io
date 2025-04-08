@@ -2,7 +2,7 @@
     {
         "id" : "MMOAT",
         "nom" : "MMO (En cours)",
-        "desc" : "Projet de MMO réalisé en binôme sur Unreal Engine 5 en tant que projet de Master 2 pour le premier et deuxième semetre. Il implémente un système d'inventaire et une gestion des sorts dynamique à l'aide du GAS (Gameplay Ability System) de Unreal Engine. Un système de pêche va prochainement être implémenté ainsi qu'une amélioration de la structure du projet. (Tous les assets ne sont pas présents dans le dépôt github pour des économies d'espace disque)",
+        "desc" : "MMO réalisé en binome dans le cadre de ma deuxième année de Master. Le projet implémente un système de magie et de compétences. Ce système m'a permis de me familiariser avec le Gameplay Ability System (GAS) de UE5. On y trouve aussi un inventaire dynamique et un système de collectible. Un système de pêche est en train d'être réaliser. Enfin, comme il s'agit d'un MMO, nous travaillons à réaliser le jeu de manière à le rendre compatible au multijoueur.",
         "dateDebut": "Septembre - 2024",
         "dateFin": "En cours"
     },
