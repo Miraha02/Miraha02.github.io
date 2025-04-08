@@ -1,19 +1,24 @@
 {
-    "mainTitle": "Mon Portfolio",
-    "desc": "Développeuse de jeux vidéo",
-    "about": "À propos",
-    "education": "Parcours",
-    "projects": "Projets",
-    "exp": "Expériences",
-    "contact": "Contact",
-    "whoAmI": "À propos de moi",
-    "whoAmI_content": "Passionnée par l'art de concevoir des expériences captivantes, je suis développeuse spécialisée dans la création de jeux vidéo immersifs. Grâce à des outils comme Unity et Unreal Engine 5, j’ai récemment découvert le Gameplay Ability System (GAS), une technologie que j’adore pour sa puissance et sa flexibilité. Il permet de concevoir des systèmes de capacités et d’effets dynamiques qui enrichissent l’expérience de jeu. Bien que je continue à approfondir mes connaissances, je prends énormément de plaisir à intégrer ces outils pour transformer des idées ambitieuses en mondes interactifs où créativité et technologie se rencontrent. Mon objectif est de transporter les joueurs dans des univers uniques qui marquent les esprits.",
-    "education_title": "Mon Parcours Universitaire",
-    "projects_title": "Mes Projets",
-    "exp_title": "Expériences Professionnelles",
-    "contact_title": "Contactez-moi",
-    "contact_content": "Pour me contacter via mon mail, cliquez sur le bouton ci-dessous :",
-    "contact_button": "Me Contacter",
-    "contact_mail": "Ou envoyez-moi directement un email à :"
-  }
-  
+  "mainTitle": "Hana's Portfolio",
+  "desc": "Video game Developper",
+  "about": "Who Am I ?",
+  "education": "My Studies",
+  "projects": "My Projects",
+  "exp": "Work Experiences",
+  "contact": "Contact Me",
+  "whoAmI": "About Me",
+  "whoAmI_content": "I grew up playing video games, and for every game I played, I always enjoyed wondering how it was made. This passion has constantly fueled my desire to create my own games. That’s why I chose to study computer science to learn programming, which led me to join the Master's program in Game Software Engineering (Ingénierie Logicielle pour les Jeux – ILJ). Through this program, I’ve had the opportunity to work with various game engines such as Unreal Engine 5 and Unity.\n I’m currently in the second and final year of this Master’s degree, in which I ranked top of my class during the first semester. I’m now looking for an internship to complete my degree while continuing to pursue the passion that has driven me since childhood.",
+  "education_title": "Academic Career",
+  "projects_title": "My Projects",
+  "exp_title": "Work Experiences",
+  "contact_title": "Contacts",
+  "contact_content": "To contact me, send me an email by clicking the button below :",
+  "contact_button": "Me Contacter",
+  "contact_mail": "Or send one to : hanadelcourt@gmail.com",
+
+  "nbPeople": "Group size",
+  "devEnv": "Engine / Environment",
+  "language": "Language",
+  "startDate": "Starting date",
+  "endDate": "Ending date"
+}
