@@ -1,0 +1,27 @@
+[
+    {
+      "position": "Unity Developer – TER (Research and Study Project)",
+      "company": "Faculté des Sciences Jean Perrin (University of Artois)",
+      "date": "April 2024 – July 2024",
+      "description": "Development of a Point & Click game editor in a team of three, as part of a Master's degree project to become familiar with Unity."
+    },
+    {
+      "position": "Android Development Intern",
+      "company": "Les Amis de Mandela – AFERTES, Avion",
+      "date": "April 2023 – July 2023",
+      "description": "Developed an Android application connected to a website to register and manage outreach operations in the region. Also participated in the association’s and school’s activities to support people with disabilities and/or in precarious situations. Contributed to administrative tasks by interacting with partners and local/regional stakeholders."
+    },
+    {
+      "position": "iOS Development Intern – LML (Mathematics Laboratory of Lens)",
+      "company": "LML – University of Artois",
+      "date": "April 2022 – July 2022",
+      "description": "Developed an iOS application to record individuals walking and store their movement data in JSON format. The app and a web platform allow movement visualization. The goal is to assist in diagnosing hydrocephalus, a neurodegenerative disease, by analyzing patient steps data, which will later be used to train a machine learning model."
+    },
+    {
+      "position": "Technical Agent – Green Spaces Maintenance",
+      "company": "City Hall of Sallaumines",
+      "date": "July 2019 – August 2019",
+      "description": "Maintained the city's green spaces and public gardens."
+    }
+  ]
+  
