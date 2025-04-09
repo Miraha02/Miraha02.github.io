@@ -67,6 +67,9 @@ header {
     background: none;
     border: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .flag-icon {
@@ -78,7 +81,7 @@ header {
 .dropdown {
     display: none;
     position: absolute;
-    top: 110%;
+    top: 100%;
     right: 0;
     background-color: #222;
     border: 1px solid #444;
@@ -101,6 +104,19 @@ header {
 
 .language-switcher:hover .dropdown {
     display: flex;
+}
+
+
+.arrow {
+    margin-left: 8px;
+    font-size: 0.8rem;
+    color: #ffcc66;
+    transition: transform 0.3s ease;
+}
+
+/* Rotation de la flèche quand le menu est visible */
+.language-switcher:hover .arrow {
+    transform: rotate(180deg); /* ▲ */
 }
 
 
