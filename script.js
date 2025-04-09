@@ -22,6 +22,7 @@ async function changerLangue(langue) {
 window.addEventListener('DOMContentLoaded', () => {
     const lang = getLangFromURL();
     changerLangue(lang); // C'est ici qu'on applique la langue depuis l'URL
+    updateFlagIcon(lang);
 });
 
 const getLangFromURL = () => {
@@ -241,5 +242,25 @@ language = "fr";
 
 document.querySelector("#btn-lang-fr").addEventListener("click", () => setLangInURL("fr"));
 document.querySelector("#btn-lang-en").addEventListener("click", () => setLangInURL("en"));
+
+
+function updateFlagIcon(lang) {
+    const currentFlag = document.getElementById("current-flag");
+    const flagPath = {
+        fr: "assets/flags/fr.png",
+        en: "assets/flags/en.png"
+        // ajoute d'autres langues ici si besoin
+    };
+    currentFlag.src = flagPath[lang] || flagPath["fr"];
+}
+
+// À chaque clic sur un bouton de langue, met à jour le flag et l’URL
+document.querySelectorAll(".dropdown button").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const lang = btn.getAttribute("data-lang");
+        setLangInURL(lang); // Recharge avec la langue
+    });
+});
+
 
 smoothScroll();

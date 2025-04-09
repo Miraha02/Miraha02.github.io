@@ -20,20 +20,31 @@
 
     <!-- Header qui deviendra sticky lors du scroll -->
     <header>
-        <nav>
-            <ul>
+        <nav class="navbar">
+            <ul class="nav-links">
                 <li><a href="#about" data-i18n="about">À propos</a></li>
                 <li><a href="#education" data-i18n="education">Parcours</a></li>
                 <li><a href="#project" data-i18n="projects">Projets</a></li>
                 <li><a href="#experience" data-i18n="exp">Expériences</a></li>
                 <li><a href="#contact" data-i18n="contact">Contact</a></li>
             </ul>
+            <div class="language-switcher">
+                <button class="flag-button">
+                    <img src="assets/flags/fr.png" alt="Langue" class="flag-icon" id="current-flag">
+                </button>
+                <div class="dropdown">
+                    <button id="btn-lang-fr" data-lang="fr" data-flag="assets/flags/fr.png">
+                        <img src="assets/flags/fr.png" alt="Français" class="flag-icon">
+                    </button>
+                    <button id="btn-lang-en" data-lang="en" data-flag="assets/flags/en.png">
+                        <img src="assets/flags/en.png" alt="English" class="flag-icon">
+                    </button>
+                </div>
+            </div>
+            
         </nav>
-        <div id="lang-switch">
-            <button id="btn-lang-fr">FR</button>
-            <button id="btn-lang-en">EN</button>
-          </div>
     </header>
+    
 
     <!-- Section À propos -->
     <section id="about">
