@@ -88,38 +88,37 @@ function smoothScroll() {
     });
 }
 
-// Fonction pour créer un diaporama d'images pour un projet
 function createDiapo(projet, index) {
     const carouselContainer = document.createElement("div");
     carouselContainer.className = "carousel-container";
     carouselContainer.id = `carousel-${index}`;
+    carouselContainer.dataset.images = JSON.stringify(projet.lienImages); // 💡 ici !
 
-    // Image affichée
     const img = document.createElement("img");
-    img.src = projet.lienImages[0]; // Afficher la première image par défaut
+    img.src = projet.lienImages[0];
     img.className = "project-image";
     img.dataset.index = 0;
-    
+
     carouselContainer.appendChild(img);
 
-    // Ajouter les boutons de navigation seulement s'il y a plusieurs images
     if (projet.lienImages.length > 1) {
         const prevButton = document.createElement("button");
         prevButton.className = "carousel-button prev";
-        prevButton.innerHTML = "&#9664;"; // Flèche gauche
+        prevButton.innerHTML = "&#9664;";
         prevButton.onclick = () => changeImage(index, -1);
-        
+
         const nextButton = document.createElement("button");
         nextButton.className = "carousel-button next";
-        nextButton.innerHTML = "&#9654;"; // Flèche droite
+        nextButton.innerHTML = "&#9654;";
         nextButton.onclick = () => changeImage(index, 1);
-        
+
         carouselContainer.appendChild(prevButton);
         carouselContainer.appendChild(nextButton);
     }
-    
+
     return carouselContainer;
 }
+
 
 // Fonction pour afficher les projets avec le diaporama
 function afficherProjets(projets, traductions) {
@@ -197,10 +196,14 @@ function changeImage(projectIndex, direction) {
     const carousel = document.getElementById(`carousel-${projectIndex}`);
     const img = carousel.querySelector(".project-image");
     const currentIndex = parseInt(img.dataset.index);
-    const newIndex = (currentIndex + direction + projets[projectIndex].lienImages.length) % projets[projectIndex].lienImages.length;
-    img.src = projets[projectIndex].lienImages[newIndex];
+    
+    const images = JSON.parse(carousel.dataset.images); // 💡 Récupère les images
+
+    const newIndex = (currentIndex + direction + images.length) % images.length;
+    img.src = images[newIndex];
     img.dataset.index = newIndex;
 }
+
 
 
 // Fonction pour générer la section du parcours
