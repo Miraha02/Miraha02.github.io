@@ -13,9 +13,9 @@ async function changerLangue(langue) {
         }
     });
 
-    displayEducation();
+    displayEducation(langue);
     chargerProjets(langue, traductions);
-    displayExperience();
+    displayExperience(langue);
 }
 
 // set le listener sur le chargement du DOM pour charger les infos relatifs à la langue
