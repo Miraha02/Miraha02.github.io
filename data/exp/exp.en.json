@@ -15,13 +15,13 @@
       "poste": "iOS Development Intern – LML (Mathematics Laboratory of Lens)",
       "entreprise": "LML – University of Artois",
       "date": "April 2022 – July 2022",
-      "description": "Developed an iOS application to record individuals walking and store their movement data in JSON format. The app and web platform allow movement visualization. The goal is to assist in diagnosing hydrocephalus, a neurodegenerative disease, by analyzing patient steps data, which will later be used to train a machine learning model."
+      "description": "Developed an iOS application to record individuals walking and store their movement data in JSON format. The app and web platform allow movement visualization. The goal is to assist in diagnosing hydrocephalus (a neurodegenerative disease), by analysing patient steps data, which will later be used to train a machine learning model."
     },
     {
       "poste": "Technical Agent – Green Spaces Maintenance",
       "entreprise": "City Hall of Sallaumines",
       "date": "July 2019 – August 2019",
-      "description": "Maintained the city's green spaces and public gardens."
+      "description": "Maintainenance the city's green spaces and public gardens."
     }
   ]
   
