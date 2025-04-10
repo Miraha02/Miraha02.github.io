@@ -30,7 +30,7 @@
     {
       "id": "Point&Click",
       "nom": "Point&Click Editor",
-      "desc": "Project completed in a team of three on Unity as part of the Master 1 project for the first semester. This is a Point&Click game editor where users can create their own game by placing objects and creating interactions between them. The project allows the creation and playing of custom games through a JSON data structure, as well as an intuitive editor for designing characters, objects, dialogues, and quests. The project was implemented collaboratively via Plastic SCM.",
+      "desc": "Project completed in a three-member team on Unity as part of the Master 1 project for the first semester. This is a Point&Click game editor in which users can create their own game by placing objects and creating interactions between them. The project allows both the creation and the playing of custom games through a JSON data structure, as well as an intuitive editor for designing characters, objects, dialogues, and quests. The project was implemented collaboratively via Plastic SCM.",
       "dateDebut": "April - 2024",
       "dateFin": "July - 2024"
     },
