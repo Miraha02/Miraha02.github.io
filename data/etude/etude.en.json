@@ -1,21 +1,21 @@
 [
     {
         "image": "assets/jeanPerrin.JPG",
-        "school": "Faculté des Sciences Jean Perrin of Lens",
+        "school": "Faculté des Sciences Jean Perrin - Lens",
         "startYear": 2023,
         "endYear": "Present",
-        "degree": "Master Informatique - Parcours Ingénierie Logicielle pour les Jeux"
+        "degree": "Master in Computer Science - Specialising in Video Games Software Ingeneering"
     },
     {
         "image": "assets/jeanPerrin.JPG",
-        "school": "Faculté des Sciences Jean Perrin of Lens",
+        "school": "Faculté des Sciences Jean Perrin - Lens",
         "startYear": 2022,
         "endYear": 2023,
         "degree": "Bachelor's degree in Computer Science"
     },
     {
         "image": "assets/iut.jpg",
-        "school": "IUT of Lens",
+        "school": "University Institute of Technology (IUT) - Lens",
         "startYear": 2020,
         "endYear": 2022,
         "degree": "2-year degree in Computer Science"
