@@ -51,7 +51,7 @@
     {
       "id": "Sokoban",
       "nom": "Sokoban",
-      "desc": "First video game project created in Python during my first year of DUT. This Sokoban game offers a revamped version of the classic game. Players must complete three successive levels, with each level becoming accessible only after completing the previous one. A reset function allows blocking access to previous levels again, adding flexibility and challenge.",
+      "desc": "First video game project created in Python during my first year of my 2-year degree. Players must complete three levels, with each level becoming accessible only after completing the previous one. A reset button allows blocking access to previous levels again, adding flexibility and challenge.",
       "dateDebut": "April - 2020",
       "dateFin": "May - 2020"
     }
