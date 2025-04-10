@@ -23,7 +23,7 @@
     {
       "id": "Steering",
       "nom": "AI Steering Library",
-      "desc": "Project to implement a library of 'Steering Behaviors' in Unreal Engine 5, simulating movement behaviors for AI in the form of a cone. The AI can pursue, flee, follow a path, or stop gradually, with dynamic targets and interactive controls. This project was completed during the first part of the second semester of Master's 2.",
+      "desc": "Project to implement a library of 'Steering Behaviors' in Unreal Engine 5, simulating car movement behaviors for AI. The AI can pursue a target, flee from an actor and follow a path or stop gradually to a location, with dynamic targets and interactive controls. This project was completed during the first part of the second semester of Master 2.",
       "dateDebut": "January - 2025",
       "dateFin": "February - 2025"
     },
