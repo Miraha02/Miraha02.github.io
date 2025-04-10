@@ -9,7 +9,7 @@
     {
       "id": "FishClicker",
       "nom": "FishClicker",
-      "desc": "Mobile project completed during my second semester of Master's 2. The goal was to create a game where the mobile experience was essential. We decided to create a fishing-themed clicker game. This project helped us consider the advantages and drawbacks of mobile gaming. Through this project, I learned how to use the phone's accelerometer in Unity to detect when the phone is shaken. I also learned how to make the phone vibrate when the user fails at fishing.",
+      "desc": "Mobile project completed during my second semester of Master 2. The goal was to create a game where the mobile experience was essential. This project helped us consider the advantages and drawbacks of mobile gaming. Through this project, I learned how to use the phone's accelerometer in Unity to detect when the phone is shaken. I also learned how to make the phone vibrate when the user fails to catch a fish.",
       "dateDebut": "February - 2025",
       "dateFin": "March - 2025"
     },
