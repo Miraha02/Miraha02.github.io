@@ -16,7 +16,7 @@
     {
       "id": "Path finding, Hospital (IA)",
       "nom": "Pathfinding, Hospital (AI)",
-      "desc": "Continuation of the AI navigation project. Using a previously created library, I developed a game where the player must work with AI to retrieve injured people from the road and bring them to the hospital. The map is randomly generated (except for the map borders) with a coherent path and the hospital at the center. Furthermore, we were prohibited from having the AIs communicate with each other. This project helped me improve my understanding of AI in video games while working around these constraints.",
+      "desc": "Continuation of the AI navigation project. Using a previously created library, I developed a game where the player must work with AI to retrieve injured people from the road and bring them to the hospital. The map is randomly generated (except for the map borders) : it has a coherent path with the hospital at the center. We were prohibited from having the AIs communicate with each other. This project helped me improve my understanding of AI in video games while working around these constraints.",
       "dateDebut": "February - 2025",
       "dateFin": "March - 2025"
     },
