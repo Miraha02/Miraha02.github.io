@@ -2,7 +2,7 @@
     {
         "id" : "MMOAT",
         "nom" : "MMO (En cours)",
-        "desc" : "MMO réalisé en binome dans le cadre de ma deuxième année de Master. Le projet implémente un système de magie et de compétences. Ce système m'a permis de me familiariser avec le Gameplay Ability System (GAS) de UE5. On y trouve aussi un inventaire dynamique et un système de collectible. Un système de pêche est en train d'être réaliser. Enfin, comme il s'agit d'un MMO, nous travaillons à réaliser le jeu de manière à le rendre compatible au multijoueur.",
+        "desc" : "MMO réalisé en binome dans le cadre de ma deuxième année de Master. Le projet implémente un système de magie et de compétences. Ce système m'a permis de me familiariser avec le Gameplay Ability System (GAS) de UE5. On y trouve aussi un inventaire dynamique et un système de collectibles. Un système de pêche est actuellement en cours de réalisation. Comme il s'agit d'un MMO, nous travaillons à réaliser le jeu de manière à le rendre compatible au multijoueur.",
         "dateDebut": "Septembre - 2024",
         "dateFin": "En cours"
     },
