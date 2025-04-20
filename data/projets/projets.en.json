@@ -1,59 +1,65 @@
 [
-    {
-      "id": "MMOAT",
-      "nom": "MMO",
-      "desc": "MMO project done in pair as part of my second year of Master. The project implements a system of magic and skills. This system allowed me to get familiar with Unreal Engine 5’s Gameplay Ability System (GAS). It also features a dynamic inventory and a collectible system. A fishing system is currently being developed. Since it's an MMO, we are working to make the game multiplayer-compatible.",
-      "dateDebut": "September - 2024",
-      "dateFin": "Work In Progress"
-    },
-    {
-      "id": "FishClicker",
-      "nom": "FishClicker",
-      "desc": "Mobile project completed during my second semester of Master 2. The goal was to create a game where the mobile experience was essential. This project helped us consider the advantages and drawbacks of mobile gaming. Through this project, I learned how to use the phone's accelerometer in Unity to detect when the phone is shaken. I also learned how to make the phone vibrate when the user fails to catch a fish.",
-      "dateDebut": "February - 2025",
-      "dateFin": "March - 2025"
-    },
-    {
-      "id": "Path finding, Hospital (IA)",
-      "nom": "Pathfinding, Hospital (AI)",
-      "desc": "Continuation of the AI navigation project. Using a previously created library, I developed a game where the player must work with AI to retrieve injured people from the road and bring them to the hospital. The map is randomly generated (except for the map borders) : it has a coherent path with the hospital at the center. We were prohibited from having the AIs communicate with each other. This project helped me improve my understanding of AI in video games while working around these constraints.",
-      "dateDebut": "February - 2025",
-      "dateFin": "March - 2025"
-    },
-    {
-      "id": "Steering",
-      "nom": "AI Steering Library",
-      "desc": "Project to implement a library of 'Steering Behaviors' in Unreal Engine 5, simulating car movement behaviors for AI. The AI can pursue a target, flee from an actor and follow a path or stop gradually to a location, with dynamic targets and interactive controls. This project was completed during the first part of the second semester of Master 2.",
-      "dateDebut": "January - 2025",
-      "dateFin": "February - 2025"
-    },
-    {
-      "id": "Point&Click",
-      "nom": "Point&Click Editor",
-      "desc": "Project completed in a three-member team on Unity as part of the Master 1 project for the first semester. This is a Point&Click game editor in which users can create their own game by placing objects and creating interactions between them. The project allows both the creation and the playing of custom games through a JSON data structure, as well as an intuitive editor for designing characters, objects, dialogues, and quests. The project was implemented collaboratively via Plastic SCM.",
-      "dateDebut": "April - 2024",
-      "dateFin": "July - 2024"
-    },
-    {
-      "id": "Pachinko",
-      "nom": "Pachinko Unity",
-      "desc": "Project developed during my online training in Unity as part of the Unity Essentials course. It is a Pachinko game in which the player has to drop a ball from the top of the board to score as many points as possible. The game includes a scoring system and is playable online.",
-      "dateDebut": "April - 2024",
-      "dateFin": "April - 2024"
-    },
-    {
-      "id": "AppMandela",
-      "nom": "Android Application for Tracking Outreach Events in the Region",
-      "desc": "Application developed during my third-year internship. It was created alongside a website. It allowed users to record different outreach events in the region, provided they were approved by a member of the 'Les Amis de Mandela' association based at AFERTES, Avion. It included an account system for partners wishing to post their outreach events. The project was later abandoned.",
-      "dateDebut": "April - 2023",
-      "dateFin": "July - 2023"
-    },
-    {
-      "id": "Sokoban",
-      "nom": "Sokoban",
-      "desc": "First video game project created in Python during my first year of my 2-year degree. Players must complete three levels, with each level becoming accessible only after completing the previous one. A reset button allows blocking access to previous levels again, adding flexibility and challenge.",
-      "dateDebut": "April - 2020",
-      "dateFin": "May - 2020"
-    }
-  ]
-  
+  {
+    "id" : "ShadowSteps",
+    "nom" : "ShadowSteps",
+    "desc" : "This project is a challenge to myself. The goal was to create the most complete video game project within 3 days. This challenge allowed me to upgrade my technical and personnal skills. During this 3 days, i worked for around 37h30. This project really challenged my perseverance because of the limited time I had that did not allowed to reschedule features I was struggling with.\n In this project, I have been able to use many unreal engine features (UE). I used the peception system integrated in UE5 to check that IAs saw or heard the player but i think that if I had to do it again, I would not use it and I would redevelop it by myself. I have also been able to familiarise myself with import, create and use of animations on UE5, a possibility I neved had. I also learned to change game speed (used on the player's loose). For the first time on UE5, I integrated musics and sounds by using anim notify or in reaction to player's actions. So, this project really gave me lot of things and, if I could with more time, I would have liked to fix at least 2 majors bugs that are: an issue with the bottle throwing and another issue on the player respawn when it has been saw by 2 or more AIs.",
+    "dateDebut": "14/04/25",
+    "dateFin": "17/04/25"
+  },
+  {
+    "id": "MMOAT",
+    "nom": "MMO",
+    "desc": "MMO project done in pair as part of my second year of Master. The project implements a system of magic and skills. This system allowed me to get familiar with Unreal Engine 5’s Gameplay Ability System (GAS). It also features a dynamic inventory and a collectible system. A fishing system is currently being developed. Since it's an MMO, we are working to make the game multiplayer-compatible.",
+    "dateDebut": "September - 2024",
+    "dateFin": "Work In Progress"
+  },
+  {
+    "id": "FishClicker",
+    "nom": "FishClicker",
+    "desc": "Mobile project completed during my second semester of Master 2. The goal was to create a game where the mobile experience was essential. This project helped us consider the advantages and drawbacks of mobile gaming. Through this project, I learned how to use the phone's accelerometer in Unity to detect when the phone is shaken. I also learned how to make the phone vibrate when the user fails to catch a fish.",
+    "dateDebut": "February - 2025",
+    "dateFin": "March - 2025"
+  },
+  {
+    "id": "Path finding, Hospital (IA)",
+    "nom": "Pathfinding, Hospital (AI)",
+    "desc": "Continuation of the AI navigation project. Using a previously created library, I developed a game where the player must work with AI to retrieve injured people from the road and bring them to the hospital. The map is randomly generated (except for the map borders) : it has a coherent path with the hospital at the center. We were prohibited from having the AIs communicate with each other. This project helped me improve my understanding of AI in video games while working around these constraints.",
+    "dateDebut": "February - 2025",
+    "dateFin": "March - 2025"
+  },
+  {
+    "id": "Steering",
+    "nom": "AI Steering Library",
+    "desc": "Project to implement a library of 'Steering Behaviors' in Unreal Engine 5, simulating car movement behaviors for AI. The AI can pursue a target, flee from an actor and follow a path or stop gradually to a location, with dynamic targets and interactive controls. This project was completed during the first part of the second semester of Master 2.",
+    "dateDebut": "January - 2025",
+    "dateFin": "February - 2025"
+  },
+  {
+    "id": "Point&Click",
+    "nom": "Point&Click Editor",
+    "desc": "Project completed in a three-member team on Unity as part of the Master 1 project for the first semester. This is a Point&Click game editor in which users can create their own game by placing objects and creating interactions between them. The project allows both the creation and the playing of custom games through a JSON data structure, as well as an intuitive editor for designing characters, objects, dialogues, and quests. The project was implemented collaboratively via Plastic SCM.",
+    "dateDebut": "April - 2024",
+    "dateFin": "July - 2024"
+  },
+  {
+    "id": "Pachinko",
+    "nom": "Pachinko Unity",
+    "desc": "Project developed during my online training in Unity as part of the Unity Essentials course. It is a Pachinko game in which the player has to drop a ball from the top of the board to score as many points as possible. The game includes a scoring system and is playable online.",
+    "dateDebut": "April - 2024",
+    "dateFin": "April - 2024"
+  },
+  {
+    "id": "AppMandela",
+    "nom": "Android Application for Tracking Outreach Events in the Region",
+    "desc": "Application developed during my third-year internship. It was created alongside a website. It allowed users to record different outreach events in the region, provided they were approved by a member of the 'Les Amis de Mandela' association based at AFERTES, Avion. It included an account system for partners wishing to post their outreach events. The project was later abandoned.",
+    "dateDebut": "April - 2023",
+    "dateFin": "July - 2023"
+  },
+  {
+    "id": "Sokoban",
+    "nom": "Sokoban",
+    "desc": "First video game project created in Python during my first year of my 2-year degree. Players must complete three levels, with each level becoming accessible only after completing the previous one. A reset button allows blocking access to previous levels again, adding flexibility and challenge.",
+    "dateDebut": "April - 2020",
+    "dateFin": "May - 2020"
+  }
+]

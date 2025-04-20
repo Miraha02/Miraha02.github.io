@@ -1,5 +1,12 @@
 [
     {
+        "id" : "ShadowSteps",
+        "nom" : "ShadowSteps",
+        "desc" : "Ce projet est un challenge que je me suis lancé. Le but était de réaliser un projet de jeu vidéo le plus complet en 3 jours. Ce challenge m'a donc permis de m'améliorer énormément aussi bien au niveau technique et compétences qu'au niveau personnel. Ce projet m'a beaucoup apporté et je suis heureuse de m'être lancée dans ce défi. Durant ce projet d'un durée de trois jours, j'ai pu travailler réellement environ 37h30. Ce projet à mis ma persérence à rude épreuve car, en effet, étant limité dans le temps, je ne pouvais pas me permettre de remettre à plus tard la réalisation des mécaniques sur lesquelles j'avais des difficultés.\n Dans ce projet, j'ai pu utiliser plusieurs technologies d'unreal engine (UE5). Pour vérifier si les IA on vu le joueur ou entendu un bruit, j'ai utilisé le système de percaption des IA directement intégré à UE5. Cependant, je pense que si c'était à refaire, je n'utiliserait pas cette feature, et je l'aurai développé moi-même. J'ai aussi pu me familiariser avec l'importation, la création et l'utilisation des animations sur UE5 que je n'avait jamais eu l'occasion d'uiliser. De plus, j'ai appris à jouer avec la vitesse du jeu, notemment lorsque le joueur perd. J'ai pu intégrer pour la première fois sur UE5 des sons et des musiques, que ce soit sur les animation à l'aide d'anim notify ou en réaction aux actions du joueur. En conclusion, ce projet m'a vraiment apporté beaucoup de choses et, dans le cas où j'avais pu travailler plus de temps dessus, j'aurai aimé réglé les deux problèmes qui sont pour moi les principaux, c'est-à-dire, un problème avec le lancement de la bouteille qui peut déplacer le joueur et un problème lors du respawn du joueur s'il à été vu par plus de une IA.",
+        "dateDebut": "14/04/25",
+        "dateFin": "17/04/25"
+    },
+    {
         "id" : "MMOAT",
         "nom" : "MMO (En cours)",
         "desc" : "MMO réalisé en binome dans le cadre de ma deuxième année de Master. Le projet implémente un système de magie et de compétences. Ce système m'a permis de me familiariser avec le Gameplay Ability System (GAS) de UE5. On y trouve aussi un inventaire dynamique et un système de collectibles. Un système de pêche est actuellement en cours de réalisation. Comme il s'agit d'un MMO, nous travaillons à réaliser le jeu de manière à le rendre compatible au multijoueur.",
