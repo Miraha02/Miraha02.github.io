@@ -1,5 +1,12 @@
 [
   {
+    "id" : "2D3DGame",
+    "nom" : "2D3DGame",
+    "desc" : "Ce projet est issu d'un tutoriel ayant pour but de créer un jeu en 2D sur Unreal Engine 5 (UE5). Le projet à l'origine était entièrement développé en Blueprint mais j'ai décidé de l'implémenter en C++ autant que possible. Ce choix a été motivé par mon envie d'approfondir mes connaissances en C++, tout en améliorant les performances de jeu et en facilitant le travail collaboratif. J'ai cependant gardé une certaine cohérence quant à l'implémentation de certains objets ou certaines méchaniques qu'il était plus logique de développer en Blueprint. J'ai pu découvrir de nouvelles fonctionnalités que je ne connaissais pas comme les sprites et les animations 2D (Paper Flipbooks) mais aussi en redécouvrir d'autres que je ne maîtrisais pas totalement comme les matériaux et les particules niagara. Tous mes projets 2D réalisés étant sur Unity, j'ai trouvé particulièrement intéressant d'apprendre à les développer sur Unreal. Grâce à ce projet, je suis maintenant capable de développer à la fois en 2D et en 3D sous UE5.",
+    "dateDebut": "25/04/25",
+    "dateFin": "02/05/25"
+},
+  {
     "id" : "ShadowSteps",
     "nom" : "ShadowSteps (3 days)",
     "desc" : "This project is a challenge to myself. The goal was to create the most complete video game project within 3 days. This challenge allowed me to upgrade my technical and personnal skills. During this 3 days, i worked for around 38h. This project really challenged my perseverance because of the limited time I had that did not allowed to reschedule features I was struggling with.\n In this project, I have been able to use many unreal engine features (UE). I used the peception system integrated in UE5 to check that IAs saw or heard the player but i think that if I had to do it again, I would not use it and I would redevelop it by myself. I have also been able to familiarise myself with import, create and use of animations on UE5, a possibility I neved had. I also learned to change game speed (used on the player's loose). For the first time on UE5, I integrated musics and sounds by using anim notify or in reaction to player's actions. So, this project really gave me lot of things and, if I could with more time, I would have liked to fix at least 2 majors bugs that are: an issue with the bottle throwing and another issue on the player respawn when it has been saw by 2 or more AIs.",
