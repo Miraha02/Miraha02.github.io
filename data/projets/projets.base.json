@@ -5,7 +5,14 @@
         "lienBuild" : "https://drive.google.com/drive/folders/1Opj1SwOrikIgbM3vS-jKSMakQIAM2c7g?usp=sharing",
         "lienAutre" : "",
         "lienImages" : [
-            
+            "assets/MadaRifi/MadaRifi1.png",
+            "assets/MadaRifi/MadaRifi2.png",
+            "assets/MadaRifi/MadaRifi2_5.png",
+            "assets/MadaRifi/MadaRifi3.png",
+            "assets/MadaRifi/MadaRifi4.png",
+            "assets/MadaRifi/MadaRifi5.png",
+            "assets/MadaRifi/MadaRifi6.png",
+            "assets/MadaRifi/MadaRifi7.png"
         ],
         "nbPersonnes": 1,
         "envDev": "Unreal Engine 5",
