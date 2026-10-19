@@ -4,6 +4,9 @@
  * @brief   Gabarit commun à toutes les pages : <head> (SEO, Open Graph, langues alternatives),
  *          polices, styles globaux, en-tête, pied de page et statistiques GoatCounter.
  * @details L'image de partage (Open Graph) est générée au build en 1200×630.
+ *          Scroll reveal: elements with the class `reveal` fade in when they enter the viewport.
+ *          They are only hidden once the inline script has added the `js` class to <html>,
+ *          so the content stays visible without JavaScript.
  */
 import '@fontsource/ibm-plex-sans/400.css';
 import '@fontsource/ibm-plex-sans/500.css';
@@ -43,6 +46,7 @@ const ogLocale = lang === 'fr' ? 'fr_FR' : 'en_GB';
 <html lang={lang}>
   <head>
     <meta charset="utf-8" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
@@ -81,6 +85,25 @@ const ogLocale = lang === 'fr' ? 'fr_FR' : 'en_GB';
       <slot />
     </main>
     <Footer lang={lang} />
+    <script>
+      /** @brief Adds the class `in` to each `.reveal` element the first time it enters the viewport. */
+      const targets = document.querySelectorAll<HTMLElement>('.reveal');
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.add('in');
+              observer.unobserve(entry.target);
+            }
+          },
+          { threshold: 0.15, rootMargin: '0px 0px -5% 0px' },
+        );
+        targets.forEach((el) => observer.observe(el));
+      } else {
+        targets.forEach((el) => el.classList.add('in'));
+      }
+    </script>
   </body>
 </html>
 

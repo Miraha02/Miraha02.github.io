@@ -5,6 +5,7 @@
  * @details Sélecteur en texte (pas de drapeaux), libellé accessible dans la langue cible,
  *          attributs lang/hreflang et aria-current sur la langue active.
  *          En mobile, la navigation passe dans un menu <details> (fonctionne sans JavaScript).
+ *          Once the page is scrolled, the sticky header becomes translucent with a background blur.
  */
 import Icon from './Icon.astro';
 import { languages, langs, localePath, switchLangPath, useTranslations, type Lang } from '../i18n/ui';
@@ -25,7 +26,7 @@ const links = [
   { href: `${home}#contact`, label: t('nav.contact'), current: false },
 ];
 ---
-<header class="site-header">
+<header class="site-header" data-site-header>
   <div class="container bar">
     <a class="brand" href={home}>{site.name}</a>
 
@@ -59,6 +60,14 @@ const links = [
 </header>
 
 <script>
+  /** @brief Toggles the translucent style of the header once the page is scrolled. */
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+  if (header) {
+    const update = () => header.classList.toggle('scrolled', window.scrollY > 8);
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+  }
+
   /** @brief Referme le menu mobile après un clic sur un lien de navigation. */
   document.querySelectorAll<HTMLDetailsElement>('.nav-mobile').forEach((menu) => {
     menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => (menu.open = false)));
@@ -66,7 +75,11 @@ const links = [
 </script>
 
 <style>
-  .site-header { border-bottom: 1px solid var(--border); background: var(--bg); position: sticky; top: 0; z-index: 5; }
+  .site-header {
+    border-bottom: 1px solid var(--border); background: var(--bg); position: sticky; top: 0; z-index: 5;
+    transition: background-color .25s ease;
+  }
+  .site-header.scrolled { background: rgb(18 20 23 / 0.72); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
   .bar { height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
   .brand { color: var(--text); font-weight: 600; white-space: nowrap; }
   .brand:hover { color: var(--text); text-decoration: none; }

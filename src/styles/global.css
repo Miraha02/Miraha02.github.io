@@ -103,7 +103,17 @@ a:hover { color: var(--accent-hover); text-decoration: underline; text-underline
 
 section.band { border-top: 1px solid var(--border); }
 
+/* Page transitions between documents (Chrome/Edge 126+, Safari 18.2+; other browsers navigate normally).
+   Project thumbnails and the project page media share the name `project-<slug>`. */
+@view-transition { navigation: auto; }
+
+/* Scroll reveal: hidden only when JavaScript runs (class `js` set in Base.astro). */
+.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.js .reveal.in { opacity: 1; transform: none; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition: none !important; animation: none !important; }
+  .js .reveal { opacity: 1; transform: none; }
+  ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
 }

@@ -2,6 +2,8 @@
 /**
  * @file    Timeline.astro
  * @brief   Frise verticale (formation ou expériences) : période, intitulé, structure, description.
+ * @details Each entry fades in when scrolled into view and its dot lights up in the accent colour
+ *          (class `in` added by the reveal script of Base.astro).
  */
 interface Item { period: string; title: string; place: string; text?: string }
 interface Props { heading: string; items: Item[]; highlightFirst?: boolean }
@@ -11,7 +13,7 @@ const { heading, items, highlightFirst = false } = Astro.props;
   <h3 class="eyebrow">{heading}</h3>
   <ol class="timeline">
     {items.map((it, i) => (
-      <li class:list={{ first: highlightFirst && i === 0 }}>
+      <li class:list={['reveal', { first: highlightFirst && i === 0 }]}>
         <p class="meta">{it.period}</p>
         <p class="title">{it.title}</p>
         <p class="place">{it.place}</p>
@@ -27,9 +29,9 @@ const { heading, items, highlightFirst = false } = Astro.props;
   li { position: relative; }
   li::before {
     content: ''; position: absolute; left: -26px; top: 7px; width: 11px; height: 11px; border-radius: 50%;
-    background: var(--border-control);
+    background: var(--border-control); transition: background-color .5s ease .2s, box-shadow .5s ease .2s;
   }
-  li.first::before { background: var(--accent); }
+  li.first::before, li:global(.in)::before { background: var(--accent); box-shadow: 0 0 0 4px rgb(124 199 154 / 0.18); }
   .title { font-weight: 600; margin-top: 2px; }
   .place { color: var(--text-2); }
   .text { color: var(--text-2); font-size: 15px; margin-top: 6px; max-width: 60ch; }

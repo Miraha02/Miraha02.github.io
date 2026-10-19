@@ -1,0 +1,145 @@
+---
+/**
+ * @file    ProjectBand.astro
+ * @brief   Home page band: one clickable thumbnail per project, scrolling slowly and continuously.
+ * @details Mock-up validated on 19/10/2026. Accessibility (WCAG 2.2.2, Pause, Stop, Hide):
+ *          the band stops on hover and keyboard focus, and a pause button stops it for good.
+ *          The second copy of the list only makes the loop seamless: it is hidden from assistive
+ *          technologies and not focusable. With "reduce motion", the band becomes a static row
+ *          scrolled by hand. Below three items, there is no animation.
+ */
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import type { Project } from '../lib/projects';
+import { getCoverImage } from '../lib/media';
+import { localePath, shortEngine, teamLabel, useTranslations, type Lang } from '../i18n/ui';
+
+interface Props {
+  projects: Project[];
+  lang: Lang;
+  /** Section title shown next to the pause button. */
+  heading: string;
+}
+const { projects, lang, heading } = Astro.props;
+const t = useTranslations(lang);
+
+const items = projects.map((p) => ({
+  id: p.id,
+  href: localePath(lang, `projets/${p.id}`),
+  title: p.data.titre[lang],
+  meta: [shortEngine(p.data.moteur), p.data.langages.join(', '), teamLabel(p.data.equipe, lang)].join(' · '),
+  cover: getCoverImage(p.id, p.data.couverture),
+}));
+const animated = items.length >= 3;
+const duration = `${items.length * 9}s`;
+---
+{items.length > 0 && (
+  <div class="wrap" data-band-root>
+    <div class="container head">
+      <h3>{heading}</h3>
+      {animated && (
+        <button type="button" class="pause" data-band-toggle aria-pressed="false" data-label-pause={t('band.pause')} data-label-play={t('band.play')}>
+          <span class="i-pause" aria-hidden="true"><svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1" /><rect x="14" y="4" width="4" height="16" rx="1" /></svg></span>
+          <span class="i-play" aria-hidden="true"><Icon name="play" size={14} /></span>
+          <span class="label" data-band-label>{t('band.pause')}</span>
+        </button>
+      )}
+    </div>
+    <div class:list={['band', { animated }]} data-band>
+      <div class="track" style={`--band-duration: ${duration}`}>
+        {(animated ? [false, true] : [false]).map((copy) => (
+          <ul role="list" class:list={['items', { copy }]} aria-hidden={copy ? 'true' : undefined} inert={copy}>
+            {items.map((it) => (
+              <li>
+                <a href={it.href} tabindex={copy ? -1 : undefined}>
+                  <span class="thumb" style={copy ? undefined : `view-transition-name: project-${it.id}`}>
+                    {it.cover && <Image src={it.cover} alt="" widths={[300, 600]} sizes="(min-width: 640px) 300px, 220px" />}
+                  </span>
+                  <span class="text">
+                    <span class="title">{it.title}</span>
+                    <span class="meta">{it.meta}</span>
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
+    </div>
+  </div>
+)}
+
+<script>
+  /** @brief Pause button: stops or resumes the band and keeps its label and state in sync. */
+  document.querySelectorAll<HTMLElement>('[data-band-root]').forEach((root) => {
+    const band = root.querySelector<HTMLElement>('[data-band]');
+    const button = root.querySelector<HTMLButtonElement>('[data-band-toggle]');
+    const label = root.querySelector<HTMLElement>('[data-band-label]');
+    if (!band || !button || !label) return;
+    button.addEventListener('click', () => {
+      const paused = button.getAttribute('aria-pressed') !== 'true';
+      button.setAttribute('aria-pressed', String(paused));
+      band.toggleAttribute('data-paused', paused);
+      label.textContent = (paused ? button.dataset.labelPlay : button.dataset.labelPause) ?? '';
+    });
+  });
+</script>
+
+<style>
+  .wrap { padding-top: 24px; }
+  .head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+  h3 { font-size: 20px; }
+  .pause {
+    min-height: 44px; padding: 8px 14px; border-radius: var(--radius-ctrl); cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px; font: 500 14px var(--font-sans);
+    background: transparent; color: var(--text); border: 1px solid var(--border-control);
+  }
+  .pause:hover { background: var(--surface-2); }
+  .pause .i-play { display: none; }
+  .pause[aria-pressed='true'] .i-play { display: inline-flex; }
+  .pause[aria-pressed='true'] .i-pause { display: none; }
+  .i-pause, .i-play { display: inline-flex; }
+
+  .band { overflow: hidden; padding: 8px 0 12px; }
+  .band.animated {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .band:not(.animated) { overflow-x: auto; }
+  .band:not(.animated) .track { padding-left: max(var(--gutter), calc((100% - var(--content-max)) / 2 + var(--gutter))); }
+  .track { display: flex; width: max-content; }
+  .band.animated .track { animation: band-scroll var(--band-duration) linear infinite; }
+  .band.animated:hover .track,
+  .band.animated:focus-within .track,
+  .band[data-paused] .track { animation-play-state: paused; }
+  @keyframes band-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .items { list-style: none; margin: 0; padding: 0 16px 0 0; display: flex; gap: 16px; }
+  .items a {
+    display: flex; flex-direction: column; width: 300px; color: var(--text);
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden;
+    transition: transform .2s ease, border-color .2s ease;
+  }
+  .items a:hover, .items a:focus-visible { transform: translateY(-3px); border-color: var(--accent); text-decoration: none; }
+  .thumb { display: block; aspect-ratio: 16 / 9; background: var(--surface-2); overflow: hidden; }
+  .thumb :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .text { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; }
+  .title { font-weight: 600; }
+  .meta { font-family: var(--font-mono); font-size: 12px; color: var(--text-3); }
+
+  @media (max-width: 639px) {
+    .pause { width: 44px; padding: 0; justify-content: center; }
+    .label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .items { gap: 12px; padding-right: 12px; }
+    .items a { width: 220px; }
+    .title { font-size: 15px; }
+    .meta { font-size: 11px; }
+    h3 { font-size: 18px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .band.animated { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
+    .band.animated .track { animation: none; padding-left: var(--gutter); }
+    .items.copy, .pause { display: none; }
+  }
+</style>

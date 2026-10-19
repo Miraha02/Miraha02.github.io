@@ -48,6 +48,7 @@ La commande crée :
 - `fr.md` et `en.md` : la description dans chaque langue, en Markdown.
 - `"categorie"` : `principal` (cartes en avant), `secondaire` ou `archive` ; `"ordre"` règle l'ordre dans la catégorie (croissant).
 - Projet mis en avant (grande carte de l'accueil) : le projet `principal` **visible** au plus petit `"ordre"`. Un projet masqué est ignoré : le suivant prend sa place.
+- Bande « Autres projets » de l'accueil (défilement continu, pause au survol, au clavier et par bouton) : tous les autres projets visibles, archives exclues, dans l'ordre des catégories puis de `"ordre"`. Les archives restent visibles sur la page « Tous les projets ».
 
 ### Page « Tous les projets »
 
@@ -92,6 +93,7 @@ Vidéos longues : les mettre sur YouTube et ajouter l'identifiant dans `"youtube
 - E-mail, GitHub, statistiques GoatCounter : `src/lib/site.ts`.
 - CV : déposer `public/cv/CV-Hana-Delcourt-FR.pdf` et `CV-Hana-Delcourt-EN.pdf` ; les boutons apparaissent automatiquement.
 - Couleurs et polices : `src/styles/global.css`.
+- Animations : apparition au défilement (classe `reveal`, script dans `src/layouts/Base.astro`), transitions entre pages (`@view-transition` dans `src/styles/global.css`, nom `project-<slug>` partagé entre vignettes et page projet). Toutes sont coupées quand le système demande de réduire les animations.
 
 ## Mise en ligne (une seule fois)
 

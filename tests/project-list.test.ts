@@ -1,9 +1,9 @@
 /**
  * @file    project-list.test.ts
- * @brief   Unit tests of the "all projects" page helpers: engine families, ordering, counts.
+ * @brief   Unit tests of the project list helpers: engine families, ordering, counts, home page split.
  */
 import { describe, expect, it } from 'vitest';
-import { compareNewestFirst, countByFamily, engineFamily } from '../src/lib/project-list';
+import { compareNewestFirst, countByFamily, engineFamily, splitHomeProjects } from '../src/lib/project-list';
 
 describe('engineFamily', () => {
   it('groups Unreal Engine 5 versions, Unity and the rest', () => {
@@ -30,5 +30,21 @@ describe('compareNewestFirst', () => {
 describe('countByFamily', () => {
   it('counts each family, including empty ones', () => {
     expect(countByFamily(['Unity', 'Unity', 'Python'])).toEqual({ ue5: 0, unity: 2, other: 1 });
+  });
+});
+
+describe('splitHomeProjects', () => {
+  it('features the first main project and puts the other non-archived ones in the band', () => {
+    const p = (id: string, categorie: 'principal' | 'secondaire' | 'archive') => ({ id, data: { categorie } });
+    const list = [p('a', 'principal'), p('b', 'principal'), p('c', 'secondaire'), p('d', 'archive')];
+    const { featured, band } = splitHomeProjects(list);
+    expect(featured?.id).toBe('a');
+    expect(band.map((x) => x.id)).toEqual(['b', 'c']);
+  });
+
+  it('has no featured project when no main project is visible', () => {
+    const { featured, band } = splitHomeProjects([{ id: 'c', data: { categorie: 'secondaire' as const } }]);
+    expect(featured).toBeUndefined();
+    expect(band).toHaveLength(1);
   });
 });

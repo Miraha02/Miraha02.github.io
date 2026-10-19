@@ -60,7 +60,7 @@ const linkIcon = (type: string) => (type === 'code' ? 'code' : type === 'build' 
 
     <TechTiles project={project} lang={lang} />
 
-    <div class="media"><MediaGallery media={media} lang={lang} title={d.titre[lang]} /></div>
+    <div class="media"><MediaGallery media={media} lang={lang} title={d.titre[lang]} transitionName={`project-${project.id}`} /></div>
 
     {Content && <article class="prose desc"><Content /></article>}
 

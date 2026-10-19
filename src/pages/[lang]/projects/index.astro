@@ -68,7 +68,7 @@ const chips = [
       {rows.map((r) => (
         <li data-family={r.family}>
           <a href={r.href}>
-            <span class="thumb">
+            <span class="thumb" style={`view-transition-name: project-${r.id}`}>
               {r.cover && <Image src={r.cover} alt="" widths={[160, 320]} sizes="(min-width: 640px) 160px, 104px" />}
             </span>
             <span class="text">

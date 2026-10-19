@@ -3,16 +3,19 @@
  * @file    [lang]/index.astro
  * @brief   Accueil (une page par langue) : présentation, projets, parcours, contact.
  * @details Structure validée sur les maquettes du 17/10/2026. Le premier projet « principal »
- *          s'affiche en grand ; les secondaires en cartes compactes ; les archives repliées.
+ *          s'affiche en grand. Since 19/10/2026 (animated mock-up): the other non-archived projects
+ *          scroll in a band, followed by a link to the "all projects" page; the hero plays a short
+ *          entrance animation (staggered fade-up and an accent line drawn under the name).
  */
 import { getCollection, getEntry, render } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
-import ProjectList from '../../components/ProjectList.astro';
+import ProjectBand from '../../components/ProjectBand.astro';
 import Timeline from '../../components/Timeline.astro';
-import { formatDate, formatPeriod, langs, useTranslations, type Lang } from '../../i18n/ui';
+import { formatDate, formatPeriod, langs, localePath, useTranslations, type Lang } from '../../i18n/ui';
 import { getPublishedProjects } from '../../lib/projects';
+import { splitHomeProjects } from '../../lib/project-list';
 import { cvPath, site } from '../../lib/site';
 
 export function getStaticPaths() {
@@ -27,10 +30,7 @@ const { Content: Presentation } = profil ? await render(profil) : { Content: nul
 const description = (profil?.body ?? '').replace(/\s+/g, ' ').trim().slice(0, 155);
 
 const projects = await getPublishedProjects();
-const principal = projects.filter((p) => p.data.categorie === 'principal');
-const [featured, ...highlights] = principal;
-const secondary = projects.filter((p) => p.data.categorie === 'secondaire');
-const archived = projects.filter((p) => p.data.categorie === 'archive');
+const { featured, band } = splitHomeProjects(projects);
 
 const formation = (await getCollection('formation')).sort((a, b) => a.data.ordre - b.data.ordre).map(({ data }) => ({
   period: `${formatDate(data.debut, lang)} – ${data.fin ? formatDate(data.fin, lang) : (data.finTexte?.[lang] ?? '')}`,
@@ -49,8 +49,9 @@ const cv = cvPath(lang);
   <section class="container hero">
     <p class="role">{t('site.role')}</p>
     <h1>{site.name}</h1>
+    <span class="underline" aria-hidden="true"></span>
     <div class="prose intro">{Presentation && <Presentation />}</div>
-    <div class="actions">
+    <div class="actions hero-actions">
       <a class="btn btn-primary" href="#projets">{t('hero.projects')}</a>
       {cv && <a class="btn btn-secondary" href={cv} download><Icon name="download" />{t('cv')}</a>}
       <a class="btn btn-secondary icon-only" href={site.github.url} aria-label="GitHub"><Icon name="github" size={18} /></a>
@@ -58,21 +59,21 @@ const cv = cvPath(lang);
   </section>
 
   <section id="projets" class="band">
-    <div class="container block">
-      <h2>{t('projects.title')}</h2>
-      {featured && <div class="featured"><ProjectCard project={featured} lang={lang} large /></div>}
-      {highlights.length > 0 && (
-        <div class="grid">
-          {highlights.map((p) => <ProjectCard project={p} lang={lang} />)}
-        </div>
-      )}
-      <ProjectList lang={lang} secondary={secondary} archived={archived} />
+    <div class="container block projects-top">
+      <h2 class="reveal">{t('projects.title')}</h2>
+      {featured && <div class="featured reveal"><ProjectCard project={featured} lang={lang} large /></div>}
+    </div>
+    <div class="reveal">
+      <ProjectBand projects={band} lang={lang} heading={t('projects.others')} />
+    </div>
+    <div class="container see-all">
+      <a href={localePath(lang, 'projects')}>{t('projects.seeAll', { n: projects.length })} →</a>
     </div>
   </section>
 
   <section id="parcours" class="band">
     <div class="container block">
-      <h2>{t('background.title')}</h2>
+      <h2 class="reveal">{t('background.title')}</h2>
       <div class="two-cols">
         <Timeline heading={t('background.education')} items={formation} highlightFirst />
         <Timeline heading={t('background.experience')} items={experiences} />
@@ -81,7 +82,7 @@ const cv = cvPath(lang);
   </section>
 
   <section id="contact" class="band">
-    <div class="container block">
+    <div class="container block reveal">
       <h2>{t('contact.title')}</h2>
       <div class="actions">
         <a class="btn btn-secondary mono-btn" href={`mailto:${site.email}`}><Icon name="mail" />{site.email}</a>
@@ -102,8 +103,21 @@ const cv = cvPath(lang);
   .mono-btn { font-family: var(--font-mono); font-size: 14px; font-weight: 400; }
   .block { padding-top: 64px; padding-bottom: 64px; }
   h2 { font-size: 28px; margin-bottom: 32px; }
-  .featured { margin-bottom: 24px; }
-  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 24px; }
+  .projects-top { padding-bottom: 24px; }
+  .see-all { padding-top: 16px; padding-bottom: 64px; }
+  .see-all a { display: inline-flex; align-items: center; min-height: 44px; font-weight: 500; }
+
+  /* Hero entrance: staggered fade-up, then an accent line drawn under the name. */
+  .role, h1, .intro, .hero-actions { animation: hero-in .6s ease-out both; }
+  h1 { animation-delay: .15s; }
+  .intro { animation-delay: .3s; }
+  .hero-actions { animation-delay: .45s; }
+  .underline {
+    display: block; width: 96px; height: 3px; margin: -8px 0 24px; border-radius: 2px; background: var(--accent);
+    transform-origin: left center; animation: hero-line .7s cubic-bezier(.2, .7, .2, 1) .5s both;
+  }
+  @keyframes hero-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes hero-line { from { transform: scaleX(0); } to { transform: scaleX(1); } }
   .two-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 48px; }
   @media (max-width: 639px) {
     .hero { padding-top: 48px; padding-bottom: 40px; }
@@ -111,5 +125,8 @@ const cv = cvPath(lang);
     .intro { font-size: 16px; }
     h2 { font-size: 24px; margin-bottom: 24px; }
     .block { padding-top: 40px; padding-bottom: 40px; }
+    .projects-top { padding-bottom: 8px; }
+    .see-all { padding-bottom: 40px; }
+    .underline { width: 72px; margin-bottom: 18px; }
   }
 </style>

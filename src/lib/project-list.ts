@@ -1,6 +1,6 @@
 /**
  * @file    project-list.ts
- * @brief   Helpers of the "all projects" page: engine filter families and newest-first ordering.
+ * @brief   Project list helpers: engine filter families, newest-first ordering, home page split.
  * @details Pure functions, unit tested in tests/project-list.test.ts.
  *          Families match the filter buttons of the validated mock-up: UE5, Unity, other.
  */
@@ -58,4 +58,22 @@ export function countByFamily(engines: string[]): Record<EngineFamily, number> {
   const counts: Record<EngineFamily, number> = { ue5: 0, unity: 0, other: 0 };
   for (const e of engines) counts[engineFamily(e)] += 1;
   return counts;
+}
+
+/** Minimal project shape needed to build the home page sections. */
+export interface Categorized {
+  data: { categorie: 'principal' | 'secondaire' | 'archive' };
+}
+
+/**
+ * @brief  Splits the visible projects for the home page.
+ * @details The featured project is the first "principal" one (lowest `ordre`, list already sorted);
+ *          the scrolling band shows every other non-archived project, in the same order.
+ * @param  projects Visible projects, sorted by category then `ordre`.
+ * @return The featured project (undefined when there is no "principal" project) and the band items.
+ */
+export function splitHomeProjects<T extends Categorized>(projects: T[]): { featured?: T; band: T[] } {
+  const featured = projects.find((p) => p.data.categorie === 'principal');
+  const band = projects.filter((p) => p !== featured && p.data.categorie !== 'archive');
+  return { featured, band };
 }

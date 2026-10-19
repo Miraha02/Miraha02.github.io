@@ -4,6 +4,8 @@
  * @brief   Visionneuse des médias d'un projet : grand affichage, onglets par type, miniatures,
  *          boutons et flèches clavier précédent / suivant.
  * @details Les médias proviennent de getProjectMedia() (détection automatique des dossiers).
+ *          `transitionName` (optional) is set as view-transition-name on the stage, so that a project
+ *          thumbnail clicked on another page morphs into it.
  *          YouTube : rien n'est chargé depuis YouTube avant le clic ; le lecteur utilise
  *          youtube-nocookie.com (mode de confidentialité renforcée).
  *          Sans JavaScript, le premier média reste visible et les miniatures sont inertes.
@@ -13,8 +15,14 @@ import Icon from './Icon.astro';
 import type { Media } from '../lib/media';
 import { useTranslations, type Lang } from '../i18n/ui';
 
-interface Props { media: Media[]; lang: Lang; title: string }
-const { media, lang, title } = Astro.props;
+interface Props {
+  media: Media[];
+  lang: Lang;
+  title: string;
+  /** view-transition-name of the stage (e.g. "project-shadowsteps"). */
+  transitionName?: string;
+}
+const { media, lang, title, transitionName } = Astro.props;
 const t = useTranslations(lang);
 
 const group = (m: Media) => (m.kind === 'youtube' ? 'video' : m.kind);
@@ -37,7 +45,7 @@ const label = (m: Media, i: number) =>
 
     <div class="stage-row">
       <button type="button" class="nav" data-prev aria-label={t('media.prev')} hidden={media.length < 2}><Icon name="chevron-left" size={20} /></button>
-      <div class="stage">
+      <div class="stage" style={transitionName ? `view-transition-name: ${transitionName}` : undefined}>
         {media.map((m, i) => (
           <figure class="slide" data-slide={i} data-kind={group(m)} hidden={i !== 0}>
             {m.kind === 'image' && (
