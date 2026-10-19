@@ -2,11 +2,18 @@
 /**
  * @file    ProjectBand.astro
  * @brief   Home page band: one clickable thumbnail per project, scrolling slowly and continuously.
- * @details Mock-up validated on 19/10/2026. Accessibility (WCAG 2.2.2, Pause, Stop, Hide):
- *          the band stops on hover and keyboard focus, and a pause button stops it for good.
- *          The second copy of the list only makes the loop seamless: it is hidden from assistive
- *          technologies and not focusable. With "reduce motion", the band becomes a static row
- *          scrolled by hand. Below three items, there is no animation.
+ * @details Mock-up validated on 19/10/2026. The position is driven by JavaScript so that the band
+ *          can also be dragged with the mouse or a finger (horizontal swipe), or scrolled with a
+ *          horizontal trackpad gesture; a drag never triggers a click on a thumbnail.
+ *          Accessibility (WCAG 2.2.2, Pause, Stop, Hide): the band stops on mouse hover and keyboard
+ *          focus, and a pause button stops it for good. The second copy of the list only makes the
+ *          loop seamless: it stays clickable but is hidden from assistive technologies and skipped
+ *          by the keyboard. With "reduce motion" the band does not move on its own but can still be
+ *          dragged. Without JavaScript it is a plain row scrolled by hand. Below three items, there
+ *          is no loop. Thumbnails load eagerly: the copy scrolls into view without any viewport
+ *          intersection the lazy loader would wait for.
+ *          The band only pauses on keyboard focus (:focus-visible), not after a mouse click, and
+ *          resets its state when the page is restored from the back/forward cache.
  */
 import { Image } from 'astro:assets';
 import Icon from './Icon.astro';
@@ -31,7 +38,8 @@ const items = projects.map((p) => ({
   cover: getCoverImage(p.id, p.data.couverture),
 }));
 const animated = items.length >= 3;
-const duration = `${items.length * 9}s`;
+/** Seconds for one full loop. */
+const loopSeconds = items.length * 9;
 ---
 {items.length > 0 && (
   <div class="wrap" data-band-root>
@@ -45,15 +53,15 @@ const duration = `${items.length * 9}s`;
         </button>
       )}
     </div>
-    <div class:list={['band', { animated }]} data-band>
-      <div class="track" style={`--band-duration: ${duration}`}>
+    <div class:list={['band', { animated }]} data-band data-loop-seconds={loopSeconds}>
+      <div class="track" data-band-track>
         {(animated ? [false, true] : [false]).map((copy) => (
-          <ul role="list" class:list={['items', { copy }]} aria-hidden={copy ? 'true' : undefined} inert={copy}>
+          <ul role="list" class:list={['items', { copy }]} aria-hidden={copy ? 'true' : undefined} data-band-list={copy ? undefined : ''}>
             {items.map((it) => (
               <li>
-                <a href={it.href} tabindex={copy ? -1 : undefined}>
+                <a href={it.href} tabindex={copy ? -1 : undefined} draggable="false">
                   <span class="thumb" style={copy ? undefined : `view-transition-name: project-${it.id}`}>
-                    {it.cover && <Image src={it.cover} alt="" widths={[300, 600]} sizes="(min-width: 640px) 300px, 220px" />}
+                    {it.cover && <Image src={it.cover} alt="" widths={[300, 600]} sizes="(min-width: 640px) 300px, 220px" loading="eager" draggable="false" />}
                   </span>
                   <span class="text">
                     <span class="title">{it.title}</span>
@@ -70,19 +78,151 @@ const duration = `${items.length * 9}s`;
 )}
 
 <script>
-  /** @brief Pause button: stops or resumes the band and keeps its label and state in sync. */
-  document.querySelectorAll<HTMLElement>('[data-band-root]').forEach((root) => {
+  /** Pointer movement (px) beyond which a press becomes a drag instead of a click. */
+  const DRAG_THRESHOLD = 6;
+
+  /**
+   * @brief Drives one band: automatic scrolling, pause button, hover and focus pauses,
+   *        mouse / touch dragging, horizontal wheel and keyboard focus visibility.
+   * @param root Element carrying `data-band-root`.
+   */
+  function setupBand(root: HTMLElement): void {
     const band = root.querySelector<HTMLElement>('[data-band]');
+    const track = root.querySelector<HTMLElement>('[data-band-track]');
+    const list = root.querySelector<HTMLElement>('[data-band-list]');
     const button = root.querySelector<HTMLButtonElement>('[data-band-toggle]');
     const label = root.querySelector<HTMLElement>('[data-band-label]');
-    if (!band || !button || !label) return;
-    button.addEventListener('click', () => {
-      const paused = button.getAttribute('aria-pressed') !== 'true';
-      button.setAttribute('aria-pressed', String(paused));
-      band.toggleAttribute('data-paused', paused);
-      label.textContent = (paused ? button.dataset.labelPlay : button.dataset.labelPause) ?? '';
+    if (!band || !track || !list || !band.classList.contains('animated')) return;
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const loopSeconds = Number(band.dataset.loopSeconds) || 45;
+    let loopWidth = list.offsetWidth;
+    let offset = 0;
+    let last = performance.now();
+    let hovered = false;
+    let focused = false;
+    let paused = false;
+    let pointerId: number | null = null;
+    let startX = 0;
+    let startOffset = 0;
+    let dragging = false;
+    let suppressClick = false;
+
+    /** @brief Keeps the offset within one loop so the two copies line up seamlessly. */
+    const wrap = () => {
+      if (loopWidth > 0) offset = ((offset % loopWidth) + loopWidth) % loopWidth;
+    };
+    const render = () => {
+      track.style.transform = `translate3d(${-offset}px, 0, 0)`;
+    };
+
+    new ResizeObserver(() => {
+      loopWidth = list.offsetWidth;
+      wrap();
+      render();
+    }).observe(list);
+
+    /** @brief Animation loop: advances the band unless it is paused, hovered, focused or dragged. */
+    const tick = (now: number) => {
+      const dt = Math.min((now - last) / 1000, 0.1);
+      last = now;
+      const moving = !paused && !hovered && !focused && pointerId === null && !reduced.matches;
+      if (moving && loopWidth > 0) offset += (loopWidth / loopSeconds) * dt;
+      wrap();
+      render();
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+
+    band.addEventListener('pointerenter', (e) => { if (e.pointerType === 'mouse') hovered = true; });
+    band.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') hovered = false; });
+
+    band.addEventListener('pointerdown', (e) => {
+      if (e.button !== 0) return;
+      pointerId = e.pointerId;
+      startX = e.clientX;
+      startOffset = offset;
+      dragging = false;
+      suppressClick = false;
     });
-  });
+    band.addEventListener('pointermove', (e) => {
+      if (e.pointerId !== pointerId) return;
+      const dx = e.clientX - startX;
+      if (!dragging && Math.abs(dx) > DRAG_THRESHOLD) {
+        dragging = true;
+        band.setPointerCapture(e.pointerId);
+        band.classList.add('dragging');
+      }
+      if (dragging) {
+        offset = startOffset - dx;
+        wrap();
+      }
+    });
+    const endDrag = (e: PointerEvent) => {
+      if (e.pointerId !== pointerId) return;
+      suppressClick = dragging;
+      dragging = false;
+      pointerId = null;
+      band.classList.remove('dragging');
+    };
+    band.addEventListener('pointerup', endDrag);
+    band.addEventListener('pointercancel', endDrag);
+    band.addEventListener('click', (e) => {
+      if (!suppressClick) return;
+      e.preventDefault();
+      e.stopPropagation();
+      suppressClick = false;
+    }, { capture: true });
+    band.addEventListener('dragstart', (e) => e.preventDefault());
+
+    band.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+      e.preventDefault();
+      offset += e.deltaX;
+      wrap();
+    }, { passive: false });
+
+    band.addEventListener('focusin', (e) => {
+      if (!(e.target as Element).matches(':focus-visible')) return;
+      focused = true;
+      band.scrollLeft = 0;
+      const link = (e.target as HTMLElement).closest('a');
+      if (link) {
+        const bandBox = band.getBoundingClientRect();
+        const linkBox = link.getBoundingClientRect();
+        if (linkBox.left < bandBox.left + 24 || linkBox.right > bandBox.right - 24) {
+          offset += linkBox.left - bandBox.left - 24;
+          wrap();
+        }
+      }
+    });
+    band.addEventListener('focusout', (e) => {
+      if (!band.contains(e.relatedTarget as Node | null)) focused = false;
+    });
+
+    /** Back/forward cache: the page comes back with the clicked link still focused or hovered. */
+    window.addEventListener('pageshow', () => {
+      const active = document.activeElement;
+      if (active instanceof HTMLElement && band.contains(active)) active.blur();
+      hovered = false;
+      focused = false;
+      pointerId = null;
+      dragging = false;
+      suppressClick = false;
+      band.classList.remove('dragging');
+      last = performance.now();
+    });
+
+    if (button && label) {
+      button.addEventListener('click', () => {
+        paused = !paused;
+        button.setAttribute('aria-pressed', String(paused));
+        label.textContent = (paused ? button.dataset.labelPlay : button.dataset.labelPause) ?? '';
+      });
+    }
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-band-root]').forEach(setupBand);
 </script>
 
 <style>
@@ -104,25 +244,29 @@ const duration = `${items.length * 9}s`;
   .band.animated {
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none;
   }
+  .band.animated.dragging { cursor: grabbing; }
+  .band.animated.dragging a { pointer-events: none; }
   .band:not(.animated) { overflow-x: auto; }
   .band:not(.animated) .track { padding-left: max(var(--gutter), calc((100% - var(--content-max)) / 2 + var(--gutter))); }
-  .track { display: flex; width: max-content; }
-  .band.animated .track { animation: band-scroll var(--band-duration) linear infinite; }
-  .band.animated:hover .track,
-  .band.animated:focus-within .track,
-  .band[data-paused] .track { animation-play-state: paused; }
-  @keyframes band-scroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .track { display: flex; width: max-content; will-change: transform; }
+
+  /* Without JavaScript: a plain row scrolled by hand, no copy, no pause button. */
+  :global(html:not(.js)) .band.animated { overflow-x: auto; cursor: auto; -webkit-mask-image: none; mask-image: none; }
+  :global(html:not(.js)) .items.copy,
+  :global(html:not(.js)) .pause { display: none; }
 
   .items { list-style: none; margin: 0; padding: 0 16px 0 0; display: flex; gap: 16px; }
   .items a {
     display: flex; flex-direction: column; width: 300px; color: var(--text);
     background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden;
     transition: transform .2s ease, border-color .2s ease;
+    -webkit-user-drag: none;
   }
   .items a:hover, .items a:focus-visible { transform: translateY(-3px); border-color: var(--accent); text-decoration: none; }
   .thumb { display: block; aspect-ratio: 16 / 9; background: var(--surface-2); overflow: hidden; }
-  .thumb :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .thumb :global(img) { width: 100%; height: 100%; object-fit: cover; -webkit-user-drag: none; }
   .text { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; }
   .title { font-weight: 600; }
   .meta { font-family: var(--font-mono); font-size: 12px; color: var(--text-3); }
@@ -137,9 +281,8 @@ const duration = `${items.length * 9}s`;
     h3 { font-size: 18px; }
   }
 
+  /* Reduce motion: no automatic scrolling (handled in the script), so no pause button. */
   @media (prefers-reduced-motion: reduce) {
-    .band.animated { overflow-x: auto; -webkit-mask-image: none; mask-image: none; }
-    .band.animated .track { animation: none; padding-left: var(--gutter); }
-    .items.copy, .pause { display: none; }
+    .pause { display: none; }
   }
 </style>
