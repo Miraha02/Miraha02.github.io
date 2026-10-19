@@ -1,3 +1,19 @@
+# Dépendances et fichiers générés
+node_modules/
+dist/
+.astro/
+
+# Journaux et environnement
+npm-debug.log*
+.env
+.env.*
+
+# Éditeurs et système
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
 # Documents internes (non publiés)
 DA Portfolio 2026.md
 DA Preview.html

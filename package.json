@@ -1,0 +1,26 @@
+{
+  "name": "portfolio-hana-delcourt",
+  "type": "module",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Portfolio de Hana Delcourt, développeuse de jeux vidéo",
+  "scripts": {
+    "dev": "astro dev",
+    "test": "vitest run",
+    "check": "astro check",
+    "verify": "node scripts/verify-dist.mjs",
+    "build": "astro check && vitest run && astro build && node scripts/verify-dist.mjs",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "@fontsource/ibm-plex-sans": "^5.3.0",
+    "astro": "^7.4.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@types/node": "^22.20.5",
+    "typescript": "^6.0.3",
+    "vitest": "^5.0.5"
+  }
+}
