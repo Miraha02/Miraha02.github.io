@@ -9,8 +9,10 @@
     "test": "vitest run",
     "check": "astro check",
     "verify": "node scripts/verify-dist.mjs",
-    "build": "astro check && vitest run && astro build && node scripts/verify-dist.mjs",
-    "preview": "astro preview"
+    "build": "astro check && vitest run && astro build && node scripts/verify-dist.mjs && node scripts/check-projects.mjs",
+    "preview": "astro preview",
+    "new": "node scripts/new-project.mjs",
+    "check:projects": "node scripts/check-projects.mjs"
   },
   "dependencies": {
     "@fontsource/ibm-plex-mono": "^5.3.0",

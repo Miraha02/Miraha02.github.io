@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# @file    newProject
+# @brief   Creates a new portfolio project: ./newProject Nom_du_projet
+# @details Thin wrapper around scripts/new-project.mjs (Node.js), run from the repository root
+#          in Git Bash, Linux or macOS. Line endings must stay LF (see .gitattributes).
+set -euo pipefail
+exec node "$(dirname "$0")/scripts/new-project.mjs" "$@"

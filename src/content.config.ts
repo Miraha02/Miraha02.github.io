@@ -10,6 +10,7 @@
 import { defineCollection } from 'astro:content';
 import { glob, file } from 'astro/loaders';
 import { z } from 'astro/zod';
+import { PROJECT_STATES } from './lib/completeness.mjs';
 
 /** Date ISO partielle : AAAA, AAAA-MM ou AAAA-MM-JJ. */
 const isoDate = z.string().regex(/^\d{4}(-\d{2}(-\d{2})?)?$/, 'Format attendu : AAAA, AAAA-MM ou AAAA-MM-JJ');
@@ -26,8 +27,8 @@ const projets = defineCollection({
     /** Ordre d'affichage dans sa catégorie (croissant). */
     ordre: z.number().int(),
     categorie: z.enum(['principal', 'secondaire', 'archive']),
-    /** false = projet préparé mais non publié (absent du site). */
-    publie: z.boolean().default(true),
+    /** Declared state: "incomplet" hides the project (rules in src/lib/completeness.mjs). */
+    etat: z.enum(PROJECT_STATES),
     titre: t,
     accroche: t.partial().optional(),
     /** Nom du fichier image de vignette (dossier image/) ; par défaut la première image. */
