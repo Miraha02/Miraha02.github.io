@@ -1,0 +1,52 @@
+{
+  "ordre": 1,
+  "categorie": "principal",
+  "titre": {
+    "fr": "ShadowSteps",
+    "en": "ShadowSteps"
+  },
+  "moteur": "Unreal Engine 5.5",
+  "langages": [
+    "C++",
+    "Blueprint"
+  ],
+  "equipe": 1,
+  "debut": "2025-04-14",
+  "fin": "2025-04-17",
+  "duree": {
+    "fr": "3 jours",
+    "en": "3 days"
+  },
+  "systemes": {
+    "fr": [
+      "IA (perception, Behavior Tree)",
+      "Animations, Anim Notifies",
+      "Ambiance sonore",
+      "Checkpoints"
+    ],
+    "en": [
+      "AI (perception, Behavior Tree)",
+      "Animations, Anim Notifies",
+      "Sound design",
+      "Checkpoints"
+    ]
+  },
+  "liens": [
+    {
+      "type": "build",
+      "url": "https://drive.google.com/drive/folders/1oS4s9STZIu3wnjLUf3Rx7lX5Sw9sFNvG?usp=sharing"
+    }
+  ],
+  "code": [
+    {
+      "chemin": "Source/ShadowSteps/AI/ShadowStepAIController.cpp"
+    },
+    {
+      "chemin": "Source/ShadowSteps/Components/PatrolComponent.cpp"
+    },
+    {
+      "chemin": "Source/ShadowSteps/Character/ShadowStepCharacter.cpp"
+    }
+  ],
+  "couverture": "ShadowSteps3.png"
+}

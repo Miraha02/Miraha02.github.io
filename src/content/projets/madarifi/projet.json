@@ -1,0 +1,43 @@
+{
+  "ordre": 4,
+  "categorie": "secondaire",
+  "titre": {
+    "fr": "MadaRifi",
+    "en": "MadaRifi"
+  },
+  "moteur": "Unreal Engine 5.5",
+  "langages": [
+    "C++",
+    "Blueprint"
+  ],
+  "equipe": 1,
+  "debut": "2025-04-25",
+  "fin": "2025-05-02",
+  "systemes": {
+    "fr": [
+      "Paper2D (sprites, flipbooks)",
+      "Niagara",
+      "Matériaux"
+    ],
+    "en": [
+      "Paper2D (sprites, flipbooks)",
+      "Niagara",
+      "Materials"
+    ]
+  },
+  "liens": [
+    {
+      "type": "other",
+      "url": "https://drive.google.com/drive/folders/1iSLLolyRsSnGDfbo_Gfh9411mmEy2I1V?usp=sharing",
+      "label": {
+        "fr": "Sources (Drive)",
+        "en": "Sources (Drive)"
+      }
+    },
+    {
+      "type": "build",
+      "url": "https://drive.google.com/drive/folders/1Opj1SwOrikIgbM3vS-jKSMakQIAM2c7g?usp=sharing"
+    }
+  ],
+  "couverture": "MadaRifi5.png"
+}

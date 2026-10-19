@@ -1,0 +1,33 @@
+{
+  "ordre": 2,
+  "categorie": "secondaire",
+  "titre": {
+    "fr": "FishClicker",
+    "en": "FishClicker"
+  },
+  "moteur": "Unity",
+  "langages": [
+    "C#"
+  ],
+  "equipe": 3,
+  "debut": "2025-02",
+  "fin": "2025-03",
+  "systemes": {
+    "fr": [
+      "Accéléromètre",
+      "Vibrations",
+      "Mobile"
+    ],
+    "en": [
+      "Accelerometer",
+      "Vibration",
+      "Mobile"
+    ]
+  },
+  "liens": [
+    {
+      "type": "build",
+      "url": "https://drive.google.com/drive/folders/1VfKXrLzH1nBwyZ-6oNxCLZduB6vfXxtU?usp=sharing"
+    }
+  ]
+}

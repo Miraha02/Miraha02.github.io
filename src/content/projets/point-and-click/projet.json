@@ -1,0 +1,27 @@
+{
+  "ordre": 3,
+  "categorie": "secondaire",
+  "titre": {
+    "fr": "Éditeur de Point&Click",
+    "en": "Point&Click Editor"
+  },
+  "moteur": "Unity",
+  "langages": [
+    "C#"
+  ],
+  "equipe": 3,
+  "debut": "2024-04",
+  "fin": "2024-07",
+  "systemes": {
+    "fr": [
+      "Éditeur de jeu",
+      "Données JSON",
+      "Plastic SCM"
+    ],
+    "en": [
+      "Game editor",
+      "JSON data",
+      "Plastic SCM"
+    ]
+  }
+}

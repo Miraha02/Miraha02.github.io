@@ -1,0 +1,43 @@
+---
+/**
+ * @file    TechTiles.astro
+ * @brief   Fiche technique d'un projet en tuiles : moteur, langages, équipe, durée/dates, systèmes clés.
+ * @details Mise en avant demandée par Hana (placée sous le titre de la page projet).
+ */
+import type { Project } from '../lib/projects';
+import { formatPeriod, teamLabel, useTranslations, type Lang } from '../i18n/ui';
+
+interface Props { project: Project; lang: Lang }
+const { project, lang } = Astro.props;
+const t = useTranslations(lang);
+const d = project.data;
+const period = formatPeriod(d.debut, d.fin, lang);
+const systems = d.systemes?.[lang] ?? [];
+---
+<dl class="tiles" aria-label={t('tech.label')}>
+  <div class="tile"><dt>{t('tech.engine')}</dt><dd class="v">{d.moteur}</dd></div>
+  <div class="tile"><dt>{t('tech.languages')}</dt><dd class="v">{d.langages.join(' · ')}</dd></div>
+  <div class="tile"><dt>{t('tech.team')}</dt><dd class="v">{teamLabel(d.equipe, lang)}</dd></div>
+  {d.duree
+    ? <div class="tile"><dt>{t('tech.duration')}</dt><dd class="v">{d.duree[lang]}</dd><dd class="sub">{period}</dd></div>
+    : <div class="tile"><dt>{t('tech.dates')}</dt><dd class="v">{period}</dd></div>}
+  {systems.length > 0 && (
+    <div class="tile wide"><dt>{t('tech.systems')}</dt><dd class="v">{systems.join(' · ')}</dd></div>
+  )}
+</dl>
+
+<style>
+  .tiles { margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 170px), 1fr)); gap: 12px; }
+  .tile { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+  .wide { grid-column: 1 / -1; }
+  dt { font-family: var(--font-mono); font-size: 12px; color: var(--text-3); text-transform: uppercase; letter-spacing: 0.06em; }
+  dd { margin: 0; }
+  .v { font-size: 17px; font-weight: 600; line-height: 1.35; }
+  .sub { font-family: var(--font-mono); font-size: 13px; color: var(--text-3); }
+  @media (max-width: 639px) {
+    .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+    .tile { padding: 12px; }
+    .v { font-size: 15px; }
+    .wide { grid-column: 1 / -1; }
+  }
+</style>

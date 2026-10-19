@@ -1,0 +1,15 @@
+{
+  "ordre": 2,
+  "categorie": "archive",
+  "titre": {
+    "fr": "Application maraudes",
+    "en": "Outreach app"
+  },
+  "moteur": "Android Studio",
+  "langages": [
+    "Java"
+  ],
+  "equipe": 2,
+  "debut": "2023-04",
+  "fin": "2023-07"
+}

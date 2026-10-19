@@ -1,0 +1,23 @@
+---
+/**
+ * @file    404.astro
+ * @brief   Page introuvable (servie par GitHub Pages pour toute adresse inconnue), en français.
+ */
+import Base from '../layouts/Base.astro';
+import { localePath, useTranslations } from '../i18n/ui';
+const lang = 'fr' as const;
+const t = useTranslations(lang);
+---
+<Base lang={lang} title={t('notfound.title')} description={t('notfound.title')} noAlternates>
+  <section class="container nf">
+    <p class="meta">404</p>
+    <h1>{t('notfound.title')}</h1>
+    <p><a class="btn btn-secondary" href={localePath(lang)}>{t('notfound.back')}</a></p>
+    <p><a href={localePath('en')} lang="en">Page not found · Back to home</a></p>
+  </section>
+</Base>
+
+<style>
+  .nf { padding-top: 96px; padding-bottom: 96px; display: flex; flex-direction: column; gap: 16px; align-items: flex-start; }
+  h1 { font-size: 32px; }
+</style>

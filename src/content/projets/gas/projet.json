@@ -1,0 +1,48 @@
+{
+  "ordre": 2,
+  "categorie": "principal",
+  "titre": {
+    "fr": "Gameplay Ability System",
+    "en": "Gameplay Ability System"
+  },
+  "moteur": "Unreal Engine 5",
+  "langages": [
+    "C++",
+    "Blueprint"
+  ],
+  "equipe": 2,
+  "debut": "2024-09",
+  "systemes": {
+    "fr": [
+      "Gameplay Ability System",
+      "Inventaire dynamique",
+      "Collectibles",
+      "Multijoueur"
+    ],
+    "en": [
+      "Gameplay Ability System",
+      "Dynamic inventory",
+      "Collectibles",
+      "Multiplayer"
+    ]
+  },
+  "liens": [
+    {
+      "type": "code",
+      "url": "https://github.com/Miraha02/MMOAT",
+      "label": {
+        "fr": "Code du MMO",
+        "en": "MMO source code"
+      }
+    }
+  ],
+  "youtube": [
+    {
+      "id": "tsQcxoMZ6NQ",
+      "titre": {
+        "fr": "POC Gameplay Ability System (GAS) - UE5",
+        "en": "POC Gameplay Ability System (GAS) - UE5"
+      }
+    }
+  ]
+}

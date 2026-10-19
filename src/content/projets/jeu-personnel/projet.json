@@ -1,0 +1,17 @@
+{
+  "ordre": 0,
+  "categorie": "principal",
+  "publie": false,
+  "titre": {
+    "fr": "[Nom du jeu]",
+    "en": "[Game title]"
+  },
+  "moteur": "Unreal Engine 5",
+  "langages": [
+    "C++",
+    "Blueprint"
+  ],
+  "equipe": 1,
+  "debut": "2025",
+  "enCours": true
+}

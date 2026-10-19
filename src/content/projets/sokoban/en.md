@@ -1,0 +1,1 @@
+First video game project created in Python during my first year of my 2-year degree. Players must complete three levels, with each level becoming accessible only after completing the previous one. A reset button allows blocking access to previous levels again, adding flexibility and challenge.

@@ -1,0 +1,27 @@
+---
+/**
+ * @file    Footer.astro
+ * @brief   Pied de page : copyright et mention de la mesure d'audience (si GoatCounter est actif).
+ */
+import { useTranslations, type Lang } from '../i18n/ui';
+import { site } from '../lib/site';
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container row">
+    <span>© {year} {site.name}</span>
+    {site.goatcounterCode && <span>{t('footer.analytics')}</span>}
+  </div>
+</footer>
+
+<style>
+  .site-footer { border-top: 1px solid var(--border); }
+  .row {
+    padding-top: 24px; padding-bottom: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px;
+    font-family: var(--font-mono); font-size: 13px; color: var(--text-3);
+  }
+</style>

@@ -1,0 +1,3 @@
+I grew up playing video games, and for every game I played, I always enjoyed wondering how it was made. This passion has constantly fueled my desire to create my own games. That’s why I chose to study computer science to learn programming, which led me to join the Master's program in Game Software Engineering (Ingénierie Logicielle pour les Jeux – ILJ). Through this program, I’ve had the opportunity to work with various game engines such as Unreal Engine 5 and Unity.
+
+I’m currently in the second and final year of this Master’s degree, in which I ranked top of my class during the first semester. I’m now looking for an internship to complete my degree while continuing to pursue the passion that has driven me since childhood.

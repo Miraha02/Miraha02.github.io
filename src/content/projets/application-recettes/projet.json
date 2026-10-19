@@ -1,0 +1,17 @@
+{
+  "ordre": 1,
+  "categorie": "secondaire",
+  "publie": false,
+  "titre": {
+    "fr": "Application recettes",
+    "en": "Recipe app"
+  },
+  "moteur": "Android",
+  "langages": [
+    "Kotlin",
+    "TypeScript"
+  ],
+  "equipe": 1,
+  "debut": "2026",
+  "enCours": true
+}

@@ -1,0 +1,190 @@
+---
+/**
+ * @file    MediaGallery.astro
+ * @brief   Visionneuse des médias d'un projet : grand affichage, onglets par type, miniatures,
+ *          boutons et flèches clavier précédent / suivant.
+ * @details Les médias proviennent de getProjectMedia() (détection automatique des dossiers).
+ *          YouTube : rien n'est chargé depuis YouTube avant le clic ; le lecteur utilise
+ *          youtube-nocookie.com (mode de confidentialité renforcée).
+ *          Sans JavaScript, le premier média reste visible et les miniatures sont inertes.
+ */
+import { Image } from 'astro:assets';
+import Icon from './Icon.astro';
+import type { Media } from '../lib/media';
+import { useTranslations, type Lang } from '../i18n/ui';
+
+interface Props { media: Media[]; lang: Lang; title: string }
+const { media, lang, title } = Astro.props;
+const t = useTranslations(lang);
+
+const group = (m: Media) => (m.kind === 'youtube' ? 'video' : m.kind);
+const kinds = (['video', 'gif', 'image'] as const).filter((k) => media.some((m) => group(m) === k));
+const label = (m: Media, i: number) =>
+  m.kind === 'youtube' ? m.title : `${title} · ${t(`media.one.${group(m)}`)} ${i + 1}`;
+---
+{media.length > 0 && (
+  <section class="gallery" aria-label={t('media.label')} data-gallery>
+    {kinds.length > 1 && (
+      <div class="tabs" role="tablist" aria-label={t('media.label')}>
+        <button type="button" role="tab" aria-selected="true" data-filter="all">{t('media.all')} ({media.length})</button>
+        {kinds.map((k) => (
+          <button type="button" role="tab" aria-selected="false" data-filter={k}>
+            {t(`media.${k}`)} ({media.filter((m) => group(m) === k).length})
+          </button>
+        ))}
+      </div>
+    )}
+
+    <div class="stage-row">
+      <button type="button" class="nav" data-prev aria-label={t('media.prev')} hidden={media.length < 2}><Icon name="chevron-left" size={20} /></button>
+      <div class="stage">
+        {media.map((m, i) => (
+          <figure class="slide" data-slide={i} data-kind={group(m)} hidden={i !== 0}>
+            {m.kind === 'image' && (
+              <Image src={m.image} alt={label(m, i)} widths={[640, 960, 1280, 1600]} sizes="(min-width: 1168px) 1072px, 100vw" loading={i === 0 ? 'eager' : 'lazy'} />
+            )}
+            {m.kind === 'gif' && <img src={m.src} alt={label(m, i)} loading="lazy" decoding="async" />}
+            {m.kind === 'video' && (
+              <video controls preload="metadata" playsinline aria-label={label(m, i)}>
+                <source src={m.src} type={m.type} />
+              </video>
+            )}
+            {m.kind === 'youtube' && (
+              <div class="yt" data-yt={m.id} data-yt-title={m.title}>
+                <button type="button" class="yt-play">
+                  <span class="yt-icon"><Icon name="play" size={22} /></span>
+                  <span class="yt-title">{m.title}</span>
+                  <span class="yt-note">{t('media.youtube')}</span>
+                  <span class="visually-hidden">{t('media.play')}</span>
+                </button>
+              </div>
+            )}
+          </figure>
+        ))}
+      </div>
+      <button type="button" class="nav" data-next aria-label={t('media.next')} hidden={media.length < 2}><Icon name="chevron-right" size={20} /></button>
+    </div>
+
+    {media.length > 1 && (
+      <ul class="thumbs" role="list">
+        {media.map((m, i) => (
+          <li data-thumb-item data-kind={group(m)}>
+            <button type="button" data-thumb={i} aria-label={label(m, i)} aria-current={i === 0 ? 'true' : undefined}>
+              {m.kind === 'image' && <Image src={m.image} alt="" width={240} loading="lazy" />}
+              {m.kind === 'gif' && <img src={m.src} alt="" loading="lazy" />}
+              {(m.kind === 'video' || m.kind === 'youtube') && <span class="thumb-video"><Icon name="play" size={18} /></span>}
+              {m.kind !== 'image' && <span class="badge">{t(`media.one.${group(m)}`)}</span>}
+            </button>
+          </li>
+        ))}
+      </ul>
+    )}
+  </section>
+)}
+
+<script>
+  /** @brief Active chaque visionneuse : sélection, filtres par type, navigation, YouTube au clic. */
+  function initGallery(root: HTMLElement) {
+    const slides = [...root.querySelectorAll<HTMLElement>('[data-slide]')];
+    const thumbs = [...root.querySelectorAll<HTMLButtonElement>('[data-thumb]')];
+    const tabs = [...root.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+    let filter = 'all';
+    let current = 0;
+
+    const visible = () => slides.map((_, i) => i).filter((i) => filter === 'all' || slides[i].dataset.kind === filter);
+
+    function show(index: number) {
+      slides.forEach((s, i) => {
+        const active = i === index;
+        s.hidden = !active;
+        if (!active) s.querySelector('video')?.pause();
+      });
+      thumbs.forEach((b, i) => (i === index ? b.setAttribute('aria-current', 'true') : b.removeAttribute('aria-current')));
+      current = index;
+    }
+
+    function step(delta: number) {
+      const list = visible();
+      const pos = list.indexOf(current);
+      show(list[(pos + delta + list.length) % list.length]);
+    }
+
+    thumbs.forEach((b) => b.addEventListener('click', () => show(Number(b.dataset.thumb))));
+    root.querySelector('[data-prev]')?.addEventListener('click', () => step(-1));
+    root.querySelector('[data-next]')?.addEventListener('click', () => step(1));
+    root.addEventListener('keydown', (e) => {
+      if (e.target instanceof HTMLVideoElement) return;
+      if (e.key === 'ArrowLeft') step(-1);
+      if (e.key === 'ArrowRight') step(1);
+    });
+
+    tabs.forEach((tab) =>
+      tab.addEventListener('click', () => {
+        filter = tab.dataset.filter ?? 'all';
+        tabs.forEach((x) => x.setAttribute('aria-selected', String(x === tab)));
+        root.querySelectorAll<HTMLElement>('[data-thumb-item]').forEach((li) => {
+          li.hidden = filter !== 'all' && li.dataset.kind !== filter;
+        });
+        show(visible()[0]);
+      }),
+    );
+
+    root.querySelectorAll<HTMLElement>('[data-yt]').forEach((box) => {
+      box.querySelector('button')?.addEventListener('click', () => {
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube-nocookie.com/embed/${box.dataset.yt}?autoplay=1&rel=0`;
+        iframe.title = box.dataset.ytTitle ?? 'YouTube';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+        box.replaceChildren(iframe);
+      });
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-gallery]').forEach(initGallery);
+</script>
+
+<style>
+  .gallery { display: flex; flex-direction: column; gap: 12px; }
+  .tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tabs button {
+    min-height: 40px; padding: 8px 14px; border-radius: var(--radius-ctrl); cursor: pointer;
+    font: 13px var(--font-mono); background: transparent; color: var(--text-2); border: 1px solid var(--border);
+  }
+  .tabs button[aria-selected='true'] { background: var(--surface-2); color: var(--text); border-color: var(--accent); }
+  .stage-row { display: flex; align-items: center; gap: 12px; }
+  .stage { flex: 1; min-width: 0; aspect-ratio: 16 / 9; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+  .slide { margin: 0; width: 100%; height: 100%; }
+  .slide[hidden] { display: none; }
+  .slide :global(img), .slide video { width: 100%; height: 100%; object-fit: contain; background: var(--bg); }
+  .nav {
+    flex: none; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; cursor: pointer;
+    background: var(--surface); color: var(--text); border: 1px solid var(--border-control);
+  }
+  .nav[hidden] { display: none; }
+  .yt, .yt :global(iframe) { width: 100%; height: 100%; border: 0; display: block; }
+  .yt-play {
+    width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+    padding: 24px; text-align: center; cursor: pointer; border: 0; color: var(--text); font: inherit;
+    background: radial-gradient(circle at center, var(--surface-2), var(--bg));
+  }
+  .yt-icon { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; background: var(--accent); color: var(--on-accent); }
+  .yt-icon :global(.icon) { fill: currentColor; }
+  .yt-title { font-weight: 600; font-size: 18px; }
+  .yt-note { font-family: var(--font-mono); font-size: 13px; color: var(--text-3); max-width: 46ch; }
+  .thumbs { list-style: none; margin: 0; padding: 0 0 4px; display: flex; gap: 10px; overflow-x: auto; }
+  .thumbs li[hidden] { display: none; }
+  .thumbs button {
+    position: relative; flex: none; width: 120px; aspect-ratio: 16 / 9; padding: 0; cursor: pointer; overflow: hidden;
+    border-radius: var(--radius-ctrl); border: 1px solid var(--border); background: var(--bg); opacity: 0.7;
+  }
+  .thumbs button[aria-current='true'] { border: 2px solid var(--accent); opacity: 1; }
+  .thumbs :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .thumb-video { width: 100%; height: 100%; display: grid; place-items: center; color: var(--text); background: var(--surface-2); }
+  .badge { position: absolute; left: 6px; bottom: 6px; font: 11px var(--font-mono); background: var(--bg); color: var(--text); padding: 1px 6px; border-radius: 4px; }
+  @media (max-width: 639px) {
+    .nav { display: none; }
+    .thumbs button { width: 96px; }
+  }
+</style>

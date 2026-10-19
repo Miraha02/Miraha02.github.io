@@ -1,0 +1,47 @@
+[
+  {
+    "id": "master",
+    "ordre": 1,
+    "diplome": {
+      "fr": "Master Informatique - Parcours Ingénierie Logicielle pour les Jeux",
+      "en": "Master in Computer Science - Specialising in Video Games Software Ingeneering"
+    },
+    "etablissement": {
+      "fr": "Faculté des Sciences Jean Perrin",
+      "en": "Faculté des Sciences Jean Perrin - Lens"
+    },
+    "debut": "2023",
+    "finTexte": {
+      "fr": "Aujourd'hui",
+      "en": "Present"
+    }
+  },
+  {
+    "id": "licence",
+    "ordre": 2,
+    "diplome": {
+      "fr": "Licence Informatique",
+      "en": "Bachelor's degree in Computer Science"
+    },
+    "etablissement": {
+      "fr": "Faculté des Sciences Jean Perrin",
+      "en": "Faculté des Sciences Jean Perrin - Lens"
+    },
+    "debut": "2022",
+    "fin": "2023"
+  },
+  {
+    "id": "dut",
+    "ordre": 3,
+    "diplome": {
+      "fr": "DUT Informatique",
+      "en": "2-year degree in Computer Science"
+    },
+    "etablissement": {
+      "fr": "IUT de Lens",
+      "en": "University Institute of Technology (IUT) - Lens"
+    },
+    "debut": "2020",
+    "fin": "2022"
+  }
+]

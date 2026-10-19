@@ -1,0 +1,20 @@
+{
+  "ordre": 1,
+  "categorie": "archive",
+  "titre": {
+    "fr": "Pachinko",
+    "en": "Pachinko"
+  },
+  "moteur": "Unity",
+  "langages": [
+    "C#"
+  ],
+  "equipe": 1,
+  "debut": "2024-04",
+  "liens": [
+    {
+      "type": "play",
+      "url": "https://play.unity.com/fr/games/8f4ad9a4-d96d-46af-a4df-53fcf1327cdf/pachinkov3"
+    }
+  ]
+}

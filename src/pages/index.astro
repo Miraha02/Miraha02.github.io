@@ -1,0 +1,24 @@
+---
+/**
+ * @file    index.astro
+ * @brief   Racine du site : redirection immédiate vers l'accueil français (/fr/).
+ * @details Obligatoire avec prefixDefaultLocale. Redirection sans délai (meta refresh + script),
+ *          avec un lien de secours si les deux sont bloqués.
+ */
+import { defaultLang, localePath } from '../i18n/ui';
+const target = localePath(defaultLang);
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Hana Delcourt</title>
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={new URL(target, Astro.site)} />
+    <script is:inline define:vars={{ target }}>location.replace(target);</script>
+  </head>
+  <body>
+    <a href={target}>Hana Delcourt · Portfolio</a>
+  </body>
+</html>

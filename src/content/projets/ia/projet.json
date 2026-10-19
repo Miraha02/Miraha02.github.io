@@ -1,0 +1,63 @@
+{
+  "ordre": 3,
+  "categorie": "principal",
+  "titre": {
+    "fr": "IA : pathfinding et steering",
+    "en": "AI: pathfinding and steering"
+  },
+  "moteur": "Unreal Engine 5",
+  "langages": [
+    "C++",
+    "Blueprint"
+  ],
+  "equipe": 1,
+  "debut": "2025-01",
+  "fin": "2025-03",
+  "systemes": {
+    "fr": [
+      "Steering behaviors",
+      "Pathfinding",
+      "Génération aléatoire de carte"
+    ],
+    "en": [
+      "Steering behaviors",
+      "Pathfinding",
+      "Random map generation"
+    ]
+  },
+  "liens": [
+    {
+      "type": "code",
+      "url": "https://github.com/Miraha02/ProjectMPIA1",
+      "label": {
+        "fr": "Code : steering",
+        "en": "Code: steering"
+      }
+    },
+    {
+      "type": "code",
+      "url": "https://github.com/Miraha02/Hospital_MPIA",
+      "label": {
+        "fr": "Code : Hospital",
+        "en": "Code: Hospital"
+      }
+    },
+    {
+      "type": "build",
+      "url": "https://drive.google.com/drive/folders/1qLOS4fmYUd-EfaoaE3n3brSwwo5OTjpA?hl=fr",
+      "label": {
+        "fr": "Build : steering",
+        "en": "Build: steering"
+      }
+    },
+    {
+      "type": "build",
+      "url": "https://drive.google.com/drive/folders/1Bqefc41s2TVsoz4FpyBvWW8NQXHVSHQG?usp=sharing",
+      "label": {
+        "fr": "Build : Hospital",
+        "en": "Build: Hospital"
+      }
+    }
+  ],
+  "couverture": "Hospital2.png"
+}

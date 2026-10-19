@@ -1,0 +1,127 @@
+---
+/**
+ * @file    [lang]/projets/[slug].astro
+ * @brief   Page de détail d'un projet (une par projet publié et par langue).
+ * @details Ordre : retour, titre + accroche + liens, fiche technique en tuiles, médias,
+ *          description (Markdown rédigé par Hana), code à consulter, projets voisins.
+ */
+import { render } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
+import TechTiles from '../../../components/TechTiles.astro';
+import MediaGallery from '../../../components/MediaGallery.astro';
+import { langs, localePath, useTranslations, type Lang } from '../../../i18n/ui';
+import { getDescription, getNeighbours, getPublishedProjects, type Project } from '../../../lib/projects';
+import { getCoverImage, getProjectMedia } from '../../../lib/media';
+
+export async function getStaticPaths() {
+  const projects = await getPublishedProjects();
+  return langs.flatMap((lang) => projects.map((project) => ({ params: { lang, slug: project.id }, props: { project } })));
+}
+
+interface Props { project: Project }
+const { project } = Astro.props;
+const lang = Astro.params.lang as Lang;
+const t = useTranslations(lang);
+const d = project.data;
+
+const descEntry = await getDescription(project.id, lang);
+const { Content } = descEntry ? await render(descEntry) : { Content: null };
+const description = (d.accroche?.[lang] ?? descEntry?.body ?? d.titre[lang]).replace(/[#*_]/g, '').replace(/\s+/g, ' ').trim().slice(0, 155);
+
+const media = getProjectMedia(project.id, d.youtube.map((y) => ({ id: y.id, title: y.titre[lang] })));
+const cover = getCoverImage(project.id, d.couverture);
+const neighbours = getNeighbours(await getPublishedProjects(), project.id);
+const code = d.code.filter((c) => c.url);
+
+const linkLabel = (l: (typeof d.liens)[number]) =>
+  l.label?.[lang] ?? (l.type === 'code' ? t('links.code') : l.type === 'build' ? t('links.build') : l.type === 'play' ? t('links.play') : l.url);
+const linkIcon = (type: string) => (type === 'code' ? 'code' : type === 'build' ? 'download' : 'external') as 'code' | 'download' | 'external';
+---
+<Base lang={lang} title={d.titre[lang]} description={description} ogImage={cover}>
+  <div class="container page">
+    <a class="back" href={`${localePath(lang)}#projets`}><Icon name="arrow-left" />{t('projects.all')}</a>
+
+    <header class="head">
+      <div>
+        <h1>{d.titre[lang]}</h1>
+        {d.accroche?.[lang] && <p class="pitch">{d.accroche[lang]}</p>}
+      </div>
+      {d.liens.length > 0 && (
+        <div class="links">
+          {d.liens.map((l, i) => (
+            <a class:list={['btn', i === 0 ? 'btn-primary' : 'btn-secondary']} href={l.url}>
+              <Icon name={linkIcon(l.type)} />{linkLabel(l)}
+            </a>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <TechTiles project={project} lang={lang} />
+
+    <div class="media"><MediaGallery media={media} lang={lang} title={d.titre[lang]} /></div>
+
+    {Content && <article class="prose desc"><Content /></article>}
+
+    {code.length > 0 && (
+      <section class="code">
+        <h2>{t('code.title')}</h2>
+        <ul role="list">
+          {code.map((c) => (
+            <li>
+              <a href={c.url}>
+                <span class="path">{c.chemin}</span>
+                {c.note?.[lang] && <span class="note">{c.note[lang]}</span>}
+                <Icon name="external" class="ext" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {(neighbours.prev || neighbours.next) && (
+      <nav class="neighbours" aria-label={t('projects.title')}>
+        {neighbours.prev ? (
+          <a href={localePath(lang, `projets/${neighbours.prev.id}`)}><span class="meta">← {t('projects.prev')}</span><span>{neighbours.prev.data.titre[lang]}</span></a>
+        ) : <span />}
+        {neighbours.next && (
+          <a class="next" href={localePath(lang, `projets/${neighbours.next.id}`)}><span class="meta">{t('projects.next')} →</span><span>{neighbours.next.data.titre[lang]}</span></a>
+        )}
+      </nav>
+    )}
+  </div>
+</Base>
+
+<style>
+  .page { padding-top: 32px; padding-bottom: 80px; }
+  .back { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: var(--text-2); font-size: 15px; }
+  .back:hover { color: var(--text); text-decoration: none; }
+  .head { margin: 16px 0 28px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px; }
+  h1 { font-size: 40px; line-height: 1.15; }
+  .pitch { color: var(--text-2); margin-top: 8px; max-width: 60ch; }
+  .links { display: flex; flex-wrap: wrap; gap: 10px; }
+  .media { margin: 28px 0 48px; }
+  .desc { margin-bottom: 48px; }
+  .code h2 { font-size: 22px; margin-bottom: 16px; }
+  .code ul { list-style: none; margin: 0; padding: 0; max-width: 760px; border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+  .code li + li { border-top: 1px solid var(--border); }
+  .code a { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; align-items: center; padding: 14px 16px; background: var(--surface); }
+  .code a:hover { background: var(--surface-2); text-decoration: none; }
+  .path { font-family: var(--font-mono); font-size: 14px; overflow-wrap: anywhere; }
+  .note { grid-column: 1; color: var(--text-2); font-size: 14px; }
+  .code :global(.ext) { grid-row: 1 / span 2; grid-column: 2; color: var(--text-3); }
+  .neighbours { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .neighbours a { display: flex; flex-direction: column; color: var(--text); font-weight: 600; min-height: 44px; }
+  .neighbours a:hover { text-decoration: none; color: var(--accent); }
+  .neighbours .meta { font-weight: 400; font-size: 13px; }
+  .neighbours .next { align-items: flex-end; text-align: right; margin-left: auto; }
+  @media (max-width: 639px) {
+    .page { padding-top: 16px; }
+    h1 { font-size: 30px; }
+    .links { width: 100%; flex-direction: column; }
+    .links .btn { width: 100%; }
+    .media { margin: 20px 0 32px; }
+  }
+</style>

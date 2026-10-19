@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ter-unity",
+    "ordre": 1,
+    "poste": {
+      "fr": "Développeuse Unity en TER (Travail d'Etude et de Recherche)",
+      "en": "Unity Developer – TER (Research and Study Project)"
+    },
+    "structure": {
+      "fr": "Faculté des Sciences Jean Perrin",
+      "en": "Faculté des Sciences Jean Perrin (University of Artois)"
+    },
+    "debut": "2024-04",
+    "fin": "2024-07",
+    "description": {
+      "fr": "Développement d'un éditeur de Point & Click en trinôme afin de se familiariser sur Unity pour le Master 2.",
+      "en": "Development of a Point & Click game editor in a three-person team, as part of a Master's degree project to become familiar with Unity."
+    }
+  },
+  {
+    "id": "stage-android",
+    "ordre": 2,
+    "poste": {
+      "fr": "Stagiaire Développeuse Android",
+      "en": "Android Development Intern"
+    },
+    "structure": {
+      "fr": "Les Amis de Mandela - AFERTES d'Avion",
+      "en": "Les Amis de Mandela – AFERTES, Avion"
+    },
+    "debut": "2023-04",
+    "fin": "2023-07",
+    "description": {
+      "fr": "Développement d'une application Android liée à un site web, permettant d'enregistrer et de gérer les maraudes dans la région. J'ai aussi pu participer aux activités de l'association et de l'école afin de venir en aide aux personnes en situation de handicap et/ou de précarité. De plus, je me suis impliquée dans la vie administratif de l'association en allant au contact des partenaires et des acteurs locaux et régionaux.",
+      "en": "I developed an Android application connected to a website to register and manage outreach operations in the region. I took part in the association's and school's efforts to support people with disabilities and/or in precarious situations. I contributed to administrative tasks by interacting with partners and local/regional stakeholders."
+    }
+  },
+  {
+    "id": "stage-lml",
+    "ordre": 3,
+    "poste": {
+      "fr": "Stagiaire au LML (Laboratoire de Mathématiques de Lens)",
+      "en": "iOS Development Intern – LML (Mathematics Laboratory of Lens)"
+    },
+    "structure": {
+      "fr": "LML - Université d'Artois",
+      "en": "LML – University of Artois"
+    },
+    "debut": "2022-04",
+    "fin": "2022-07",
+    "description": {
+      "fr": "Développement d'une application IOS permettant de filmer un individu en marche et stocker ses mouvements en JSON. Une visualisation des mouvements est disponible sur un site web et sur l'application. Le but est de filmer des patients afin de déterminer s'il est atteint d'hydrocéphalie, une maladie neurodégénérative que l'on peut diagnostiquer en analysant la démarche du patient. Les données seraient donc ensuite transmises à un modèle de machine learning pour déterminer si le patient est atteint de la maladie.",
+      "en": "Developed an iOS application to record individuals walking and store their movement data in JSON format. The app and web platform allow movement visualization. The goal is to assist in diagnosing hydrocephalus (a neurodegenerative disease), by analysing patient steps data, which will later be used to train a machine learning model."
+    }
+  },
+  {
+    "id": "espaces-verts",
+    "ordre": 4,
+    "poste": {
+      "fr": "Agent technique aux espaces verts",
+      "en": "Technical Agent – Green Spaces Maintenance"
+    },
+    "structure": {
+      "fr": "Mairie de Sallaumines",
+      "en": "City Hall of Sallaumines"
+    },
+    "debut": "2019-07",
+    "fin": "2019-08",
+    "description": {
+      "fr": "Entretien des espaces verts de la ville de Sallaumines.",
+      "en": "Maintainenance the city's green spaces and public gardens."
+    }
+  }
+]
