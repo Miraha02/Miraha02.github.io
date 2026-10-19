@@ -10,7 +10,8 @@
  *          loop seamless: it stays clickable but is hidden from assistive technologies and skipped
  *          by the keyboard. With "reduce motion" the band does not move on its own but can still be
  *          dragged. Without JavaScript it is a plain row scrolled by hand. Below three items, there
- *          is no loop. Thumbnails load eagerly: the copy scrolls into view without any viewport
+ *          is no loop. On screens wider than one loop, the script adds as many copies as needed to
+ *          fill the band. Thumbnails load eagerly: the copy scrolls into view without any viewport
  *          intersection the lazy loader would wait for.
  *          The band only pauses on keyboard focus (:focus-visible), not after a mouse click, and
  *          resets its state when the page is restored from the back/forward cache.
@@ -116,11 +117,27 @@ const loopSeconds = items.length * 9;
       track.style.transform = `translate3d(${-offset}px, 0, 0)`;
     };
 
-    new ResizeObserver(() => {
+    const copyTemplate = track.querySelector<HTMLElement>('.items.copy');
+
+    /**
+     * @brief Adds copies of the list until the track covers the band width plus one full loop,
+     *        so that no empty space appears at the end of a loop on wide screens.
+     */
+    const ensureCopies = () => {
+      if (!copyTemplate || loopWidth <= 0) return;
+      const needed = Math.ceil(band.clientWidth / loopWidth) + 1;
+      while (track.children.length < needed) track.appendChild(copyTemplate.cloneNode(true));
+    };
+
+    const onResize = () => {
       loopWidth = list.offsetWidth;
+      ensureCopies();
       wrap();
       render();
-    }).observe(list);
+    };
+    const observer = new ResizeObserver(onResize);
+    observer.observe(list);
+    observer.observe(band);
 
     /** @brief Animation loop: advances the band unless it is paused, hovered, focused or dragged. */
     const tick = (now: number) => {
