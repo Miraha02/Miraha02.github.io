@@ -1,10 +1,10 @@
 {
   "ordre": 0,
   "categorie": "principal",
-  "publie": false,
+  "etat": "incomplet",
   "titre": {
-    "fr": "[Nom du jeu]",
-    "en": "[Game title]"
+    "fr": "[À COMPLÉTER : nom du jeu]",
+    "en": "[À COMPLÉTER: game title]"
   },
   "moteur": "Unreal Engine 5",
   "langages": [

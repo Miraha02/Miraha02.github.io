@@ -1,6 +1,7 @@
 {
   "ordre": 3,
   "categorie": "secondaire",
+  "etat": "a-mettre-a-jour",
   "titre": {
     "fr": "Éditeur de Point&Click",
     "en": "Point&Click Editor"

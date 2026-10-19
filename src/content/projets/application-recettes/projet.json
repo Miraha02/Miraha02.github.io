@@ -1,7 +1,7 @@
 {
   "ordre": 1,
   "categorie": "secondaire",
-  "publie": false,
+  "etat": "incomplet",
   "titre": {
     "fr": "Application recettes",
     "en": "Recipe app"

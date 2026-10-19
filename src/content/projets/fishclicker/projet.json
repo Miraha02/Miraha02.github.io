@@ -1,6 +1,7 @@
 {
   "ordre": 2,
   "categorie": "secondaire",
+  "etat": "a-mettre-a-jour",
   "titre": {
     "fr": "FishClicker",
     "en": "FishClicker"

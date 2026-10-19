@@ -1,6 +1,7 @@
 {
   "ordre": 2,
   "categorie": "principal",
+  "etat": "a-mettre-a-jour",
   "titre": {
     "fr": "Gameplay Ability System",
     "en": "Gameplay Ability System"

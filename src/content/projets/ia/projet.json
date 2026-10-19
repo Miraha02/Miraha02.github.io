@@ -1,6 +1,7 @@
 {
   "ordre": 3,
   "categorie": "principal",
+  "etat": "a-mettre-a-jour",
   "titre": {
     "fr": "IA : pathfinding et steering",
     "en": "AI: pathfinding and steering"
