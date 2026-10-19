@@ -1,7 +1,7 @@
 ---
 /**
  * @file    Header.astro
- * @brief   En-tête : nom, navigation vers les sections de l'accueil, sélecteur de langue FR / EN.
+ * @brief   En-tête : nom, navigation (page « Tous les projets », sections de l'accueil), sélecteur de langue FR / EN.
  * @details Sélecteur en texte (pas de drapeaux), libellé accessible dans la langue cible,
  *          attributs lang/hreflang et aria-current sur la langue active.
  *          En mobile, la navigation passe dans un menu <details> (fonctionne sans JavaScript).
@@ -18,10 +18,11 @@ interface Props {
 const { lang, langToHome = false } = Astro.props;
 const t = useTranslations(lang);
 const home = localePath(lang);
+const projectsPath = localePath(lang, 'projects');
 const links = [
-  { href: `${home}#projets`, label: t('nav.projects') },
-  { href: `${home}#parcours`, label: t('nav.background') },
-  { href: `${home}#contact`, label: t('nav.contact') },
+  { href: projectsPath, label: t('nav.projects'), current: Astro.url.pathname.startsWith(projectsPath) },
+  { href: `${home}#parcours`, label: t('nav.background'), current: false },
+  { href: `${home}#contact`, label: t('nav.contact'), current: false },
 ];
 ---
 <header class="site-header">
@@ -29,7 +30,7 @@ const links = [
     <a class="brand" href={home}>{site.name}</a>
 
     <nav class="nav-desktop" aria-label={t('nav.label')}>
-      {links.map((l) => <a href={l.href}>{l.label}</a>)}
+      {links.map((l) => <a href={l.href} aria-current={l.current ? 'page' : undefined}>{l.label}</a>)}
     </nav>
 
     <div class="right">
@@ -50,7 +51,7 @@ const links = [
       <details class="nav-mobile">
         <summary aria-label={t('nav.menu')}><Icon name="menu" size={18} /></summary>
         <nav aria-label={t('nav.label')}>
-          {links.map((l) => <a href={l.href}>{l.label}</a>)}
+          {links.map((l) => <a href={l.href} aria-current={l.current ? 'page' : undefined}>{l.label}</a>)}
         </nav>
       </details>
     </div>
@@ -72,6 +73,7 @@ const links = [
   .nav-desktop { display: flex; gap: 28px; font-size: 15px; margin-left: auto; }
   .nav-desktop a, .nav-mobile nav a { color: var(--text-2); }
   .nav-desktop a:hover, .nav-mobile nav a:hover { color: var(--text); text-decoration: none; }
+  .nav-desktop a[aria-current='page'], .nav-mobile nav a[aria-current='page'] { color: var(--text); font-weight: 500; }
   .right { display: flex; align-items: center; gap: 12px; }
   .lang { font-family: var(--font-mono); font-size: 14px; color: var(--text-3); white-space: nowrap; }
   .lang a { color: var(--text-3); display: inline-block; padding: 10px 2px; }

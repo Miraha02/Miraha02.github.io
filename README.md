@@ -49,6 +49,10 @@ La commande crée :
 - `"categorie"` : `principal` (cartes en avant), `secondaire` ou `archive` ; `"ordre"` règle l'ordre dans la catégorie (croissant).
 - Projet mis en avant (grande carte de l'accueil) : le projet `principal` **visible** au plus petit `"ordre"`. Un projet masqué est ignoré : le suivant prend sa place.
 
+### Page « Tous les projets »
+
+`/fr/projects/` et `/en/projects/` listent automatiquement tous les projets visibles, du plus récent au plus ancien (date de `"debut"`), avec leur catégorie. Le lien « Projets » du menu y mène. Filtres par moteur, d'après `"moteur"` : `UE5` (Unreal Engine 5.x), `Unity`, `Autre` (tout le reste). Un filtre sans projet n'est pas affiché. Rien à déclarer : un projet visible y apparaît de lui-même.
+
 ### État d'un projet
 
 `"etat"` est obligatoire et se règle à la main :

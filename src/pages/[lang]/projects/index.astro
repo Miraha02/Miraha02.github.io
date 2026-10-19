@@ -1,0 +1,184 @@
+---
+/**
+ * @file    [lang]/projects/index.astro
+ * @brief   "All projects" page (/fr/projects/, /en/projects/): every visible project as a list.
+ * @details Layout from the mock-up validated on 19/10/2026: one row per project (thumbnail, title,
+ *          engine · languages · team, period, category tag), newest first, engine filter buttons.
+ *          Without JavaScript the filter buttons stay hidden and the full list is shown.
+ */
+import { Image } from 'astro:assets';
+import Base from '../../../layouts/Base.astro';
+import Icon from '../../../components/Icon.astro';
+import { formatPeriod, langs, localePath, shortEngine, teamLabel, useTranslations, type Lang } from '../../../i18n/ui';
+import { getPublishedProjects } from '../../../lib/projects';
+import { getCoverImage } from '../../../lib/media';
+import { compareNewestFirst, countByFamily, engineFamily, ENGINE_FAMILIES } from '../../../lib/project-list';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+
+const lang = Astro.params.lang as Lang;
+const t = useTranslations(lang);
+
+const rows = (await getPublishedProjects())
+  .map((p) => ({
+    project: p,
+    start: p.data.debut,
+    end: p.data.fin,
+    title: p.data.titre[lang],
+  }))
+  .sort(compareNewestFirst)
+  .map(({ project: p, title }) => ({
+    id: p.id,
+    title,
+    href: localePath(lang, `projets/${p.id}`),
+    engine: p.data.moteur,
+    family: engineFamily(p.data.moteur),
+    meta: [shortEngine(p.data.moteur), p.data.langages.join(', '), teamLabel(p.data.equipe, lang)].join(' · '),
+    period: formatPeriod(p.data.debut, p.data.fin, lang),
+    category: p.data.categorie,
+    cover: getCoverImage(p.id, p.data.couverture),
+  }));
+
+const counts = countByFamily(rows.map((r) => r.engine));
+const countLabel = (n: number) => t(n > 1 ? 'projects.count' : 'projects.countOne', { n });
+const chips = [
+  { id: 'all', label: t('projects.filter.all'), count: rows.length },
+  ...ENGINE_FAMILIES.filter((f) => counts[f] > 0).map((f) => ({ id: f, label: t(`projects.filter.${f}`), count: counts[f] })),
+];
+---
+<Base lang={lang} title={t('projects.all')} description={t('projects.description')}>
+  <div class="container page">
+    <a class="back" href={localePath(lang)}><Icon name="arrow-left" />{t('nav.home')}</a>
+    <h1>{t('projects.all')}</h1>
+    <p class="summary">
+      <span data-count data-one={t('projects.countOne', { n: '{n}' })} data-many={t('projects.count', { n: '{n}' })} aria-live="polite">{countLabel(rows.length)}</span>{` · ${t('projects.sorted')}`}
+    </p>
+
+    <div class="filters" role="group" aria-label={t('projects.filterLabel')} data-filters hidden>
+      {chips.map((c, i) => (
+        <button type="button" class="chip" data-filter={c.id} aria-pressed={i === 0 ? 'true' : 'false'}>
+          {c.label} <span class="chip-count">{c.count}</span>
+        </button>
+      ))}
+    </div>
+
+    <ul class="list" role="list">
+      {rows.map((r) => (
+        <li data-family={r.family}>
+          <a href={r.href}>
+            <span class="thumb">
+              {r.cover && <Image src={r.cover} alt="" widths={[160, 320]} sizes="(min-width: 640px) 160px, 104px" />}
+            </span>
+            <span class="text">
+              <span class="title">{r.title}</span>
+              <span class="meta">{r.meta}</span>
+            </span>
+            <span class="extra">
+              <span class="period">{r.period}</span>
+              <span class:list={['tag', `tag-${r.category}`]}>{t(`category.${r.category}`)}</span>
+            </span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="empty" data-empty hidden>{t('projects.empty')}</p>
+  </div>
+</Base>
+
+<script>
+  /**
+   * @brief Engine filter: shows only the rows of the selected family and updates the count.
+   *        The buttons are revealed here, so the page stays fully usable without JavaScript.
+   */
+  const group = document.querySelector<HTMLElement>('[data-filters]');
+  const count = document.querySelector<HTMLElement>('[data-count]');
+  const empty = document.querySelector<HTMLElement>('[data-empty]');
+  const rows = [...document.querySelectorAll<HTMLElement>('li[data-family]')];
+  if (group && count && empty) {
+    const buttons = [...group.querySelectorAll<HTMLButtonElement>('[data-filter]')];
+    group.hidden = false;
+    for (const button of buttons) {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter ?? 'all';
+        for (const b of buttons) b.setAttribute('aria-pressed', String(b === button));
+        let shown = 0;
+        for (const row of rows) {
+          row.hidden = filter !== 'all' && row.dataset.family !== filter;
+          if (!row.hidden) shown += 1;
+        }
+        const template = (shown > 1 ? count.dataset.many : count.dataset.one) ?? '{n}';
+        count.textContent = template.replace('{n}', String(shown));
+        empty.hidden = shown > 0;
+      });
+    }
+  }
+</script>
+
+<style>
+  .page { padding-top: 32px; padding-bottom: 96px; }
+  .back { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; color: var(--text-2); font-family: var(--font-mono); font-size: 14px; }
+  .back:hover { color: var(--text); text-decoration: none; }
+  h1 { margin: 8px 0; font-size: 40px; line-height: 1.1; }
+  .summary { margin-bottom: 40px; font-family: var(--font-mono); font-size: 14px; color: var(--text-3); }
+
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+  .filters[hidden] { display: none; }
+  .chip {
+    min-height: 44px; padding: 8px 16px; border-radius: var(--radius-ctrl); cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px; font: 500 15px var(--font-sans);
+    background: transparent; color: var(--text); border: 1px solid var(--border-control);
+    transition: background-color .15s, border-color .15s, color .15s;
+  }
+  .chip:hover { background: var(--surface-2); }
+  .chip[aria-pressed='true'] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+  .chip-count { font-family: var(--font-mono); font-size: 13px; opacity: 0.8; }
+
+  .list { list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+  /* Every row draws its top border; the first visible one is clipped by the list's overflow. */
+  .list li { border-top: 1px solid var(--border); margin-top: -1px; }
+  .list li[hidden] { display: none; }
+  .list a {
+    display: grid; grid-template-columns: 160px minmax(0, 1fr) 220px 120px 20px; align-items: center; gap: 24px;
+    padding: 16px 20px; color: var(--text); transition: background-color .15s;
+  }
+  .list a:hover { background: var(--surface-2); text-decoration: none; }
+  .thumb { display: block; width: 160px; aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden; background: var(--surface-2); }
+  .thumb :global(img) { width: 100%; height: 100%; object-fit: cover; }
+  .text { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+  .extra { display: contents; }
+  .title { font-size: 18px; font-weight: 600; line-height: 1.3; }
+  .meta, .period { font-family: var(--font-mono); font-size: 13px; color: var(--text-3); }
+  .period { color: var(--text-2); }
+  .tag { justify-self: start; padding: 2px 10px; border-radius: 999px; border: 1px solid; font-family: var(--font-mono); font-size: 12px; white-space: nowrap; }
+  .tag-principal { color: var(--accent); border-color: var(--accent); }
+  .tag-secondaire { color: var(--text-2); border-color: var(--border-control); }
+  .tag-archive { color: var(--text-3); border-color: var(--border); }
+  .arrow { color: var(--text-3); }
+  .empty { margin-top: 16px; color: var(--text-2); }
+
+  @media (max-width: 899px) {
+    .list a { grid-template-columns: 160px minmax(0, 1fr) auto; grid-template-areas: 'thumb text tag' 'thumb period tag'; row-gap: 4px; }
+    .thumb { grid-area: thumb; }
+    .text { grid-area: text; }
+    .period { grid-area: period; }
+    .tag { grid-area: tag; }
+    .arrow { display: none; }
+  }
+  @media (max-width: 639px) {
+    .page { padding-top: 16px; padding-bottom: 48px; }
+    h1 { font-size: 30px; }
+    .summary { margin-bottom: 24px; font-size: 13px; }
+    .chip { padding: 8px 14px; font-size: 14px; }
+    .list a { grid-template-columns: 104px minmax(0, 1fr); grid-template-areas: none; align-items: start; gap: 6px 14px; padding: 14px; }
+    .thumb { grid-area: auto; grid-row: 1 / span 2; grid-column: 1; width: 104px; }
+    .text { grid-area: auto; grid-row: 1; grid-column: 2; }
+    .extra { grid-row: 2; grid-column: 2; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+    .title { font-size: 16px; }
+    .meta { font-size: 12px; }
+    .tag { order: -1; font-size: 11px; padding: 1px 8px; }
+    .period { font-size: 12px; }
+  }
+</style>

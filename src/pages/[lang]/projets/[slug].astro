@@ -40,7 +40,7 @@ const linkIcon = (type: string) => (type === 'code' ? 'code' : type === 'build' 
 ---
 <Base lang={lang} title={d.titre[lang]} description={description} ogImage={cover}>
   <div class="container page">
-    <a class="back" href={`${localePath(lang)}#projets`}><Icon name="arrow-left" />{t('projects.all')}</a>
+    <a class="back" href={localePath(lang, 'projects')}><Icon name="arrow-left" />{t('projects.all')}</a>
 
     <header class="head">
       <div>
