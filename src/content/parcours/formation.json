@@ -11,10 +11,7 @@
       "en": "Faculté des Sciences Jean Perrin - Lens"
     },
     "debut": "2023",
-    "finTexte": {
-      "fr": "Aujourd'hui",
-      "en": "Present"
-    }
+    "fin": "2025"
   },
   {
     "id": "licence",
