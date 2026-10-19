@@ -1,17 +1,18 @@
 {
   "ordre": 1,
   "categorie": "secondaire",
-  "etat": "incomplet",
+  "etat": "complet",
   "titre": {
-    "fr": "Application recettes",
-    "en": "Recipe app"
+    "fr": "Vesta-Recette",
+    "en": "Vesta-Recipe"
   },
   "moteur": "Android",
   "langages": [
     "Kotlin",
-    "TypeScript"
+    "TypeScript",
+    "Jetpack compose"
   ],
   "equipe": 1,
-  "debut": "2026",
+  "debut": "2026-07",
   "enCours": true
 }
