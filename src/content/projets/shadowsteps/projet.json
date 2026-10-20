@@ -38,16 +38,5 @@
       "url": "https://drive.google.com/drive/folders/1oS4s9STZIu3wnjLUf3Rx7lX5Sw9sFNvG?usp=sharing"
     }
   ],
-  "code": [
-    {
-      "chemin": "Source/ShadowSteps/AI/ShadowStepAIController.cpp"
-    },
-    {
-      "chemin": "Source/ShadowSteps/Components/PatrolComponent.cpp"
-    },
-    {
-      "chemin": "Source/ShadowSteps/Character/ShadowStepCharacter.cpp"
-    }
-  ],
   "couverture": "ShadowSteps3.png"
 }

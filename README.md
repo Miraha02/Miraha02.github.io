@@ -22,7 +22,7 @@ Le déploiement est automatique à chaque push sur `main` (`.github/workflows/de
 
 ## Tester en local
 
-1. **Rendu** : `npm run dev`, puis <http://localhost:4321/fr/>. Le site local applique les mêmes règles de visibilité que le site en ligne. Page d'un projet : `/fr/projets/<slug>/`. Si une modification de `projet.json` ou d'un `.md` n'apparaît pas, relancer le serveur.
+1. **Rendu** : `npm run dev`, puis <http://localhost:4321/fr/>. Le site local applique les mêmes règles de visibilité que le site en ligne. Page d'un projet : `/fr/projets/<slug>/`. Si une modification de `projet.json` ou d'un `.md` n'apparaît pas, relancer le serveur. Un projet masqué pour une erreur de texte est signalé dans le terminal.
 2. **État des projets** : `npm run check:projects`, après chaque modification d'un `projet.json` ou d'une description.
 3. **Avant un push** : `npm run build`. S'il passe en local, le déploiement passera aussi ; `npm run preview` montre alors le site tel qu'il sera publié.
 
@@ -40,15 +40,45 @@ La commande crée :
 - `src/content/projets/<slug>/projet.json`, `fr.md`, `en.md` ;
 - `src/assets/projets/<slug>/image/`, `gif/`, `video/`.
 
-`<slug>` est tiré du nom (`Mon_Projet` donne `mon-projet`) et devient l'adresse `/fr/projets/<slug>/`. La commande refuse un nom déjà utilisé. Le projet est créé en `"etat": "incomplet"` avec des marqueurs `[À COMPLÉTER]` : il reste masqué tant qu'il n'est pas rempli.
+`<slug>` est tiré du nom (`Mon_Projet` donne `mon-projet`) et devient l'adresse `/fr/projets/<slug>/`. La commande refuse un nom déjà utilisé. Le projet est créé en `"etat": "incomplet"`, avec des marqueurs `[À COMPLÉTER]` dans `projet.json` et le gabarit de texte vide dans `fr.md` et `en.md` : il reste masqué tant qu'il n'est pas rempli.
 
 ### Remplir un projet
 
 - `projet.json` : données communes (le schéma est dans `src/content.config.ts`).
-- `fr.md` et `en.md` : la description dans chaque langue, en Markdown.
+- `fr.md` et `en.md` : les textes dans chaque langue, au format décrit ci-dessous.
 - `"categorie"` : `principal` (cartes en avant), `secondaire` ou `archive` ; `"ordre"` règle l'ordre dans la catégorie (croissant).
 - Projet mis en avant (grande carte de l'accueil) : le projet `principal` **visible** au plus petit `"ordre"`. Un projet masqué est ignoré : le suivant prend sa place.
 - Bande « Autres projets » de l'accueil (défilement continu, pause au survol, au clavier et par bouton) : tous les autres projets visibles, archives exclues, dans l'ordre des catégories puis de `"ordre"`. Les archives restent visibles sur la page « Tous les projets ».
+
+### Écrire les textes (`fr.md`, `en.md`)
+
+Chaque texte se place entre les accolades d'une balise :
+
+```
+[TAGLINE] {Une ligne affichée sous le titre du projet et sur sa carte}
+
+[SECTION] {Titre de la section}
+[PARAGRAPH] {Premier paragraphe}
+[PARAGRAPH] {Deuxième paragraphe}
+
+[SECTION] {}
+[PARAGRAPH] {}
+```
+
+| Balise | Affichage | Si rien entre `{}` |
+|---|---|---|
+| `[TAGLINE]` | Sous le titre de la page projet et sur la carte de l'accueil ; sert aussi de description pour les moteurs de recherche. Une seule par fichier | Ignorée ; la description des moteurs de recherche reprend alors le premier paragraphe |
+| `[SECTION]` | Intertitre | Les paragraphes qui suivent s'affichent sans intertitre |
+| `[PARAGRAPH]` | Paragraphe | Ignoré |
+
+- Ajouter des sections ou des paragraphes : copier une ligne. Les blocs vides peuvent rester, ils n'apparaissent pas.
+- Un texte peut tenir sur plusieurs lignes ; une ligne vide à l'intérieur des `{}` commence un nouveau paragraphe.
+- Texte simple : pas de gras ni de lien. Pour écrire `}`, taper `\}` (et `\\` pour `\`).
+- Les balises s'écrivent en majuscules ou en minuscules, sans accent.
+- Une balise inconnue, une `{` ou une `}` manquante, ou du texte hors des `{}` : le projet est masqué et l'erreur est signalée avec le fichier et le numéro de ligne (`npm run check:projects`, et dans le terminal de `npm run dev`).
+- Un fichier dont tous les blocs sont vides compte comme une description absente : le projet est masqué.
+
+Le format est lu par `src/lib/description.mjs` (tests : `tests/description.test.ts`).
 
 ### Page « Tous les projets »
 
@@ -66,8 +96,8 @@ La commande crée :
 
 Contrôles automatiques (`npm run check:projects`, lancé aussi à la fin de `npm run build`) :
 
-- **Textes à compléter** : un `[À COMPLÉTER]` restant, ou un `fr.md` / `en.md` absent ou vide. Le projet est **masqué quel que soit son état déclaré**. S'il était déclaré visible, une erreur est signalée.
-- **À mettre à jour** : aucun média, `couverture` introuvable, aucun lien, fichier de `code` sans `url`.
+- **Textes à compléter** : un `[À COMPLÉTER]` restant, un `fr.md` / `en.md` absent ou sans aucun texte, ou une erreur de format. Le projet est **masqué quel que soit son état déclaré**. S'il était déclaré visible, une erreur est signalée.
+- **À mettre à jour** : aucun média, `couverture` introuvable, aucun lien.
 
 Ces contrôles ne bloquent jamais le build. Sur GitHub, chaque problème apparaît comme une annotation dans l'onglet *Actions*, avec un tableau récapitulatif dans le résumé du job. Le workflow `check.yml` lance le même build sur toutes les branches sauf `main`, sans publier.
 

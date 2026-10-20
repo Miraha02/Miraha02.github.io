@@ -1,1 +1,7 @@
-Application developed during my third-year internship. It was created alongside a website. It allowed users to record different outreach events in the region, provided they were approved by a member of the 'Les Amis de Mandela' association based at AFERTES, Avion. It included an account system for partners wishing to post their outreach events. The project was later abandoned.
+[TAGLINE] {}
+
+[SECTION] {}
+[PARAGRAPH] {Application developed during my third-year internship. It was created alongside a website. It allowed users to record different outreach events in the region, provided they were approved by a member of the 'Les Amis de Mandela' association based at AFERTES, Avion. It included an account system for partners wishing to post their outreach events. The project was later abandoned.}
+
+[SECTION] {}
+[PARAGRAPH] {}

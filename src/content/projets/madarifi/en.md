@@ -1,1 +1,7 @@
-This project comes from a 2D Unreal Engine (UE5) game tutorial. It was initially designed entirely in Blueprint but I decided to make it in C++ as much as possible. This choice was driven by my desire to improve my C++ skills while also increasing game performance and teamwork acessibility. I still kept logic in implementation of specific objects and mechanics that was aimed to be developed in Blueprint. I have been able to discover new functionalities such as sprites and 2D animation (with Paper Flipbooks) but also revisited features I had not fully mastered before, such as materials and Niagara particles. All my previous 2D projects were made in Unity so I found it really interesting to learn 2D Development on Unreal. Thanks to this project, I am now able to develop both in 2D and 3D using UE5.
+[TAGLINE] {}
+
+[SECTION] {}
+[PARAGRAPH] {This project comes from a 2D Unreal Engine (UE5) game tutorial. It was initially designed entirely in Blueprint but I decided to make it in C++ as much as possible. This choice was driven by my desire to improve my C++ skills while also increasing game performance and teamwork acessibility. I still kept logic in implementation of specific objects and mechanics that was aimed to be developed in Blueprint. I have been able to discover new functionalities such as sprites and 2D animation (with Paper Flipbooks) but also revisited features I had not fully mastered before, such as materials and Niagara particles. All my previous 2D projects were made in Unity so I found it really interesting to learn 2D Development on Unreal. Thanks to this project, I am now able to develop both in 2D and 3D using UE5.}
+
+[SECTION] {}
+[PARAGRAPH] {}

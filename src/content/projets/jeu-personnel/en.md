@@ -1,1 +1,9 @@
-[À COMPLÉTER: English description]
+[TAGLINE] {}
+
+[SECTION] {}
+[PARAGRAPH] {}
+[PARAGRAPH] {}
+
+[SECTION] {}
+[PARAGRAPH] {}
+[PARAGRAPH] {}
