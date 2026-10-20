@@ -2,17 +2,38 @@
   "ordre": 1,
   "categorie": "secondaire",
   "etat": "complet",
-  "titre": {
-    "fr": "Vesta-Recette",
-    "en": "Vesta-Recipe"
-  },
+  "titre": { "fr": "Vesta-Recette", "en": "Vesta-Recipe" },
   "moteur": "Android",
-  "langages": [
-    "Kotlin",
-    "TypeScript",
-    "Jetpack compose"
-  ],
+  "langages": ["Kotlin", "TypeScript", "Jetpack compose"],
   "equipe": 1,
   "debut": "2026-07",
-  "enCours": true
+  "fin": "",
+  "duree": { "fr": "", "en": "" },
+  "systemes": { "fr": [""], "en": [""] },
+  "couverture": "",
+  "liens": [
+    {
+      "type": "code",
+      "url": "",
+      "label": { "fr": "", "en": "" }
+    },
+    {
+      "type": "build",
+      "url": "",
+      "label": { "fr": "", "en": "" }
+    }
+  ],
+  "youtube": [
+    {
+      "id": "",
+      "titre": { "fr": "", "en": "" }
+    }
+  ],
+  "code": [
+    {
+      "chemin": "",
+      "url": "",
+      "note": { "fr": "", "en": "" }
+    }
+  ]
 }

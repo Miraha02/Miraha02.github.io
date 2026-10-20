@@ -29,7 +29,7 @@ const accroche = (await getProjectText(project.id, lang)).tagline;
       : <span class="placeholder" />}
   </a>
   <div class="body">
-    {large && <p class="eyebrow-accent">{t('projects.main')}{d.enCours && ` · ${t('projects.inProgress')}`}</p>}
+    {large && <p class="eyebrow-accent">{t('projects.main')}{!d.fin && ` · ${t('projects.inProgress')}`}</p>}
     <h3><a href={href}>{d.titre[lang]}</a></h3>
     <p class="meta">{meta}</p>
     {accroche && <p class="pitch">{accroche}</p>}

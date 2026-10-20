@@ -2,27 +2,41 @@
   "ordre": 3,
   "categorie": "secondaire",
   "etat": "a-mettre-a-jour",
-  "titre": {
-    "fr": "Éditeur de Point&Click",
-    "en": "Point&Click Editor"
-  },
+  "titre": { "fr": "Éditeur de Point&Click", "en": "Point&Click Editor" },
   "moteur": "Unity",
-  "langages": [
-    "C#"
-  ],
+  "langages": ["C#"],
   "equipe": 3,
   "debut": "2024-04",
   "fin": "2024-07",
+  "duree": { "fr": "", "en": "" },
   "systemes": {
-    "fr": [
-      "Éditeur de jeu",
-      "Données JSON",
-      "Plastic SCM"
-    ],
-    "en": [
-      "Game editor",
-      "JSON data",
-      "Plastic SCM"
-    ]
-  }
+    "fr": ["Éditeur de jeu", "Données JSON", "Plastic SCM"],
+    "en": ["Game editor", "JSON data", "Plastic SCM"]
+  },
+  "couverture": "",
+  "liens": [
+    {
+      "type": "code",
+      "url": "",
+      "label": { "fr": "", "en": "" }
+    },
+    {
+      "type": "build",
+      "url": "",
+      "label": { "fr": "", "en": "" }
+    }
+  ],
+  "youtube": [
+    {
+      "id": "",
+      "titre": { "fr": "", "en": "" }
+    }
+  ],
+  "code": [
+    {
+      "chemin": "",
+      "url": "",
+      "note": { "fr": "", "en": "" }
+    }
+  ]
 }

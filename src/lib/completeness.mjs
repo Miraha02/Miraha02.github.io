@@ -6,9 +6,10 @@
  *          - "a-mettre-a-jour" : visible, warning;
  *          - "incomplet"       : hidden, warning.
  *          Independently of the declared state, a project whose texts are not written yet
- *          (a `[À COMPLÉTER]` marker left, a missing or empty description in one language, or a
- *          description that breaks the format of src/lib/description.mjs) is always hidden, so a
- *          placeholder can never reach the published site.
+ *          (a required projet.json field left empty, a `[À COMPLÉTER]` marker left, a missing or
+ *          empty description in one language, or a description that breaks the format of
+ *          src/lib/description.mjs) is always hidden, so a placeholder can never reach the site.
+ *          Optional projet.json fields left empty ("") are simply ignored.
  *          Plain JavaScript with JSDoc so that Node can run it without a build step.
  */
 
@@ -48,6 +49,31 @@ export function collectStrings(value, path = '') {
   return [];
 }
 
+/** Required projet.json fields: an empty value hides the project. */
+export const REQUIRED_FIELDS = ['titre.fr', 'titre.en', 'moteur', 'langages', 'debut'];
+
+/**
+ * @brief  Reads a dotted path in a JSON-like value.
+ * @param  {unknown} value Root value.
+ * @param  {string} path Dotted path (e.g. "titre.fr").
+ * @return {unknown}
+ */
+function getPath(value, path) {
+  return path.split('.').reduce((v, k) => (v && typeof v === 'object' ? /** @type {Record<string, unknown>} */ (v)[k] : undefined), value);
+}
+
+/**
+ * @brief  Tells whether a value counts as "not filled": missing, blank string, or list of blank strings.
+ * @param  {unknown} value Field value.
+ * @return {boolean}
+ */
+export function isBlank(value) {
+  if (value === undefined || value === null) return true;
+  if (typeof value === 'string') return value.trim() === '';
+  if (Array.isArray(value)) return value.every(isBlank);
+  return false;
+}
+
 /**
  * @brief  Lists the text problems that make a project unpublishable.
  * @param  {{ data: unknown; descriptions: Record<string, string | undefined> }} project
@@ -56,6 +82,9 @@ export function collectStrings(value, path = '') {
  */
 export function findTextIssues({ data, descriptions }) {
   const issues = [];
+  for (const field of REQUIRED_FIELDS) {
+    if (isBlank(getPath(data, field))) issues.push(`projet.json : « ${field} » vide`);
+  }
   for (const { path, text } of collectStrings(data)) {
     if (hasTodoMarker(text)) issues.push(`projet.json : « ${path} » contient ${TODO_MARKER}`);
   }
@@ -73,21 +102,45 @@ export function findTextIssues({ data, descriptions }) {
 }
 
 /**
+ * @brief  Lists translated texts filled in one language only (e.g. "duree.fr" set, "duree.en" empty).
+ * @param  {unknown} value Content of projet.json.
+ * @param  {string} [path] Path of `value` (used for recursion).
+ * @return {string[]} One message per half-filled pair.
+ */
+export function findHalfTranslated(value, path = '') {
+  if (Array.isArray(value)) return value.flatMap((v, i) => findHalfTranslated(v, `${path}[${i}]`));
+  if (!value || typeof value !== 'object') return [];
+  const obj = /** @type {Record<string, unknown>} */ (value);
+  const keys = Object.keys(obj);
+  if (keys.length === 2 && 'fr' in obj && 'en' in obj) {
+    const fr = isBlank(obj.fr);
+    const en = isBlank(obj.en);
+    if (fr !== en) return [`projet.json : « ${path}.${fr ? 'fr' : 'en'} » vide alors que « ${path}.${fr ? 'en' : 'fr'} » est rempli`];
+    return [];
+  }
+  return keys.flatMap((k) => findHalfTranslated(obj[k], path ? `${path}.${k}` : k));
+}
+
+/**
  * @brief  Lists the problems that do not hide a project but call for an update.
  * @param  {{
  *           mediaCount: number;
  *           imageNames: string[];
  *           couverture?: string;
- *           liens: unknown[];
+ *           liens: { url?: string }[];
+ *           data?: unknown;
  *         }} project
- *         `mediaCount`: images + GIFs + videos + YouTube entries; `imageNames`: files of image/.
+ *         `mediaCount`: images + GIFs + videos + YouTube entries with an id; `imageNames`: files of
+ *         image/; `liens`: entries of projet.json (those without url are ignored); `data`: whole
+ *         projet.json, checked for half-translated texts.
  * @return {string[]}
  */
-export function findUpdateIssues({ mediaCount, imageNames, couverture, liens }) {
+export function findUpdateIssues({ mediaCount, imageNames, couverture, liens, data }) {
   const issues = [];
   if (mediaCount === 0) issues.push('aucun média (image, GIF, vidéo ou YouTube)');
   if (couverture && !imageNames.includes(couverture)) issues.push(`couverture « ${couverture} » introuvable dans image/`);
-  if (liens.length === 0) issues.push('aucun lien (code, build ou version jouable)');
+  if (!liens.some((l) => !isBlank(l.url))) issues.push('aucun lien (code, build ou version jouable)');
+  if (data !== undefined) issues.push(...findHalfTranslated(data));
   return issues;
 }
 

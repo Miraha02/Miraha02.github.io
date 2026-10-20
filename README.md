@@ -40,14 +40,76 @@ La commande crée :
 - `src/content/projets/<slug>/projet.json`, `fr.md`, `en.md` ;
 - `src/assets/projets/<slug>/image/`, `gif/`, `video/`.
 
-`<slug>` est tiré du nom (`Mon_Projet` donne `mon-projet`) et devient l'adresse `/fr/projets/<slug>/`. La commande refuse un nom déjà utilisé. Le projet est créé en `"etat": "incomplet"`, avec des marqueurs `[À COMPLÉTER]` dans `projet.json` et le gabarit de texte vide dans `fr.md` et `en.md` : il reste masqué tant qu'il n'est pas rempli.
+`<slug>` est tiré du nom (`Mon_Projet` donne `mon-projet`) et devient l'adresse `/fr/projets/<slug>/`. La commande refuse un nom déjà utilisé. Le projet est créé en `"etat": "incomplet"`, avec un `projet.json` qui contient **tous les champs, vides**, et le gabarit de texte vide dans `fr.md` et `en.md` : il reste masqué tant que les champs obligatoires et les textes ne sont pas remplis.
 
-### Remplir un projet
+### Remplir `projet.json`
 
-- `projet.json` : données communes (le schéma est dans `src/content.config.ts`).
+Le fichier créé par la commande contient déjà tous les champs ; il suffit de remplir les valeurs. **Une valeur vide (`""`) est ignorée** : un champ facultatif vide n'apparaît pas sur le site, un champ obligatoire vide masque le projet (signalé par `npm run check:projects`). Le schéma complet est dans `src/content.config.ts`.
+
+```json
+{
+  "ordre": 5,
+  "categorie": "secondaire",
+  "etat": "incomplet",
+  "titre": { "fr": "Nom du projet", "en": "Project name" },
+  "moteur": "",
+  "langages": [""],
+  "equipe": 1,
+  "debut": "2026-10",
+  "fin": "",
+  "duree": { "fr": "", "en": "" },
+  "systemes": { "fr": [""], "en": [""] },
+  "couverture": "",
+  "liens": [
+    { "type": "code",  "url": "", "label": { "fr": "", "en": "" } },
+    { "type": "build", "url": "", "label": { "fr": "", "en": "" } }
+  ],
+  "youtube": [{ "id": "", "titre": { "fr": "", "en": "" } }],
+  "code": [{ "chemin": "", "url": "", "note": { "fr": "", "en": "" } }]
+}
+```
+
+| Champ | Obligatoire | Rôle et affichage | Si vide |
+|---|---|---|---|
+| `ordre` | Oui | Position dans la catégorie (croissant). Le projet `principal` visible au plus petit `ordre` est la grande carte de l'accueil. | – |
+| `categorie` | Oui | `principal` (cartes mises en avant), `secondaire` ou `archive` (bloc replié, page « Tous les projets »). | – |
+| `etat` | Oui | `complet`, `a-mettre-a-jour` ou `incomplet` (voir « État d'un projet »). | – |
+| `titre` | Oui | Nom du projet, FR et EN : titre de la page, cartes, listes, onglet du navigateur. | Projet masqué |
+| `moteur` | Oui | Tuile « Moteur » ; sert aussi aux filtres UE5 / Unity / Autre. Ex. `"Unreal Engine 5.5"`. | Projet masqué |
+| `langages` | Oui | Tuile « Langages », une entrée par langage : `["C++", "Blueprint"]`. | Projet masqué |
+| `equipe` | Oui | Nombre de personnes : `1` affiche « Solo », `2` « Binôme », plus « Équipe de N ». | – |
+| `debut` | Oui | Date de début : `AAAA`, `AAAA-MM` ou `AAAA-MM-JJ`. Sert au tri (du plus récent au plus ancien). | Projet masqué |
+| `fin` | Non | Date de fin, même format. | Projet considéré **en cours** : seule la date de début s'affiche, et la grande carte de l'accueil ajoute « En développement » |
+| `duree` | Non | Durée lisible, FR et EN : `{ "fr": "3 jours", "en": "3 days" }`. Remplace les dates dans la tuile (les dates passent en dessous). | Tuile « Dates » à la place |
+| `systemes` | Non | Tuile « Systèmes clés », une entrée par système, FR et EN. | Tuile absente |
+| `couverture` | Non | Nom d'un fichier de `image/` utilisé comme vignette (cartes, listes, partage sur les réseaux). | Première image du dossier |
+| `liens` | Non | Boutons sous le titre (voir ci-dessous). | Lien ignoré |
+| `youtube` | Non | Vidéos YouTube de la visionneuse : `id` = les 11 caractères après `watch?v=` ou `youtu.be/`, `titre` = libellé FR et EN. | Vidéo ignorée ; sans `titre`, le nom du projet |
+| `code` | Non | Section « Code à consulter » (voir ci-dessous). | Ligne ignorée |
+
+**Liens (`liens`)** : un bouton par entrée, dans l'ordre (le premier est mis en avant). Autant d'entrées que nécessaire : pour deux builds, mettre deux entrées `"type": "build"` et les distinguer avec `label`.
+
+| `type` | Icône | Libellé par défaut (si `label` vide) |
+|---|---|---|
+| `code` | Code | « Code source » / « Source code » |
+| `build` | Téléchargement | « Télécharger le build » / « Download build » |
+| `play` | Lien externe | « Jouer en ligne » / « Play online » |
+| `other` | Lien externe | l'adresse elle-même (remplir `label`) |
+
+**Code à consulter (`code`)** : des fichiers précis à lire, affichés en liste en bas de la page projet, pour guider un recruteur dans un dépôt. Le bouton `liens` de type `code` ouvre le dépôt entier ; `code` pointe vers un fichier et dit ce qu'il montre.
+
+- `chemin` : chemin affiché, ex. `Source/ShadowSteps/AI/ShadowStepAIController.cpp`.
+- `url` : lien direct vers le fichier sur GitHub (ouvrir le fichier sur github.com et copier l'adresse).
+- `note` : une phrase FR et EN sur ce que montre le fichier (facultatif).
+- Une ligne n'apparaît que si `chemin` et `url` sont remplis ; la section entière n'apparaît que si au moins une ligne est complète.
+
+**Ajouter une entrée** (lien, vidéo, fichier de code, système, langage) : copier l'entrée existante, la coller après une virgule, puis la remplir. Les entrées vides peuvent rester.
+
+**Texte traduit rempli dans une seule langue** (ex. `duree.fr` rempli, `duree.en` vide) : avertissement au build, le projet reste visible.
+
+### Remplir les autres fichiers
+
 - `fr.md` et `en.md` : les textes dans chaque langue, au format décrit ci-dessous.
-- `"categorie"` : `principal` (cartes en avant), `secondaire` ou `archive` ; `"ordre"` règle l'ordre dans la catégorie (croissant).
-- Projet mis en avant (grande carte de l'accueil) : le projet `principal` **visible** au plus petit `"ordre"`. Un projet masqué est ignoré : le suivant prend sa place.
 - Bande « Autres projets » de l'accueil (défilement continu, pause au survol, au clavier et par bouton) : tous les autres projets visibles, archives exclues, dans l'ordre des catégories puis de `"ordre"`. Les archives restent visibles sur la page « Tous les projets ».
 
 ### Écrire les textes (`fr.md`, `en.md`)
@@ -96,8 +158,8 @@ Le format est lu par `src/lib/description.mjs` (tests : `tests/description.test.
 
 Contrôles automatiques (`npm run check:projects`, lancé aussi à la fin de `npm run build`) :
 
-- **Textes à compléter** : un `[À COMPLÉTER]` restant, un `fr.md` / `en.md` absent ou sans aucun texte, ou une erreur de format. Le projet est **masqué quel que soit son état déclaré**. S'il était déclaré visible, une erreur est signalée.
-- **À mettre à jour** : aucun média, `couverture` introuvable, aucun lien.
+- **Textes à compléter** : un champ obligatoire de `projet.json` vide (`titre`, `moteur`, `langages`, `debut`), un `[À COMPLÉTER]` restant (ancien marqueur, toujours détecté), un `fr.md` / `en.md` absent ou sans aucun texte, ou une erreur de format. Le projet est **masqué quel que soit son état déclaré**. S'il était déclaré visible, une erreur est signalée.
+- **À mettre à jour** : aucun média, `couverture` introuvable, aucun lien rempli, un texte traduit rempli dans une seule langue.
 
 Ces contrôles ne bloquent jamais le build. Sur GitHub, chaque problème apparaît comme une annotation dans l'onglet *Actions*, avec un tableau récapitulatif dans le résumé du job. Le workflow `check.yml` lance le même build sur toutes les branches sauf `main`, sans publier.
 

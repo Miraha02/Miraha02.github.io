@@ -2,41 +2,46 @@
   "ordre": 1,
   "categorie": "principal",
   "etat": "a-mettre-a-jour",
-  "titre": {
-    "fr": "ShadowSteps",
-    "en": "ShadowSteps"
-  },
+  "titre": { "fr": "ShadowSteps", "en": "ShadowSteps" },
   "moteur": "Unreal Engine 5.5",
-  "langages": [
-    "C++",
-    "Blueprint"
-  ],
+  "langages": ["C++", "Blueprint"],
   "equipe": 1,
   "debut": "2025-04-14",
   "fin": "2025-04-17",
-  "duree": {
-    "fr": "3 jours",
-    "en": "3 days"
-  },
+  "duree": { "fr": "3 jours", "en": "3 days" },
   "systemes": {
-    "fr": [
-      "IA (perception, Behavior Tree)",
-      "Animations, Anim Notifies",
-      "Ambiance sonore",
-      "Checkpoints"
-    ],
-    "en": [
-      "AI (perception, Behavior Tree)",
-      "Animations, Anim Notifies",
-      "Sound design",
-      "Checkpoints"
-    ]
+    "fr": ["IA (perception, Behavior Tree)", "Animations, Anim Notifies", "Ambiance sonore", "Checkpoints"],
+    "en": ["AI (perception, Behavior Tree)", "Animations, Anim Notifies", "Sound design", "Checkpoints"]
   },
+  "couverture": "ShadowSteps3.png",
   "liens": [
     {
       "type": "build",
-      "url": "https://drive.google.com/drive/folders/1oS4s9STZIu3wnjLUf3Rx7lX5Sw9sFNvG?usp=sharing"
+      "url": "https://drive.google.com/drive/folders/1oS4s9STZIu3wnjLUf3Rx7lX5Sw9sFNvG?usp=sharing",
+      "label": { "fr": "", "en": "" }
     }
   ],
-  "couverture": "ShadowSteps3.png"
+  "youtube": [
+    {
+      "id": "",
+      "titre": { "fr": "", "en": "" }
+    }
+  ],
+  "code": [
+    {
+      "chemin": "Source/ShadowSteps/AI/ShadowStepAIController.cpp",
+      "url": "",
+      "note": { "fr": "", "en": "" }
+    },
+    {
+      "chemin": "Source/ShadowSteps/Components/PatrolComponent.cpp",
+      "url": "",
+      "note": { "fr": "", "en": "" }
+    },
+    {
+      "chemin": "Source/ShadowSteps/Character/ShadowStepCharacter.cpp",
+      "url": "",
+      "note": { "fr": "", "en": "" }
+    }
+  ]
 }

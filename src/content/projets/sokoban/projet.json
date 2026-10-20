@@ -2,21 +2,33 @@
   "ordre": 3,
   "categorie": "archive",
   "etat": "a-mettre-a-jour",
-  "titre": {
-    "fr": "Sokoban",
-    "en": "Sokoban"
-  },
+  "titre": { "fr": "Sokoban", "en": "Sokoban" },
   "moteur": "Visual Studio Code",
-  "langages": [
-    "Python"
-  ],
+  "langages": ["Python"],
   "equipe": 2,
   "debut": "2020-04",
   "fin": "2020-05",
+  "duree": { "fr": "", "en": "" },
+  "systemes": { "fr": [""], "en": [""] },
+  "couverture": "",
   "liens": [
     {
       "type": "code",
-      "url": "https://github.com/Miraha02/ihmprojet-Hana/tree/master"
+      "url": "https://github.com/Miraha02/ihmprojet-Hana/tree/master",
+      "label": { "fr": "", "en": "" }
+    }
+  ],
+  "youtube": [
+    {
+      "id": "",
+      "titre": { "fr": "", "en": "" }
+    }
+  ],
+  "code": [
+    {
+      "chemin": "",
+      "url": "",
+      "note": { "fr": "", "en": "" }
     }
   ]
 }

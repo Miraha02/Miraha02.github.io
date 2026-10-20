@@ -2,11 +2,10 @@
  * @file    project-template.mjs
  * @brief   Pure helpers of the project generator: slug, default files, folder layout.
  * @details Kept free of file-system access so that they can be unit tested.
- *          A generated project is always declared "incomplet", contains `[À COMPLÉTER]` markers
- *          in projet.json and empty text templates in fr.md / en.md: it stays hidden until
- *          Hana fills it in.
+ *          A generated project is always declared "incomplet" and contains every projet.json
+ *          field with an empty value, plus empty text templates in fr.md / en.md: it stays hidden
+ *          until Hana fills in the required fields and the texts.
  */
-import { TODO_MARKER } from '../../src/lib/completeness.mjs';
 import { DESCRIPTION_TEMPLATE } from '../../src/lib/description.mjs';
 
 /** Media sub-folders created for each project. */
@@ -38,8 +37,34 @@ export function toTitle(name) {
   return name.replace(/_+/g, ' ').replace(/\s+/g, ' ').trim();
 }
 
+/** Empty translated text. */
+const emptyText = () => ({ fr: '', en: '' });
+
 /**
- * @brief  Builds the default projet.json content.
+ * @brief  Empty projet.json fields, in display order; also used to complete existing projects.
+ * @return {Record<string, unknown>}
+ */
+export function emptyProjectFields() {
+  return {
+    moteur: '',
+    langages: [''],
+    equipe: 1,
+    debut: '',
+    fin: '',
+    duree: emptyText(),
+    systemes: { fr: [''], en: [''] },
+    couverture: '',
+    liens: [
+      { type: 'code', url: '', label: emptyText() },
+      { type: 'build', url: '', label: emptyText() },
+    ],
+    youtube: [{ id: '', titre: emptyText() }],
+    code: [{ chemin: '', url: '', note: emptyText() }],
+  };
+}
+
+/**
+ * @brief  Builds the default projet.json content: every field present, empty values to fill in.
  * @param  {{ name: string; ordre: number; today?: Date }} options
  *         `ordre`: position in the default category; `today`: start date (current month by default).
  * @return {Record<string, unknown>}
@@ -52,14 +77,34 @@ export function buildProjectJson({ name, ordre, today = new Date() }) {
     categorie: DEFAULT_CATEGORY,
     etat: 'incomplet',
     titre: { fr: title, en: title },
-    moteur: TODO_MARKER,
-    langages: [TODO_MARKER],
-    equipe: 1,
+    ...emptyProjectFields(),
     debut: month,
-    enCours: true,
-    liens: [],
-    youtube: [],
   };
+}
+
+/**
+ * @brief  Serialises projet.json for hand editing: one field per line, short objects and lists
+ *         of plain values kept on one line (e.g. `"titre": { "fr": "", "en": "" }`).
+ * @param  {unknown} value JSON value.
+ * @param  {string} [indent] Current indentation (used for recursion).
+ * @return {string}
+ */
+export function formatProjectJson(value, indent = '') {
+  const inner = `${indent}  `;
+  const flat = (v) => v === null || typeof v !== 'object';
+  if (Array.isArray(value)) {
+    if (value.every(flat)) return `[${value.map((v) => JSON.stringify(v)).join(', ')}]`;
+    return `[\n${value.map((v) => inner + formatProjectJson(v, inner)).join(',\n')}\n${indent}]`;
+  }
+  if (value && typeof value === 'object') {
+    const entries = Object.entries(value);
+    const oneLine = `{ ${entries.map(([k, v]) => `${JSON.stringify(k)}: ${formatProjectJson(v, inner)}`).join(', ')} }`;
+    if (entries.every(([, v]) => flat(v) || (Array.isArray(v) && v.every(flat))) && oneLine.length <= 100 && indent !== '' && entries.length <= 3) {
+      return oneLine;
+    }
+    return `{\n${entries.map(([k, v]) => `${inner}${JSON.stringify(k)}: ${formatProjectJson(v, inner)}`).join(',\n')}\n${indent}}`;
+  }
+  return JSON.stringify(value);
 }
 
 /**
@@ -71,7 +116,7 @@ export function buildProjectFiles({ name, slug, ordre, today }) {
   const content = `src/content/projets/${slug}`;
   const assets = `src/assets/projets/${slug}`;
   return [
-    { path: `${content}/projet.json`, content: `${JSON.stringify(buildProjectJson({ name, ordre, today }), null, 2)}\n` },
+    { path: `${content}/projet.json`, content: `${formatProjectJson(buildProjectJson({ name, ordre, today }))}\n` },
     { path: `${content}/fr.md`, content: DESCRIPTION_TEMPLATE },
     { path: `${content}/en.md`, content: DESCRIPTION_TEMPLATE },
     ...MEDIA_KINDS.map((kind) => ({ path: `${assets}/${kind}/.gitkeep`, content: '' })),

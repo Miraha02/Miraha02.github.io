@@ -2,33 +2,33 @@
   "ordre": 2,
   "categorie": "secondaire",
   "etat": "a-mettre-a-jour",
-  "titre": {
-    "fr": "FishClicker",
-    "en": "FishClicker"
-  },
+  "titre": { "fr": "FishClicker", "en": "FishClicker" },
   "moteur": "Unity",
-  "langages": [
-    "C#"
-  ],
+  "langages": ["C#"],
   "equipe": 3,
   "debut": "2025-02",
   "fin": "2025-03",
-  "systemes": {
-    "fr": [
-      "Accéléromètre",
-      "Vibrations",
-      "Mobile"
-    ],
-    "en": [
-      "Accelerometer",
-      "Vibration",
-      "Mobile"
-    ]
-  },
+  "duree": { "fr": "", "en": "" },
+  "systemes": { "fr": ["Accéléromètre", "Vibrations", "Mobile"], "en": ["Accelerometer", "Vibration", "Mobile"] },
+  "couverture": "",
   "liens": [
     {
       "type": "build",
-      "url": "https://drive.google.com/drive/folders/1VfKXrLzH1nBwyZ-6oNxCLZduB6vfXxtU?usp=sharing"
+      "url": "https://drive.google.com/drive/folders/1VfKXrLzH1nBwyZ-6oNxCLZduB6vfXxtU?usp=sharing",
+      "label": { "fr": "", "en": "" }
+    }
+  ],
+  "youtube": [
+    {
+      "id": "",
+      "titre": { "fr": "", "en": "" }
+    }
+  ],
+  "code": [
+    {
+      "chemin": "",
+      "url": "",
+      "note": { "fr": "", "en": "" }
     }
   ]
 }

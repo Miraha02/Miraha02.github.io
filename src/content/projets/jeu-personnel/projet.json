@@ -2,16 +2,38 @@
   "ordre": 0,
   "categorie": "principal",
   "etat": "incomplet",
-  "titre": {
-    "fr": "[À COMPLÉTER : nom du jeu]",
-    "en": "[À COMPLÉTER: game title]"
-  },
+  "titre": { "fr": "", "en": "" },
   "moteur": "Unreal Engine 5",
-  "langages": [
-    "C++",
-    "Blueprint"
-  ],
+  "langages": ["C++", "Blueprint"],
   "equipe": 1,
   "debut": "2025",
-  "enCours": true
+  "fin": "",
+  "duree": { "fr": "", "en": "" },
+  "systemes": { "fr": [""], "en": [""] },
+  "couverture": "",
+  "liens": [
+    {
+      "type": "code",
+      "url": "",
+      "label": { "fr": "", "en": "" }
+    },
+    {
+      "type": "build",
+      "url": "",
+      "label": { "fr": "", "en": "" }
+    }
+  ],
+  "youtube": [
+    {
+      "id": "",
+      "titre": { "fr": "", "en": "" }
+    }
+  ],
+  "code": [
+    {
+      "chemin": "",
+      "url": "",
+      "note": { "fr": "", "en": "" }
+    }
+  ]
 }

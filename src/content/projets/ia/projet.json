@@ -2,63 +2,51 @@
   "ordre": 3,
   "categorie": "principal",
   "etat": "a-mettre-a-jour",
-  "titre": {
-    "fr": "IA : pathfinding et steering",
-    "en": "AI: pathfinding and steering"
-  },
+  "titre": { "fr": "IA : pathfinding et steering", "en": "AI: pathfinding and steering" },
   "moteur": "Unreal Engine 5",
-  "langages": [
-    "C++",
-    "Blueprint"
-  ],
+  "langages": ["C++", "Blueprint"],
   "equipe": 1,
   "debut": "2025-01",
   "fin": "2025-03",
+  "duree": { "fr": "", "en": "" },
   "systemes": {
-    "fr": [
-      "Steering behaviors",
-      "Pathfinding",
-      "Génération aléatoire de carte"
-    ],
-    "en": [
-      "Steering behaviors",
-      "Pathfinding",
-      "Random map generation"
-    ]
+    "fr": ["Steering behaviors", "Pathfinding", "Génération aléatoire de carte"],
+    "en": ["Steering behaviors", "Pathfinding", "Random map generation"]
   },
+  "couverture": "Hospital2.png",
   "liens": [
     {
       "type": "code",
       "url": "https://github.com/Miraha02/ProjectMPIA1",
-      "label": {
-        "fr": "Code : steering",
-        "en": "Code: steering"
-      }
+      "label": { "fr": "Code : steering", "en": "Code: steering" }
     },
     {
       "type": "code",
       "url": "https://github.com/Miraha02/Hospital_MPIA",
-      "label": {
-        "fr": "Code : Hospital",
-        "en": "Code: Hospital"
-      }
+      "label": { "fr": "Code : Hospital", "en": "Code: Hospital" }
     },
     {
       "type": "build",
       "url": "https://drive.google.com/drive/folders/1qLOS4fmYUd-EfaoaE3n3brSwwo5OTjpA?hl=fr",
-      "label": {
-        "fr": "Build : steering",
-        "en": "Build: steering"
-      }
+      "label": { "fr": "Build : steering", "en": "Build: steering" }
     },
     {
       "type": "build",
       "url": "https://drive.google.com/drive/folders/1Bqefc41s2TVsoz4FpyBvWW8NQXHVSHQG?usp=sharing",
-      "label": {
-        "fr": "Build : Hospital",
-        "en": "Build: Hospital"
-      }
+      "label": { "fr": "Build : Hospital", "en": "Build: Hospital" }
     }
   ],
-  "couverture": "Hospital2.png"
+  "youtube": [
+    {
+      "id": "",
+      "titre": { "fr": "", "en": "" }
+    }
+  ],
+  "code": [
+    {
+      "chemin": "",
+      "url": "",
+      "note": { "fr": "", "en": "" }
+    }
+  ]
 }

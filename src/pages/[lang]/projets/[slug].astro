@@ -3,7 +3,7 @@
  * @file    [lang]/projets/[slug].astro
  * @brief   Page de détail d'un projet (une par projet publié et par langue).
  * @details Ordre : retour, titre + accroche + liens, fiche technique en tuiles, médias,
- *          description (sections et paragraphes rédigés par Hana), projets voisins.
+ *          description (sections et paragraphes rédigés par Hana), code à consulter, projets voisins.
  *          Texts come from fr.md / en.md in the tagged-block format of src/lib/description.mjs.
  */
 import Base from '../../../layouts/Base.astro';
@@ -29,12 +29,13 @@ const d = project.data;
 const text = await getProjectText(project.id, lang);
 const description = summarize(text) || d.titre[lang];
 
-const media = getProjectMedia(project.id, d.youtube.map((y) => ({ id: y.id, title: y.titre[lang] })));
+const media = getProjectMedia(project.id, d.youtube.map((y) => ({ id: y.id, title: y.titre?.[lang] || d.titre[lang] })));
 const cover = getCoverImage(project.id, d.couverture);
 const neighbours = getNeighbours(await getPublishedProjects(), project.id);
+const code = d.code;
 
 const linkLabel = (l: (typeof d.liens)[number]) =>
-  l.label?.[lang] ?? (l.type === 'code' ? t('links.code') : l.type === 'build' ? t('links.build') : l.type === 'play' ? t('links.play') : l.url);
+  l.label?.[lang] || (l.type === 'code' ? t('links.code') : l.type === 'build' ? t('links.build') : l.type === 'play' ? t('links.play') : l.url);
 const linkIcon = (type: string) => (type === 'code' ? 'code' : type === 'build' ? 'download' : 'external') as 'code' | 'download' | 'external';
 ---
 <Base lang={lang} title={d.titre[lang]} description={description} ogImage={cover}>
@@ -72,6 +73,23 @@ const linkIcon = (type: string) => (type === 'code' ? 'code' : type === 'build' 
       </article>
     )}
 
+    {code.length > 0 && (
+      <section class="code">
+        <h2>{t('code.title')}</h2>
+        <ul role="list">
+          {code.map((c) => (
+            <li>
+              <a href={c.url}>
+                <span class="path">{c.chemin}</span>
+                {c.note?.[lang] && <span class="note">{c.note[lang]}</span>}
+                <Icon name="external" class="ext" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
     {(neighbours.prev || neighbours.next) && (
       <nav class="neighbours" aria-label={t('projects.title')}>
         {neighbours.prev ? (
@@ -95,6 +113,14 @@ const linkIcon = (type: string) => (type === 'code' ? 'code' : type === 'build' 
   .links { display: flex; flex-wrap: wrap; gap: 10px; }
   .media { margin: 28px 0 48px; }
   .desc { margin-bottom: 48px; }
+  .code h2 { font-size: 22px; margin-bottom: 16px; }
+  .code ul { list-style: none; margin: 0; padding: 0; max-width: 760px; border: 1px solid var(--border); border-radius: var(--radius-card); overflow: hidden; }
+  .code li + li { border-top: 1px solid var(--border); }
+  .code a { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; align-items: center; padding: 14px 16px; background: var(--surface); }
+  .code a:hover { background: var(--surface-2); text-decoration: none; }
+  .path { font-family: var(--font-mono); font-size: 14px; overflow-wrap: anywhere; }
+  .note { grid-column: 1; color: var(--text-2); font-size: 14px; }
+  .code :global(.ext) { grid-row: 1 / span 2; grid-column: 2; color: var(--text-3); }
   .neighbours { margin-top: 72px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
   .neighbours a { display: flex; flex-direction: column; color: var(--text); font-weight: 600; min-height: 44px; }
   .neighbours a:hover { text-decoration: none; color: var(--accent); }

@@ -2,43 +2,41 @@
   "ordre": 4,
   "categorie": "secondaire",
   "etat": "a-mettre-a-jour",
-  "titre": {
-    "fr": "2D3DGame",
-    "en": "2D3DGame"
-  },
+  "titre": { "fr": "2D3DGame", "en": "2D3DGame" },
   "moteur": "Unreal Engine 5.5",
-  "langages": [
-    "C++",
-    "Blueprint"
-  ],
+  "langages": ["C++", "Blueprint"],
   "equipe": 1,
   "debut": "2025-04-25",
   "fin": "2025-05-02",
+  "duree": { "fr": "", "en": "" },
   "systemes": {
-    "fr": [
-      "Paper2D (sprites, flipbooks)",
-      "Niagara",
-      "Matériaux"
-    ],
-    "en": [
-      "Paper2D (sprites, flipbooks)",
-      "Niagara",
-      "Materials"
-    ]
+    "fr": ["Paper2D (sprites, flipbooks)", "Niagara", "Matériaux"],
+    "en": ["Paper2D (sprites, flipbooks)", "Niagara", "Materials"]
   },
+  "couverture": "MadaRifi5.png",
   "liens": [
     {
       "type": "other",
       "url": "https://drive.google.com/drive/folders/1iSLLolyRsSnGDfbo_Gfh9411mmEy2I1V?usp=sharing",
-      "label": {
-        "fr": "Sources (Drive)",
-        "en": "Sources (Drive)"
-      }
+      "label": { "fr": "Sources (Drive)", "en": "Sources (Drive)" }
     },
     {
       "type": "build",
-      "url": "https://drive.google.com/drive/folders/1Opj1SwOrikIgbM3vS-jKSMakQIAM2c7g?usp=sharing"
+      "url": "https://drive.google.com/drive/folders/1Opj1SwOrikIgbM3vS-jKSMakQIAM2c7g?usp=sharing",
+      "label": { "fr": "", "en": "" }
     }
   ],
-  "couverture": "MadaRifi5.png"
+  "youtube": [
+    {
+      "id": "",
+      "titre": { "fr": "", "en": "" }
+    }
+  ],
+  "code": [
+    {
+      "chemin": "",
+      "url": "",
+      "note": { "fr": "", "en": "" }
+    }
+  ]
 }
