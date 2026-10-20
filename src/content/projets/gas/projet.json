@@ -2,7 +2,7 @@
   "ordre": 2,
   "categorie": "principal",
   "etat": "a-mettre-a-jour",
-  "titre": { "fr": "Gameplay Ability System", "en": "Gameplay Ability System" },
+  "titre": { "fr": "MMO", "en": "MMO" },
   "moteur": "Unreal Engine 5",
   "langages": ["C++", "Blueprint"],
   "equipe": 2,
@@ -23,8 +23,8 @@
   ],
   "youtube": [
     {
-      "id": "tsQcxoMZ6NQ",
-      "titre": { "fr": "POC Gameplay Ability System (GAS) - UE5", "en": "POC Gameplay Ability System (GAS) - UE5" }
+      "id": "",
+      "titre": { "fr": "", "en": "" }
     }
   ],
   "code": [
