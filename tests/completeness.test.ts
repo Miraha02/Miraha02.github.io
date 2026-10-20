@@ -4,9 +4,10 @@
  */
 import { describe, expect, it } from 'vitest';
 import { findTextIssues, findUpdateIssues, hasTodoMarker, isVisible, TODO_MARKER } from '../src/lib/completeness.mjs';
+import { DESCRIPTION_TEMPLATE } from '../src/lib/description.mjs';
 import { buildProjectFiles, buildProjectJson, nextOrder, toSlug, toTitle } from '../scripts/lib/project-template.mjs';
 
-const complete = { fr: 'Texte.', en: 'Text.' };
+const complete = { fr: '[PARAGRAPH] {Texte.}', en: '[PARAGRAPH] {Text.}' };
 
 describe('hasTodoMarker', () => {
   it('detects the marker with or without accents and hint', () => {
@@ -26,7 +27,23 @@ describe('findTextIssues', () => {
   });
 
   it('flags missing and empty descriptions', () => {
-    expect(findTextIssues({ data: {}, descriptions: { fr: undefined, en: '  \n' } })).toEqual(['fr.md manquant', 'en.md vide']);
+    expect(findTextIssues({ data: {}, descriptions: { fr: undefined, en: '  \n' } })).toEqual(['fr.md manquant', 'en.md : aucun texte']);
+    expect(findTextIssues({ data: {}, descriptions: { fr: DESCRIPTION_TEMPLATE, en: '[SECTION] {Titre}' } })).toEqual([
+      'fr.md : aucun texte',
+      'en.md : aucun texte',
+    ]);
+  });
+
+  it('flags format errors with their line', () => {
+    expect(findTextIssues({ data: {}, descriptions: { fr: '[PARAGRAPH] {ok}\n[PARAGRAF] {x}', en: complete.en } })).toEqual([
+      'fr.md ligne 2 : balise inconnue [PARAGRAF] (attendu : [TAGLINE], [SECTION], [PARAGRAPH])',
+    ]);
+  });
+
+  it('still detects the placeholder marker inside a block', () => {
+    expect(findTextIssues({ data: {}, descriptions: { fr: `[PARAGRAPH] {${TODO_MARKER}}`, en: complete.en } })).toEqual([
+      `fr.md contient ${TODO_MARKER}`,
+    ]);
   });
 
   it('returns nothing for complete texts', () => {
@@ -35,19 +52,13 @@ describe('findTextIssues', () => {
 });
 
 describe('findUpdateIssues', () => {
-  it('lists media, cover, link and code problems', () => {
-    const issues = findUpdateIssues({ mediaCount: 0, imageNames: [], couverture: 'a.png', liens: [], code: [{ chemin: 'A.cpp' }] });
-    expect(issues).toHaveLength(4);
+  it('lists media, cover and link problems', () => {
+    const issues = findUpdateIssues({ mediaCount: 0, imageNames: [], couverture: 'a.png', liens: [] });
+    expect(issues).toHaveLength(3);
   });
 
-  it('accepts a project with media, links and code urls', () => {
-    const issues = findUpdateIssues({
-      mediaCount: 1,
-      imageNames: ['a.png'],
-      couverture: 'a.png',
-      liens: [{}],
-      code: [{ chemin: 'A.cpp', url: 'https://example.com' }],
-    });
+  it('accepts a project with media and links', () => {
+    const issues = findUpdateIssues({ mediaCount: 1, imageNames: ['a.png'], couverture: 'a.png', liens: [{}] });
     expect(issues).toEqual([]);
   });
 });
@@ -74,11 +85,19 @@ describe('project generator', () => {
   it('creates an incomplete, hidden project', () => {
     const json = buildProjectJson({ name: 'Test', ordre: 4, today: new Date(2026, 9, 19) });
     expect(json).toMatchObject({ etat: 'incomplet', ordre: 4, debut: '2026-10' });
-    const files = buildProjectFiles({ name: 'Test', slug: 'test', ordre: 4 }).map((f) => f.path);
-    expect(files).toContain('src/content/projets/test/fr.md');
-    expect(files).toContain('src/assets/projets/test/video/.gitkeep');
-    const descriptions = { fr: TODO_MARKER, en: TODO_MARKER };
-    expect(isVisible('incomplet', findTextIssues({ data: json, descriptions }))).toBe(false);
+    expect(json).not.toHaveProperty('accroche');
+    expect(json).not.toHaveProperty('code');
+    const files = buildProjectFiles({ name: 'Test', slug: 'test', ordre: 4 });
+    const paths = files.map((f) => f.path);
+    expect(paths).toContain('src/content/projets/test/fr.md');
+    expect(paths).toContain('src/assets/projets/test/video/.gitkeep');
+    const fr = files.find((f) => f.path.endsWith('/fr.md'))?.content;
+    const en = files.find((f) => f.path.endsWith('/en.md'))?.content;
+    expect(fr).toBe(DESCRIPTION_TEMPLATE);
+    expect(en).toBe(DESCRIPTION_TEMPLATE);
+    const issues = findTextIssues({ data: json, descriptions: { fr, en } });
+    expect(issues).toContain('fr.md : aucun texte');
+    expect(isVisible('complet', issues)).toBe(false);
   });
 
   it('computes the next order in a category', () => {

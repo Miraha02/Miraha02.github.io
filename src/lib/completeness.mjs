@@ -6,10 +6,13 @@
  *          - "a-mettre-a-jour" : visible, warning;
  *          - "incomplet"       : hidden, warning.
  *          Independently of the declared state, a project whose texts are not written yet
- *          (a `[À COMPLÉTER]` marker left, or a missing description in one language) is always
- *          hidden, so a placeholder can never reach the published site.
+ *          (a `[À COMPLÉTER]` marker left, a missing or empty description in one language, or a
+ *          description that breaks the format of src/lib/description.mjs) is always hidden, so a
+ *          placeholder can never reach the published site.
  *          Plain JavaScript with JSDoc so that Node can run it without a build step.
  */
+
+import { isEmptyDescription, parseDescription } from './description.mjs';
 
 /** @typedef {'complet' | 'a-mettre-a-jour' | 'incomplet'} ProjectState */
 
@@ -48,7 +51,7 @@ export function collectStrings(value, path = '') {
 /**
  * @brief  Lists the text problems that make a project unpublishable.
  * @param  {{ data: unknown; descriptions: Record<string, string | undefined> }} project
- *         `data`: content of projet.json; `descriptions`: Markdown body per language (undefined if the file is missing).
+ *         `data`: content of projet.json; `descriptions`: raw content of fr.md / en.md (undefined if the file is missing).
  * @return {string[]} One human-readable message per problem; empty when the texts are complete.
  */
 export function findTextIssues({ data, descriptions }) {
@@ -57,9 +60,14 @@ export function findTextIssues({ data, descriptions }) {
     if (hasTodoMarker(text)) issues.push(`projet.json : « ${path} » contient ${TODO_MARKER}`);
   }
   for (const [lang, body] of Object.entries(descriptions)) {
-    if (body === undefined) issues.push(`${lang}.md manquant`);
-    else if (body.trim() === '') issues.push(`${lang}.md vide`);
-    else if (hasTodoMarker(body)) issues.push(`${lang}.md contient ${TODO_MARKER}`);
+    if (body === undefined) {
+      issues.push(`${lang}.md manquant`);
+      continue;
+    }
+    const parsed = parseDescription(body);
+    for (const error of parsed.errors) issues.push(`${lang}.md ${error}`);
+    if (hasTodoMarker(body)) issues.push(`${lang}.md contient ${TODO_MARKER}`);
+    else if (!parsed.errors.length && isEmptyDescription(parsed)) issues.push(`${lang}.md : aucun texte`);
   }
   return issues;
 }
@@ -71,17 +79,15 @@ export function findTextIssues({ data, descriptions }) {
  *           imageNames: string[];
  *           couverture?: string;
  *           liens: unknown[];
- *           code: { chemin: string; url?: string }[];
  *         }} project
  *         `mediaCount`: images + GIFs + videos + YouTube entries; `imageNames`: files of image/.
  * @return {string[]}
  */
-export function findUpdateIssues({ mediaCount, imageNames, couverture, liens, code }) {
+export function findUpdateIssues({ mediaCount, imageNames, couverture, liens }) {
   const issues = [];
   if (mediaCount === 0) issues.push('aucun média (image, GIF, vidéo ou YouTube)');
   if (couverture && !imageNames.includes(couverture)) issues.push(`couverture « ${couverture} » introuvable dans image/`);
   if (liens.length === 0) issues.push('aucun lien (code, build ou version jouable)');
-  for (const c of code) if (!c.url) issues.push(`fichier de code « ${c.chemin} » sans url (non affiché)`);
   return issues;
 }
 

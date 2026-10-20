@@ -8,7 +8,7 @@
  *          - "complet" with update problems  : warning (declared state does not match);
  *          - "a-mettre-a-jour"               : warning, project visible;
  *          - "incomplet"                     : warning, project hidden;
- *          - texts not written (marker, missing language) while declared visible:
+ *          - texts not written (marker, missing or empty language, format error) while declared visible:
  *            error annotation, project hidden by the site.
  *          Locally: coloured summary. In GitHub Actions: one annotation per project
  *          (::warning / ::error) and a table in the job summary.
@@ -78,7 +78,6 @@ function evaluateProject(slug) {
     imageNames: images,
     couverture: data.couverture,
     liens: data.liens ?? [],
-    code: data.code ?? [],
   });
   const issues = [...textIssues, ...updateIssues];
 

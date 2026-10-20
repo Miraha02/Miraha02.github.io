@@ -2,13 +2,15 @@
  * @file    projects.ts
  * @brief   Accès aux projets visibles, triés et associés à leur texte dans une langue donnée.
  * @details Combine la collection « projets » (données communes) et « descriptions »
- *          (texte rédigé par Hana, un fichier par langue). Visibility follows
- *          src/lib/completeness.mjs: projects declared "incomplet", or whose texts still contain
- *          a placeholder or miss a language, are excluded everywhere (pages, lists, navigation).
+ *          (texte rédigé par Hana, un fichier par langue, format de src/lib/description.mjs).
+ *          Visibility follows src/lib/completeness.mjs: projects declared "incomplet", or whose
+ *          texts still contain a placeholder, miss a language, are empty or break the format,
+ *          are excluded everywhere (pages, lists, navigation).
  */
 import { getCollection, getEntry, type CollectionEntry } from 'astro:content';
 import { langs, type Lang } from '../i18n/ui';
 import { findTextIssues, isVisible } from './completeness.mjs';
+import { parseDescription, type Description } from './description.mjs';
 
 export type Project = CollectionEntry<'projets'>;
 export type Category = Project['data']['categorie'];
@@ -32,7 +34,11 @@ export async function isProjectVisible(project: Project): Promise<boolean> {
   for (const lang of langs) {
     descriptions[lang] = (await getEntry('descriptions', `${project.id}/${lang}`))?.body;
   }
-  return isVisible(project.data.etat, findTextIssues({ data: project.data, descriptions }));
+  const issues = findTextIssues({ data: project.data, descriptions });
+  if (issues.length && project.data.etat !== 'incomplet') {
+    console.warn(`[projets] « ${project.id} » masqué : ${issues.join(' ; ')}`);
+  }
+  return isVisible(project.data.etat, issues);
 }
 
 /** @brief Projets visibles, triés. */
@@ -43,9 +49,15 @@ export async function getPublishedProjects(): Promise<Project[]> {
   return sortProjects(visible);
 }
 
-/** @brief Description (Markdown) d'un projet dans une langue, ou undefined si absente. */
-export async function getDescription(slug: string, lang: Lang) {
-  return getEntry('descriptions', `${slug}/${lang}`);
+/**
+ * @brief  Parsed text of a project in one language (tagline and sections).
+ * @param  slug Project folder name.
+ * @param  lang Language.
+ * @return Parsed description; empty when the file is missing.
+ */
+export async function getProjectText(slug: string, lang: Lang): Promise<Description> {
+  const body = (await getEntry('descriptions', `${slug}/${lang}`))?.body ?? '';
+  return parseDescription(body);
 }
 
 /** @brief Projet précédent et suivant dans l'ordre d'affichage (hors archives). */

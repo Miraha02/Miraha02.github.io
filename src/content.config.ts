@@ -2,7 +2,8 @@
  * @file    content.config.ts
  * @brief   Définition et validation (Zod) des collections de contenu du portfolio.
  * @details - projets     : src/content/projets/<slug>/projet.json (données communes aux langues)
- *          - descriptions: src/content/projets/<slug>/<lang>.md (texte rédigé par Hana)
+ *          - descriptions: src/content/projets/<slug>/<lang>.md (texte rédigé par Hana,
+ *                          format à balises lu par src/lib/description.mjs)
  *          - profil      : src/content/profil/<lang>.md (texte de présentation)
  *          - formation, experiences : src/content/parcours/*.json (champs traduits fr/en)
  *          Un champ obligatoire manquant fait échouer le build avec un message explicite.
@@ -30,7 +31,6 @@ const projets = defineCollection({
     /** Declared state: "incomplet" hides the project (rules in src/lib/completeness.mjs). */
     etat: z.enum(PROJECT_STATES),
     titre: t,
-    accroche: t.partial().optional(),
     /** Nom du fichier image de vignette (dossier image/) ; par défaut la première image. */
     couverture: z.string().optional(),
     moteur: z.string(),
@@ -52,10 +52,6 @@ const projets = defineCollection({
       .default([]),
     /** Vidéos YouTube (identifiant seul), chargées au clic via youtube-nocookie.com. */
     youtube: z.array(z.object({ id: z.string().regex(/^[\w-]{11}$/), titre: t })).default([]),
-    /** Fichiers de code à mettre en avant ; affichés seulement si `url` est renseignée. */
-    code: z
-      .array(z.object({ chemin: z.string(), url: z.url().optional(), note: t.partial().optional() }))
-      .default([]),
   }),
 });
 

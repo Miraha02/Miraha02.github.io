@@ -10,6 +10,7 @@
 import { Image } from 'astro:assets';
 import type { Project } from '../lib/projects';
 import { getCoverImage } from '../lib/media';
+import { getProjectText } from '../lib/projects';
 import { localePath, shortEngine, teamLabel, useTranslations, type Lang } from '../i18n/ui';
 
 interface Props { project: Project; lang: Lang; large?: boolean }
@@ -19,7 +20,7 @@ const d = project.data;
 const cover = getCoverImage(project.id, d.couverture);
 const href = localePath(lang, `projets/${project.id}`);
 const meta = [shortEngine(d.moteur), teamLabel(d.equipe, lang), d.duree?.[lang]].filter(Boolean).join(' · ');
-const accroche = d.accroche?.[lang];
+const accroche = (await getProjectText(project.id, lang)).tagline;
 ---
 <article class:list={['card', { large }]}>
   <a class="thumb" href={href} tabindex="-1" aria-hidden="true" style={`view-transition-name: project-${project.id}`}>

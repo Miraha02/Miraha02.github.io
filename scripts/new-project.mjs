@@ -4,7 +4,8 @@
  * @details Usage: `./newProject Nom_du_projet` (Git Bash) or `npm run new -- Nom_du_projet`.
  *          Creates src/content/projets/<slug>/ (projet.json, fr.md, en.md) and
  *          src/assets/projets/<slug>/{image,gif,video}/. The project is declared "incomplet",
- *          so it stays hidden from the site until its `[À COMPLÉTER]` markers are filled in.
+ *          so it stays hidden from the site until its `[À COMPLÉTER]` markers and its texts
+ *          (fr.md / en.md, empty template) are filled in.
  *          Refuses to overwrite an existing project.
  */
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -61,7 +62,8 @@ function main() {
 
   console.log(`Projet « ${slug} » créé (état : incomplet, masqué du site) :`);
   for (const f of files) console.log(`  ${f.path}`);
-  console.log('\nÀ faire : remplacer chaque [À COMPLÉTER], ajouter les médias et les liens,');
+  console.log('\nÀ faire : remplacer chaque [À COMPLÉTER] de projet.json, écrire les textes entre {} dans fr.md et en.md,');
+  console.log('ajouter les médias et les liens,');
   console.log('puis passer "etat" à "complet" ou "a-mettre-a-jour" dans projet.json.');
   console.log(`Adresse sur le site : /fr/projets/${slug}/`);
 }

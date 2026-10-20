@@ -2,10 +2,12 @@
  * @file    project-template.mjs
  * @brief   Pure helpers of the project generator: slug, default files, folder layout.
  * @details Kept free of file-system access so that they can be unit tested.
- *          A generated project is always declared "incomplet" and contains
- *          `[À COMPLÉTER]` markers: it stays hidden until Hana fills it in.
+ *          A generated project is always declared "incomplet", contains `[À COMPLÉTER]` markers
+ *          in projet.json and empty text templates in fr.md / en.md: it stays hidden until
+ *          Hana fills it in.
  */
 import { TODO_MARKER } from '../../src/lib/completeness.mjs';
+import { DESCRIPTION_TEMPLATE } from '../../src/lib/description.mjs';
 
 /** Media sub-folders created for each project. */
 export const MEDIA_KINDS = ['image', 'gif', 'video'];
@@ -50,7 +52,6 @@ export function buildProjectJson({ name, ordre, today = new Date() }) {
     categorie: DEFAULT_CATEGORY,
     etat: 'incomplet',
     titre: { fr: title, en: title },
-    accroche: { fr: `${TODO_MARKER} accroche courte`, en: `${TODO_MARKER} short tagline` },
     moteur: TODO_MARKER,
     langages: [TODO_MARKER],
     equipe: 1,
@@ -58,7 +59,6 @@ export function buildProjectJson({ name, ordre, today = new Date() }) {
     enCours: true,
     liens: [],
     youtube: [],
-    code: [],
   };
 }
 
@@ -72,8 +72,8 @@ export function buildProjectFiles({ name, slug, ordre, today }) {
   const assets = `src/assets/projets/${slug}`;
   return [
     { path: `${content}/projet.json`, content: `${JSON.stringify(buildProjectJson({ name, ordre, today }), null, 2)}\n` },
-    { path: `${content}/fr.md`, content: `${TODO_MARKER} description en français\n` },
-    { path: `${content}/en.md`, content: `${TODO_MARKER} English description\n` },
+    { path: `${content}/fr.md`, content: DESCRIPTION_TEMPLATE },
+    { path: `${content}/en.md`, content: DESCRIPTION_TEMPLATE },
     ...MEDIA_KINDS.map((kind) => ({ path: `${assets}/${kind}/.gitkeep`, content: '' })),
   ];
 }
