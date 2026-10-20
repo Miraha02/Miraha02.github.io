@@ -1,0 +1,39 @@
+{
+  "ordre": 5,
+  "categorie": "secondaire",
+  "etat": "incomplet",
+  "titre": { "fr": "POC", "en": "POC" },
+  "moteur": "",
+  "langages": [""],
+  "equipe": 1,
+  "debut": "2026-10",
+  "fin": "",
+  "duree": { "fr": "", "en": "" },
+  "systemes": { "fr": [""], "en": [""] },
+  "couverture": "",
+  "liens": [
+    {
+      "type": "code",
+      "url": "",
+      "label": { "fr": "", "en": "" }
+    },
+    {
+      "type": "build",
+      "url": "",
+      "label": { "fr": "", "en": "" }
+    }
+  ],
+  "youtube": [
+    {
+      "id": "",
+      "titre": { "fr": "", "en": "" }
+    }
+  ],
+  "code": [
+    {
+      "chemin": "",
+      "url": "",
+      "note": { "fr": "", "en": "" }
+    }
+  ]
+}
