@@ -52,7 +52,7 @@ const cv = cvPath(lang);
     <span class="underline" aria-hidden="true"></span>
     <div class="prose intro">{Presentation && <Presentation />}</div>
     <div class="actions hero-actions">
-      <a class="btn btn-primary" href="#projets">{t('hero.projects')}</a>
+      <a class="btn btn-primary" href={localePath(lang, 'projects')}>{t('hero.projects')}</a>
       {cv && <a class="btn btn-secondary" href={cv} download><Icon name="download" />{t('cv')}</a>}
       <a class="btn btn-secondary icon-only" href={site.github.url} aria-label="GitHub"><Icon name="github" size={18} /></a>
     </div>
