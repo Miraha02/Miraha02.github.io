@@ -14,7 +14,7 @@ export const site = {
   name: 'Hana Delcourt',
   email: 'hanadelcourt@gmail.com',
   github: { user: 'Miraha02', url: 'https://github.com/Miraha02' },
-  goatcounterCode: '',
+  goatcounterCode: 'miraha',
   cv: { fr: '/cv/CV-Hana-Delcourt-FR.pdf', en: '/cv/CV-Hana-Delcourt-EN.pdf' } satisfies Record<Lang, string>,
 } as const;
 
